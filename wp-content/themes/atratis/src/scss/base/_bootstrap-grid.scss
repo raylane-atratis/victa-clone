@@ -1,0 +1,18 @@
+// Importa apenas o Grid System e dependências necessárias do Bootstrap
+
+// 1. Funções e Variáveis obrigatórias
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+
+// 2. O Grid em si (Containers, Rows, Cols)
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/helpers";
+
+// Opcional: Utilitários de layout (display, margin, padding etc)
+// Descomente se quiser usar classes como .d-flex, .mt-5
+// @import "bootstrap/scss/utilities";
+// @import "bootstrap/scss/utilities/api";

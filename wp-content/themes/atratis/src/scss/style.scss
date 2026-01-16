@@ -1,0 +1,23 @@
+@use "sass:color";
+
+// 1. Configurações e Ferramentas (Base)
+@use 'base/variables';
+@use 'base/mixins';
+@use 'base/bootstrap-grid';
+@use 'base/reset';
+
+// 2. Layout (Estruturas Globais)
+@use 'layout/header';
+@use 'layout/footer';
+
+// 3. Componentes (Botões, Cards, etc)
+@use 'components/buttons';
+
+// 4. Blocos (ACF Flexible Content)
+// Sempre que criar um bloco novo, importe aqui
+@use 'blocks/hero';
+// @use 'blocks/texto-imagem';
+// @use 'blocks/depoimentos';
+
+// 5. Páginas Específicas
+@use 'pages/not-found';

@@ -1,0 +1,74 @@
+﻿@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.error-404-area {
+  min-height: 80vh;
+  padding: 3rem 0;
+  @include flex-center;
+
+  .tile-error-404 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; // Centraliza no mobile
+    text-align: center; // Texto centralizado no mobile
+    margin-top: 2rem;
+
+    @include tablet {
+      align-items: flex-start; // Volta para esquerda no tablet
+      text-align: left;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 5rem; // Menor no mobile
+      line-height: 1;
+      color: #363636;
+      font-weight: 800;
+
+      @include tablet {
+        font-size: 10rem;
+      }
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      color: #363636;
+      font-weight: 700;
+      margin-bottom: 1rem;
+
+      @include tablet {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+
+      @include tablet {
+        font-size: 1.2rem;
+      }
+    }
+
+    a {
+      margin-top: 1.5rem;
+    }
+  }
+}
+
+.icon-error-404 {
+
+  // SVG specific adjustments to ensure responsiveness
+  svg {
+    width: 100%;
+    max-width: 400px; // Limita tamanho no mobile
+    height: auto;
+
+    @include tablet {
+      max-width: 100%;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+
+# WordPress
+
+wp-content/themes/*/node_modules/
+
+# Environment variables
+.env
+.env.local
+
+# Node.js / Vite
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+build/
+.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+debug.log
+
+# Composer
+vendor/
+
+# Temporary / Backup
+*.bak
+*.swp
+*~
