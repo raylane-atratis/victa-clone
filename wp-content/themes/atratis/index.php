@@ -1,7 +1,9 @@
 <?php get_header(); ?>
 
-<div class="main">
-    <h1>Olá Mundo!</h1>
-</div>
+<!-- Chamada do banner -->
+<?php get_template_part('template-parts/content-banner'); ?>
+
+<!-- [BLOCOS] Chamar template de blocos -->
+<?php get_template_part('blocos'); ?>
 
 <?php get_footer(); ?>

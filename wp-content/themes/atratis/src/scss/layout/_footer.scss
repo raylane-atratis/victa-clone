@@ -2,9 +2,204 @@
 @use '../base/mixins' as *;
 
 .site-footer {
-  padding: 3rem 0;
-  border-top: 1px solid #eee;
-  background-color: #f9f9f9;
-  text-align: center;
-  color: #666;
+
+  // =============================================
+  // SEÇÃO SUPERIOR (Fundo branco)
+  // =============================================
+  .footer-top {
+    background-color: $background-color;
+    padding: 60px 0;
+    border-top: 1px solid #f0f0f0;
+
+    .row-personalizada {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-title {
+      font-family: $font-primary;
+      font-size: 16px;
+      font-weight: 600;
+      color: $text-color-link-menu;
+      margin-bottom: 24px;
+    }
+
+    .footer-subtitle {
+      font-family: $font-primary;
+      font-size: 1rem;
+      font-weight: 600;
+      color: $text-color-link-menu;
+      margin-top: 40px;
+      margin-bottom: 24px;
+    }
+
+    // Links Rápidos
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 0.6rem;
+
+        a {
+          font-size: 1rem;
+          color: $text-color-link-menu;
+          text-decoration: none;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: $primary-color;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    // Lista de Contatos
+    .footer-contact {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 0.6rem;
+        font-size: 1rem;
+        color: $text-color-link-menu;
+
+        .footer-icon {
+          width: 24px;
+          height: 24px;
+          flex-shrink: 0;
+        }
+
+        a {
+          color: inherit;
+          text-decoration: none;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: $primary-color;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .footer-email {
+      font-size: 1rem;
+      color: $text-color-link-menu;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    // Texto e Endereço
+    .footer-text {
+      font-size: 1rem;
+      color: $text-color-link-menu;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .footer-address {
+      font-style: normal;
+
+      p {
+        font-size: 1rem;
+        color: $text-color-link-menu;
+        line-height: 1.5;
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+
+  // =============================================
+  // SEÇÃO INFERIOR (Barra com Logo e Redes)
+  // =============================================
+  .footer-bottom {
+    background-color: $background-color;
+    padding: 30px 0;
+    border-top: 1px solid #f0f0f0;
+
+    .footer-branding {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+
+      .footer-logo img {
+        width: 213px;
+        height: auto;
+      }
+
+      .footer-separator {
+        font-size: 0.85rem;
+        color: $text-color;
+      }
+
+      .footer-somapay {
+        width: 205px;
+        height: auto;
+      }
+    }
+
+    .col-personalizada {
+      @include desktop {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+
+    .footer-social {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+
+      @media (max-width: 991px) {
+        justify-content: flex-start;
+        margin-top: 20px;
+      }
+
+
+
+      .social-label {
+        font-size: 14px;
+        color: $text-color-link-menu;
+      }
+
+      .social-icons {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          transition: background-color 0.2s ease, transform 0.2s ease;
+
+          &:hover {}
+
+          img {
+            width: 32px;
+            height: 32px; // Torna branco
+          }
+        }
+      }
+    }
+  }
 }

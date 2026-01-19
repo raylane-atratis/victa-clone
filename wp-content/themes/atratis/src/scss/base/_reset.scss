@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'mixins' as *;
 
 * {
   box-sizing: border-box;
@@ -11,6 +12,10 @@ body {
   line-height: 1.6;
   color: $text-color;
   background: $background-color;
+
+  @include desktop {
+    padding-top: 131px;
+  }
 
   &.no-scroll {
     overflow: hidden;

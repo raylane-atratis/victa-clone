@@ -11,6 +11,7 @@ import '@fancyapps/ui/dist/fancybox/fancybox.css';
 
 // Aqui você pode adicionar seus scripts JS modernos
 // Exemplo de importação: import './modules/meu-script.js';
-import './menu-mobile.js';
+import './menu.js';
+import './banner.js';
 
 console.log('Atratis Theme: Vite Loaded');

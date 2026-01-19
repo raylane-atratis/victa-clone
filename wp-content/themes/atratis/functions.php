@@ -1,4 +1,12 @@
 <?php
+
+//Removendo barra administrativa quando logado, no front-end
+function my_function_admin_bar()
+{
+    return false;
+}
+add_filter('show_admin_bar', 'my_function_admin_bar');
+
 /**
  * Atratis functions and definitions
  */
@@ -14,6 +22,7 @@ if ( ! function_exists( 'atratis_setup' ) ) :
 		// Adiciona suporte a menus
 		register_nav_menus( array(
 			'menu_principal' => 'Menu Principal',
+			'menu_footer'    => 'Menu Footer',
 		) );
 		
 		// Suporte a HTML5
@@ -121,3 +130,72 @@ if ( function_exists( 'acf_add_options_page' ) ) {
     ));
 
 }
+
+/**
+ * Register Custom Post Type: Banners
+ */
+function atratis_register_banner_cpt() {
+	$labels = array(
+		'name'                  => 'Banners',
+		'singular_name'         => 'Banner',
+		'menu_name'             => 'Banners',
+		'name_admin_bar'        => 'Banner',
+		'add_new'               => 'Adicionar Novo',
+		'add_new_item'          => 'Adicionar Novo Banner',
+		'new_item'              => 'Novo Banner',
+		'edit_item'             => 'Editar Banner',
+		'view_item'             => 'Ver Banner',
+		'all_items'             => 'Todos os Banners',
+		'search_items'          => 'Pesquisar Banners',
+		'not_found'             => 'Nenhum banner encontrado.',
+		'not_found_in_trash'    => 'Nenhum banner encontrado na lixeira.',
+	);
+
+	$args = array(
+		'labels'             => $labels,
+		'public'             => false, // Não precisa ser público no front (acesso direto URL)
+		'publicly_queryable' => true,  // Mas precisa ser consultável via WP_Query
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => array( 'slug' => 'banner' ),
+		'capability_type'    => 'post',
+		'has_archive'        => false,
+		'hierarchical'       => false,
+		'menu_position'      => 5,
+		'menu_icon'          => 'dashicons-images-alt2',
+		'supports'           => array( 'title', 'thumbnail' ), // 'editor' removido pois usa ACF
+	);
+
+	register_post_type( 'banners', $args );
+}
+add_action( 'init', 'atratis_register_banner_cpt' );
+
+/**
+ * Register Taxonomy: Posições do Banner
+ */
+function atratis_register_banner_taxonomy() {
+	$labels = array(
+		'name'              => 'Posições',
+		'singular_name'     => 'Posição',
+		'search_items'      => 'Pesquisar Posições',
+		'all_items'         => 'Todas as Posições',
+		'edit_item'         => 'Editar Posição',
+		'update_item'       => 'Atualizar Posição',
+		'add_new_item'      => 'Adicionar Nova Posição',
+		'new_item_name'     => 'Nova Posição',
+		'menu_name'         => 'Posições',
+	);
+
+	$args = array(
+		'hierarchical'      => true, // Tipo Categoria (checkbox)
+		'labels'            => $labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => array( 'slug' => 'posicoes_banner' ),
+	);
+
+	register_taxonomy( 'posicoes_banner', array( 'banners' ), $args );
+}
+add_action( 'init', 'atratis_register_banner_taxonomy' );

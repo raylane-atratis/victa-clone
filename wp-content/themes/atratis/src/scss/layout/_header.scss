@@ -5,8 +5,28 @@
   background-color: $background-color;
   padding: 15px 0;
   border-bottom: 1px solid #f0f0f0;
-  position: relative;
-  z-index: 100;
+
+  // SEMPRE fixo para animação suave
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  // Transição suave APENAS no transform
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+
+  // Estado: Escondido (Scroll Down)
+  &.header-hidden {
+    transform: translateY(-100%);
+    box-shadow: none;
+  }
+
+  // Estado: Visível/Fixo (Scroll Up)
+  &.header-visible {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
 
   .header-inner {
     display: flex;
@@ -91,7 +111,7 @@
   .main-navigation {
     // Estilos Mobile (Overlay)
     position: fixed;
-    top: 120px;
+    top: 80px;
     left: 0;
     width: 100%;
     height: calc(100vh - 120px); // Ajusta altura para caber na tela
