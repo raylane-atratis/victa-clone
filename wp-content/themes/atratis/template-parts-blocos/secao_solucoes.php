@@ -9,53 +9,8 @@ include 'conf_gerais.php';
 // 2. Campos do Bloco (Topo)
 $titulo = get_sub_field('titulo_solucoes');
 $descricao = get_sub_field('descricao_solucoes');
+$solucoes_tabs = get_sub_field('solucoes_repeater');
 
-// 3. Dados Simulados (Posteriormente virão do ACF Repeater)
-$solucoes_tabs = [
-    'servidor' => [
-        'label' => 'Servidor Público',
-        'title' => 'Crédito com taxa mais baixa e pagamento direto na folha',
-        'subtitle' => 'Cartão Benefício Consignado que cuida do servidor além do crédito',
-        'cta_text' => 'Simular agora no WhatsApp',
-        'cta_link' => '#',
-        'items' => [
-            ['icon' => 'bi-credit-card-2-front', 'text' => 'Cartão Benefício com vantagens reais'],
-            ['icon' => 'bi-stopwatch', 'text' => 'Análise em 3 minutos'],
-            ['icon' => 'bi-star', 'text' => 'Fatura mais previsível com desconto automático em folha'],
-            ['icon' => 'bi-cash-coin', 'text' => 'Dinheiro na conta em até 2 horas via pix'],
-            ['icon' => 'bi-calculator', 'text' => 'Parcelas em até 96x'],
-            ['icon' => 'bi-percent', 'text' => 'Taxas mais baixas do que crédito pessoal'],
-        ]
-    ],
-    'convenios' => [
-        'label' => 'Convênios',
-        'title' => 'Valorização do servidor sem custo para o órgão',
-        'subtitle' => 'Operação segura, estável e dentro das normas.',
-        'cta_text' => 'Fale com a gente agora',
-        'cta_link' => '#',
-        'items' => [
-            ['icon' => 'bi-credit-card', 'text' => 'Cartão com vantagens e descontos reais'],
-            ['icon' => 'bi-building', 'text' => 'Somos parte do Grupo Somapay, instituição regulamentada pelo Banco Central.'],
-            ['icon' => 'bi-headset', 'text' => 'Time de suporte direto para gestão'],
-            ['icon' => 'bi-shield-check', 'text' => 'Atuação em conformidade com as regras e exigências de cada convênio.'],
-        ]
-    ],
-    'clt' => [
-        'label' => 'CLT',
-        'title' => 'Crédito pensado para o salário do CLT',
-        'subtitle' => 'Dinheiro rápido para resolver o que importa',
-        'cta_text' => 'Simular agora no WhatsApp',
-        'cta_link' => '#',
-        'items' => [
-            ['icon' => 'bi-pie-chart', 'text' => 'Parcela que respeita seu salário'],
-            ['icon' => 'bi-calendar-check', 'text' => 'Parcelas em até 48x'],
-            ['icon' => 'bi-cash', 'text' => 'Dinheiro direto na sua conta por pix'],
-            ['icon' => 'bi-clock-history', 'text' => 'Análise em 3 minutos'],
-            ['icon' => 'bi-percent', 'text' => 'Taxas mais baixas do que crédito pessoal'],
-            ['icon' => 'bi-phone', 'text' => 'Processo 100% digital'],
-        ]
-    ]
-];
 ?>
 
 <section class="secao-solucoes" style="<?php echo esc_attr($geraisCSS); ?>">
@@ -84,15 +39,19 @@ $solucoes_tabs = [
                 <div class="nav nav-pills justify-content-center nav-solucoes" id="pills-tab" role="tablist">
                     <?php 
                     $count = 0;
-                    foreach ($solucoes_tabs as $key => $tab) : 
-                        $active = ($count === 0) ? 'active' : '';
-                    ?>
-                        <button class="nav-link <?php echo $active; ?>" id="pills-<?php echo $key; ?>-tab" data-bs-toggle="pill" data-bs-target="#pills-<?php echo $key; ?>" type="button" role="tab" aria-controls="pills-<?php echo $key; ?>" aria-selected="<?php echo ($count === 0) ? 'true' : 'false'; ?>">
-                            <?php echo $tab['label']; ?>
-                        </button>
-                    <?php 
-                        $count++;
-                    endforeach; 
+                    if($solucoes_tabs):
+                        foreach ($solucoes_tabs as $key => $tab) : 
+                            $active = ($count === 0) ? 'active' : '';
+                            // Como o repeater retorna array numérico, usamos o índice como ID único
+                            $tab_id = 'pills-' . $key; 
+                        ?>
+                            <button class="nav-link <?php echo $active; ?>" id="<?php echo $tab_id; ?>-tab" data-bs-toggle="pill" data-bs-target="#<?php echo $tab_id; ?>" type="button" role="tab" aria-controls="<?php echo $tab_id; ?>" aria-selected="<?php echo ($count === 0) ? 'true' : 'false'; ?>">
+                                <?php echo $tab['label_aba']; ?>
+                            </button>
+                        <?php 
+                            $count++;
+                        endforeach; 
+                    endif;
                     ?>
                 </div>
             </div>
@@ -104,41 +63,46 @@ $solucoes_tabs = [
                 <div class="tab-content content-solucoes" id="pills-tabContent">
                     <?php 
                     $count = 0;
-                    foreach ($solucoes_tabs as $key => $tab) : 
-                        $active = ($count === 0) ? 'show active' : '';
-                    ?>
-                        <div class="tab-pane fade <?php echo $active; ?>" id="pills-<?php echo $key; ?>" role="tabpanel" aria-labelledby="pills-<?php echo $key; ?>-tab">
-                            <div class="card-aba bg-white p-5 rounded-4 shadow-sm">
-                                <span class="badge-aba mb-3"><?php echo $tab['label']; ?></span>
-                                <strong class="mb-2"><?php echo $tab['title']; ?></strong>
-                                <p class="text-muted mb-5"><?php echo $tab['subtitle']; ?></p>
+                    if($solucoes_tabs):
+                        foreach ($solucoes_tabs as $key => $tab) : 
+                            $active = ($count === 0) ? 'show active' : '';
+                            $tab_id = 'pills-' . $key; 
+                        ?>
+                            <div class="tab-pane fade <?php echo $active; ?>" id="<?php echo $tab_id; ?>" role="tabpanel" aria-labelledby="<?php echo $tab_id; ?>-tab">
+                                <div class="card-aba bg-white p-5 rounded-4 shadow-sm">
+                                    <span class="badge-aba mb-3"><?php echo $tab['label_aba']; ?></span>
+                                    <strong class="mb-2"><?php echo $tab['titulo_card']; ?></strong>
+                                    <p class="text-muted mb-5"><?php echo $tab['subtitulo_card']; ?></p>
 
-                                <div class="row g-4 mb-5">
-                                    <?php foreach ($tab['items'] as $item) : ?>
-                                        <div class="col-md-6">
-                                            <div class="item-beneficio">
-                                                <div class="icon-box text-primary">
-                                                    <!-- Usando icones do Bootstrap para exemplo, pode substituir por SVG/Img -->
-                                                    <i class="bi <?php echo $item['icon']; ?> fs-4"></i> 
+                                    <div class="row g-4 mb-5">
+                                        <?php 
+                                        if($tab['itens_beneficio']):
+                                            foreach ($tab['itens_beneficio'] as $item) : ?>
+                                                <div class="col-md-6">
+                                                    <div class="item-beneficio">
+                                                        <div class="icon-box text-primary">
+                                                            <?php echo $item['icone']; ?>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 fw-medium"><?php echo $item['texto_item']; ?></p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <p class="mb-0 fw-medium"><?php echo $item['text']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
+                                            <?php endforeach; 
+                                        endif; ?>
+                                    </div>
 
-                                <div class="text-center content-cta">
-                                    <a href="<?php echo $tab['cta_link']; ?>" class="btn btn-primary btn-lg rounded-pill px-5 text-white fw-bold">
-                                        <?php echo $tab['cta_text']; ?>
-                                    </a>
+                                    <div class="text-center content-cta">
+                                        <a href="<?php echo $tab['cta_link']; ?>" class="btn btn-primary btn-lg rounded-pill px-5 text-white fw-bold">
+                                            <?php echo $tab['cta_texto']; ?>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php 
-                        $count++;
-                    endforeach; 
+                        <?php 
+                            $count++;
+                        endforeach; 
+                    endif;
                     ?>
                 </div>
             </div>
