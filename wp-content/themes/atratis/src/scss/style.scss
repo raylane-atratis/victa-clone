@@ -16,9 +16,14 @@
 
 // 4. Blocos (ACF Flexible Content)
 // Sempre que criar um bloco novo, importe aqui
-@use 'blocks/hero';
-// @use 'blocks/texto-imagem';
-// @use 'blocks/depoimentos';
+
+
+@use 'blocks/secao_texto_imagem';
+@use 'blocks/secao_solucoes';
+@use 'blocks/secao_onde_estamos';
+@use 'blocks/secao_depoimentos';
+@use 'blocks/secao_video_full';
+@use 'blocks/secao_newsletter';
 
 // 5. Páginas Específicas
 @use 'pages/not-found';

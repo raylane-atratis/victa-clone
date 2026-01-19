@@ -9,8 +9,8 @@ else:
 endif;
 ?>
 
-<?php if (have_rows('blocos_home', $lugar)): ?>
-    <?php while (have_rows('blocos_home', $lugar)):
+<?php if (have_rows('campos_flexiveis', $lugar)): ?>
+    <?php while (have_rows('campos_flexiveis', $lugar)):
         the_row(); ?>
         <?php
 

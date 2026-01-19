@@ -13,5 +13,6 @@ import '@fancyapps/ui/dist/fancybox/fancybox.css';
 // Exemplo de importação: import './modules/meu-script.js';
 import './menu.js';
 import './banner.js';
+import './tabs.js';
 
 console.log('Atratis Theme: Vite Loaded');
