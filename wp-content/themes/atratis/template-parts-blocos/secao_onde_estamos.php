@@ -15,6 +15,15 @@ $theme_url = get_template_directory_uri();
 $img_municipal = $theme_url . '/public/images/regioes-brasil-_1_.webp';
 $img_estadual = $theme_url . '/public/images/regioes-brasil-2-_1_.webp';
 
+$cidades_mock = [
+    'São Paulo - SP', 'Rio de Janeiro - RJ', 'Belo Horizonte - MG', 'Salvador - BA', 'Brasília - DF',
+    'Curitiba - PR', 'Fortaleza - CE', 'Manaus - AM', 'Recife - PE', 'Porto Alegre - RS'
+];
+
+$estados_mock = [
+    'São Paulo', 'Rio de Janeiro', 'Minas Gerais', 'Bahia', 'Paraná',
+    'Rio Grande do Sul', 'Santa Catarina', 'Goiás', 'Pernambuco', 'Ceará'
+];
 ?>
 
 <section class="secao-onde-estamos" style="<?php echo esc_attr($geraisCSS); ?>">
@@ -64,11 +73,11 @@ $img_estadual = $theme_url . '/public/images/regioes-brasil-2-_1_.webp';
                                             <path d="M21 21L16.65 16.65" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Buscar minha cidade" list="cidades-list">
-                                    <!-- Datalist para autocomplete simples se necessário -->
-                                    <datalist id="cidades-list">
-                                        <!-- PHP loop para preencher options do ACF repeater se houver -->
-                                    </datalist>
+                                    <div class="input-wrapper">
+                                        <input type="text" class="form-control" id="busca-cidade" autocomplete="off" placeholder="Buscar minha cidade">
+                                        <label class="input-label" for="busca-cidade">Buscar minha cidade</label>
+                                    </div>
+                                    <div class="search-results custom-scrollbar" id="results-cidade" data-items='<?php echo json_encode($cidades_mock); ?>'></div>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +96,11 @@ $img_estadual = $theme_url . '/public/images/regioes-brasil-2-_1_.webp';
                                             <path d="M21 21L16.65 16.65" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Buscar meu estado" list="estados-list">
+                                    <div class="input-wrapper">
+                                        <input type="text" class="form-control" id="busca-estado" autocomplete="off" placeholder="Buscar meu estado">
+                                        <label class="input-label" for="busca-estado">Buscar meu estado</label>
+                                    </div>
+                                    <div class="search-results custom-scrollbar" id="results-estado" data-items='<?php echo json_encode($estados_mock); ?>'></div>
                                 </div>
                             </div>
                         </div>
