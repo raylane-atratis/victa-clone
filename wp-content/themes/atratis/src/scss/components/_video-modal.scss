@@ -1,0 +1,126 @@
+/**
+ * Video Modal Component Styles
+ * 
+ * Componente reutilizável para modal de vídeo.
+ * Importar em style.scss: @use 'components/video-modal';
+ */
+
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+
+    .video-modal__content {
+      transform: scale(1);
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  &__content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    background: #1a1a1a;
+    border-radius: 16px;
+    overflow: hidden;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  &__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    color: #fff;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: scale(1.1);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(91, 37, 128, 0.5);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__video {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; // 16:9 aspect ratio
+    background: #000;
+  }
+
+  &__iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #5B2580;
+    border-radius: 50%;
+    animation: video-modal-spin 1s linear infinite;
+  }
+
+  &.is-loaded .video-modal__loader {
+    display: none;
+  }
+}
+
+@keyframes video-modal-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

@@ -14,5 +14,13 @@ import '@fancyapps/ui/dist/fancybox/fancybox.css';
 import './menu.js';
 import './banner.js';
 import './tabs.js';
+import { initDepoimentos } from './depoimentos.js';
+import { initOndeEstamos } from './onde-estamos.js';
+
+// Inicializa os componentes
+document.addEventListener('DOMContentLoaded', () => {
+  initDepoimentos();
+  initOndeEstamos();
+});
 
 console.log('Atratis Theme: Vite Loaded');

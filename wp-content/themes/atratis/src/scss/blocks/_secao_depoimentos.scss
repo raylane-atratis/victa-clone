@@ -1,0 +1,235 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.secao-depoimentos {
+  padding: 80px 0;
+  position: relative;
+
+  // background-color: #f9f9f9; // Ajuste conforme necessário
+  .title {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  &__titulo {
+    font-size: 2rem;
+    line-height: 120%;
+    font-weight: 600;
+    color: $text-color-link-menu;
+    text-align: center;
+    font-family: $font-primary;
+  }
+
+  &__subtitulo {
+    font-size: 1.125rem;
+    margin-bottom: 40px;
+    color: $text-color-link-menu;
+    text-align: center;
+  }
+
+  &__wrapper {
+    padding: 0 50px; // Espaço para as setas
+    position: relative;
+
+    @include mobile {
+      padding: 0;
+    }
+  }
+
+  .swiper-depoimentos {
+    padding: 0 5px 40px; // Espaço para sombra e margem
+
+    @include mobile {
+      padding: 0;
+    }
+
+    .swiper-wrapper {
+      align-items: stretch;
+    }
+
+    .swiper-slide {
+      height: auto;
+    }
+  }
+
+  .card-depoimento {
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #C9C9C9;
+    transition: transform 0.3s ease;
+
+    &__header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    &__avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__nome {
+      font-size: 1.125rem; // 18px
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #000;
+    }
+
+    &__cargo {
+      font-size: 0.875rem; // 14px
+      color: #666;
+      font-weight: 400;
+    }
+
+    &__body {
+      p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #555;
+        font-style: normal;
+        margin-top: 2rem;
+      }
+    }
+
+    &__footer {
+      margin-top: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .btn-assistir {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #5B2580; // Cor roxa do SVG
+    font-weight: 600;
+    font-size: 1rem;
+    transition: opacity 0.3s;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+
+  // Navegação Customizada
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 60px;
+    height: 60px;
+    background: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    margin-top: 0;
+
+    svg {
+      // Tamanho original do SVG ou levemente ajustado
+      width: 15px;
+      height: 27px;
+
+      path {
+        stroke: #606060; // Cor original do SVG
+        stroke-width: 2;
+      }
+    }
+
+    &::after {
+      display: none; // Remove setas padrão do Swiper
+    }
+
+    &.swiper-button-disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+  }
+
+  .swiper-depoimentos-prev {
+    left: -10px;
+
+    @include mobile {
+      display: none; // Ocultar em mobile se desejar
+    }
+  }
+
+  .swiper-depoimentos-next {
+    right: -10px;
+
+    @include mobile {
+      display: none; // Ocultar em mobile se desejar
+    }
+  }
+
+  // Pagination dots (mobile only)
+  .swiper-depoimentos-pagination {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+
+    @include tablet {
+      display: none;
+    }
+
+    .swiper-pagination-bullet {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #C9C9C9;
+      opacity: 1;
+      margin: 0 5px;
+      cursor: pointer;
+
+      &-active {
+        background: #5B2580;
+      }
+    }
+  }
+}
