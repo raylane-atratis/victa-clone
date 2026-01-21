@@ -53,7 +53,7 @@ $img_estadual = $theme_url . '/public/images/regioes-brasil-2-_1_.webp';
                         <!-- Tab 1: Municipal -->
                         <div id="map-municipal" class="map-pane active">
                             <div class="map-image-wrapper">
-                                <img src="<?php echo esc_url($img_municipal); ?>" alt="Mapa Servidor Municipal" class="img-fluid">
+                                <img src="<?php echo esc_url($img_municipal); ?>" alt="Mapa Servidor Municipal" class="img-fluid" width="600" height="500" loading="lazy" decoding="async">
                             </div>
                             
                             <div class="map-search mt-4">
@@ -76,7 +76,7 @@ $img_estadual = $theme_url . '/public/images/regioes-brasil-2-_1_.webp';
                         <!-- Tab 2: Estadual -->
                         <div id="map-estadual" class="map-pane">
                             <div class="map-image-wrapper">
-                                <img src="<?php echo esc_url($img_estadual); ?>" alt="Mapa Servidor Estadual" class="img-fluid">
+                                <img src="<?php echo esc_url($img_estadual); ?>" alt="Mapa Servidor Estadual" class="img-fluid" width="600" height="500" loading="lazy" decoding="async">
                             </div>
                             
                             <div class="map-search mt-4">

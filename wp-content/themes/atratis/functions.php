@@ -38,10 +38,19 @@ endif;
 add_action( 'after_setup_theme', 'atratis_setup' );
 
 /**
+ * Adiciona resource hints (preconnect) para Google Fonts - Melhora LCP
+ */
+function atratis_resource_hints() {
+	echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
+	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+}
+add_action( 'wp_head', 'atratis_resource_hints', 1 );
+
+/**
  * Enqueue scripts and styles.
  */
 function atratis_scripts() {
-	// Google Fonts (Lexend & Poppins)
+	// Google Fonts (Lexend & Poppins) - com preconnect para melhor performance
 	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap', array(), null );
 
 	// Configuração do Vite

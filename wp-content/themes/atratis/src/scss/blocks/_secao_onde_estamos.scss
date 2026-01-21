@@ -1,5 +1,6 @@
 @use '../base/variables' as *;
 @use '../base/mixins' as *;
+@use '../components/tabs' as *;
 
 .secao-onde-estamos {
   padding: 80px 0;
@@ -10,15 +11,19 @@
 
   &__content {
     // Alinhamento vertical do conteúdo, se necessário
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__titulo {
-    font-family: $font-heading;
-    font-weight: 700;
-    font-size: 2.5rem;
+    font-family: $font-primary;
+    font-weight: 600;
+    font-size: 2rem;
     line-height: 1.2;
-    color: #000; // Ou cor principal do título
-    margin-bottom: 2rem;
+    color: $text-color-link-menu; // Ou cor principal do título
+    margin-bottom: 2.15rem;
 
     @include mobile {
       font-size: 2rem;
@@ -27,57 +32,41 @@
 
   &__texto {
     font-family: $font-primary;
-    font-size: 1.125rem;
-    line-height: 1.6;
-    color: #4a4a4a;
+    font-size: 1.25rem;
+    line-height: 125%;
+    color: #606060;
 
     p {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
   }
 
   // --- Coluna da Direita (Mapa + Tabs) ---
   &__map-container {
-    background: #fff; // Se houver um card background
+    // Se houver um card background
     border-radius: 20px;
     padding: 0; // Padding pode ser necessário se for um card
     // Box-shadow opcional
   }
 
+  // Tabs - Usa os mixins do componente global
   .map-tabs {
-    display: flex;
-    justify-content: flex-end;
-    gap: 15px;
+    @include tabs-nav;
+    justify-content: center;
     margin-bottom: 30px;
 
-    @include mobile {
-      justify-content: center; // Centralizar em mobile
-      margin-bottom: 20px;
+    @media (max-width: 992px) {
+      justify-content: center;
+      margin: 24px 0;
     }
+
+    @include mobile {}
+
   }
 
   .map-tab-btn {
-    background: transparent;
-    border: 1px solid #E0E0E0; // Cor da borda inativa
-    border-radius: 50px;
-    padding: 10px 24px;
-    font-family: $font-primary;
-    font-weight: 500;
-    font-size: 1rem;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      border-color: darken(#E0E0E0, 10%);
-    }
-
-    &.active {
-      background: rgba(91, 37, 128, 0.08); // #5B258014
-      background: #F3E5F5; // Fallback hardcoded roxo claro
-      border-color: $tertiary-color; // Cor da borda ativa (roxo)
-      color: $tertiary-color;
-    }
+    @include tab-btn;
+    width: 100%;
   }
 
   .map-content-wrapper {
@@ -104,7 +93,7 @@
     img {
       max-width: 100%;
       height: auto;
-      max-height: 400px; // Limite de altura para não quebrar layout
+      max-height: 364px; // Limite de altura para não quebrar layout
       object-fit: contain;
     }
   }
@@ -133,7 +122,7 @@
 
     .form-control {
       width: 100%;
-      padding: 16px 20px 16px 56px; // Padding left para o ícone
+      padding: 10px 20px 10px 56px; // Padding left para o ícone
       font-size: 1rem;
       border: 1px solid #E0E0E0;
       border-radius: 50px; // Pill shape

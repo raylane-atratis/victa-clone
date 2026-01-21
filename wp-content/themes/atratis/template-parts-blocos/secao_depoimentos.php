@@ -75,7 +75,7 @@ if (!$depoimentos) {
                             <div class="card-depoimento">
                                 <div class="card-depoimento__header d-flex align-items-center mb-3">
                                     <div class="card-depoimento__avatar me-3">
-                                        <img src="<?php echo esc_url($foto); ?>" alt="<?php echo esc_attr($item['nome']); ?>">
+                                        <img src="<?php echo esc_url($foto); ?>" alt="<?php echo esc_attr($item['nome']); ?>" width="64" height="64" loading="lazy" decoding="async">
                                     </div>
                                     <div class="card-depoimento__info">
                                         <h3 class="card-depoimento__nome mb-0"><?php echo esc_html($item['nome']); ?></h3>

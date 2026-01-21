@@ -1,0 +1,116 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+/**
+ * Componente Tabs Reutilizável
+ * Baseado no padrão da seção Soluções
+ * 
+ * Uso via Mixins ou CSS classes diretas
+ */
+
+// Mixin para container de tabs
+@mixin tabs-nav {
+  display: flex;
+  gap: 1.5rem;
+
+  @include mobile {
+    gap: 1rem;
+    justify-content: center;
+  }
+}
+
+// Mixin para botão de tab
+@mixin tab-btn {
+  border-radius: 50px;
+  padding: 14px 32px;
+  font-family: $font-primary;
+  font-size: 1rem;
+  font-weight: 400;
+  color: $text-color-link-menu;
+  background-color: transparent;
+  border: 1px solid #BEBEBE;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $primary-color;
+    color: $primary-color;
+  }
+
+  &.active,
+  &[aria-selected="true"] {
+    background-color: rgba($primary-color, 0.1);
+    color: $primary-color;
+    border-color: $primary-color;
+    font-weight: 400;
+  }
+
+  @include mobile {
+    padding: 10px 15px;
+    font-size: 0.875rem;
+  }
+}
+
+// Mixin para tamanho pequeno
+@mixin tab-btn-sm {
+  padding: 10px 20px;
+  font-size: 0.875rem;
+}
+
+// Mixin para tamanho grande
+@mixin tab-btn-lg {
+  padding: 18px 48px;
+  font-size: 1.125rem;
+}
+
+// Mixin para conteúdo das tabs
+@mixin tabs-content {
+  .tab-pane {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+
+    &.active {
+      display: block;
+      animation: tabFadeIn 0.4s forwards;
+    }
+
+    &.show {
+      opacity: 1;
+    }
+  }
+}
+
+// Classes CSS diretas (para uso no HTML)
+.tabs-nav {
+  @include tabs-nav;
+}
+
+.tab-btn {
+  @include tab-btn;
+
+  &--sm {
+    @include tab-btn-sm;
+  }
+
+  &--lg {
+    @include tab-btn-lg;
+  }
+}
+
+.tabs-content {
+  @include tabs-content;
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
