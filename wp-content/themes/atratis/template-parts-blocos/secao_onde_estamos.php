@@ -11,19 +11,34 @@ $titulo = get_sub_field('titulo') ?: 'Onde estamos?';
 $texto = get_sub_field('texto') ?: 'Hoje, a Tafácil Consignados já impacta mais de 10 milhões de servidores públicos em todo o país.<br><br>Seguimos crescendo com responsabilidade: são mais 50 convênios ativos funcionando no dia a dia.<br><br>Não é só expansão, é presença construída com confiança, processo bem-feito e um produto que realmente facilita a vida de quem usa.';
 
 // Imagens Mockadas (caminho relativo ao tema)
-$theme_url = get_template_directory_uri();
+/* $theme_url = get_template_directory_uri();
 $img_municipal = $theme_url . '/public/images/regioes-brasil-_1_.webp';
 $img_estadual = $theme_url . '/public/images/regioes-brasil-2-_1_.webp';
+ */
+// Processar Cidades (Repeater -> Array Simples)
+$img_municipal = get_sub_field('img_municipal');
+$img_estadual = get_sub_field('img_estadual');
 
-$cidades_mock = [
-    'São Paulo - SP', 'Rio de Janeiro - RJ', 'Belo Horizonte - MG', 'Salvador - BA', 'Brasília - DF',
-    'Curitiba - PR', 'Fortaleza - CE', 'Manaus - AM', 'Recife - PE', 'Porto Alegre - RS'
-];
+$cidades_repeater = get_sub_field('lista_cidades');
+$cidades_data = [];
+if ($cidades_repeater) {
+    foreach ($cidades_repeater as $item) {
+        if (!empty($item['cidade_nome'])) {
+            $cidades_data[] = $item['cidade_nome'];
+        }
+    }
+}
 
-$estados_mock = [
-    'São Paulo', 'Rio de Janeiro', 'Minas Gerais', 'Bahia', 'Paraná',
-    'Rio Grande do Sul', 'Santa Catarina', 'Goiás', 'Pernambuco', 'Ceará'
-];
+// Processar Estados (Repeater -> Array Simples)
+$estados_repeater = get_sub_field('lista_estados');
+$estados_data = [];
+if ($estados_repeater) {
+    foreach ($estados_repeater as $item) {
+        if (!empty($item['estado_nome'])) {
+            $estados_data[] = $item['estado_nome'];
+        }
+    }
+}
 ?>
 
 <section class="secao-onde-estamos" style="<?php echo esc_attr($geraisCSS); ?>">
@@ -62,7 +77,7 @@ $estados_mock = [
                         <!-- Tab 1: Municipal -->
                         <div id="map-municipal" class="map-pane active">
                             <div class="map-image-wrapper">
-                                <img src="<?php echo esc_url($img_municipal); ?>" alt="Mapa Servidor Municipal" class="img-fluid" width="600" height="500" loading="lazy" decoding="async">
+                                <img src="<?php echo esc_url($img_municipal['url']); ?>" alt="Mapa Servidor Municipal" class="img-fluid" width="600" height="500" loading="lazy" decoding="async">
                             </div>
                             
                             <div class="map-search mt-4">
@@ -77,7 +92,7 @@ $estados_mock = [
                                         <input type="text" class="form-control" id="busca-cidade" autocomplete="off" placeholder="Buscar minha cidade">
                                         <label class="input-label" for="busca-cidade">Buscar minha cidade</label>
                                     </div>
-                                    <div class="search-results custom-scrollbar" id="results-cidade" data-items='<?php echo json_encode($cidades_mock); ?>'></div>
+                                    <div class="search-results custom-scrollbar" id="results-cidade" data-items='<?php echo json_encode($cidades_data); ?>'></div>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +100,7 @@ $estados_mock = [
                         <!-- Tab 2: Estadual -->
                         <div id="map-estadual" class="map-pane">
                             <div class="map-image-wrapper">
-                                <img src="<?php echo esc_url($img_estadual); ?>" alt="Mapa Servidor Estadual" class="img-fluid" width="600" height="500" loading="lazy" decoding="async">
+                                <img src="<?php echo esc_url($img_estadual['url']); ?>" alt="Mapa Servidor Estadual" class="img-fluid" width="600" height="500" loading="lazy" decoding="async">
                             </div>
                             
                             <div class="map-search mt-4">
@@ -100,13 +115,26 @@ $estados_mock = [
                                         <input type="text" class="form-control" id="busca-estado" autocomplete="off" placeholder="Buscar meu estado">
                                         <label class="input-label" for="busca-estado">Buscar meu estado</label>
                                     </div>
-                                    <div class="search-results custom-scrollbar" id="results-estado" data-items='<?php echo json_encode($estados_mock); ?>'></div>
+                                    <div class="search-results custom-scrollbar" id="results-estado" data-items='<?php echo json_encode($estados_data); ?>'></div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sugestão (Hidden by default) -->
+    <div id="modal-sugestao" class="modal-overlay">
+        <div class="modal-content-wrapper">
+            <button class="modal-close" aria-label="Fechar Modal">&times;</button>
+            
+            <!-- Bitrix Form Container -->
+            <div id="bitrix-form-container">
+                <!-- Script will be injected here via JS -->
+                 <div class="loading-spinner">Carregando formulário...</div>
             </div>
         </div>
     </div>

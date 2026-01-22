@@ -14,8 +14,6 @@ export function initOndeEstamos() {
     buttons.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-
-        // 1. Switch Active Pane
         const targetId = btn.getAttribute('data-target');
 
         panes.forEach(pane => {
@@ -26,7 +24,6 @@ export function initOndeEstamos() {
           }
         });
 
-        // 2. Switch Active Button
         buttons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
       });
@@ -34,16 +31,103 @@ export function initOndeEstamos() {
   }
 
   // --- Logic for Search Filters ---
-  // Setup for City
   setupSearch('busca-cidade', 'results-cidade');
-  // Setup for State
   setupSearch('busca-estado', 'results-estado');
+
+  // --- Logic for Modal ---
+  setupModal();
+}
+
+/**
+ * setupModal handles the modal interactions
+ */
+function setupModal() {
+  const modal = document.getElementById('modal-sugestao');
+  const closeBtn = modal?.querySelector('.modal-close');
+  const overlay = modal; // The modal div itself acts as overlay in our CSS
+
+  if (!modal) return;
+
+  // Function to open modal
+  window.openSuggestionModal = function () {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    loadBitrixScript();
+  };
+
+  // Function to close modal
+  const closeModal = () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  closeBtn?.addEventListener('click', closeModal);
+
+  // Close on click outside (overlay)
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+}
+
+/**
+ * Loads the Bitrix24 script only once
+ */
+let isBitrixLoaded = false;
+function loadBitrixScript() {
+  if (isBitrixLoaded) return;
+
+  const container = document.getElementById('bitrix-form-container');
+  if (!container) return;
+
+  isBitrixLoaded = true;
+
+  // Create the script element provided by the user
+  // The user script finds the first script tag to insert before. 
+  // We want to control where the form appears.
+  // Bitrix inline forms usually replace the script tag that calls them.
+  // So we will append a script tag correctly configured into our container.
+
+  const script = document.createElement('script');
+  script.setAttribute('data-b24-form', 'inline/10/wtw9vl');
+  script.setAttribute('data-skip-moving', 'true');
+
+  // The loader script logic
+  (function (w, d, u) {
+    var s = d.createElement('script');
+    s.async = true;
+    s.src = u + '?' + (Date.now() / 180000 | 0);
+    // We append the loader to the head, but the form configuration is on 'script' element we just created?
+    // Actually, the snippet:
+    // (function(w,d,u){...})(window,document,'https://cdn.bitrix24.com.br/b34224559/crm/form/loader_10.js');
+    // just loads the library. 
+    // The library then looks for elements with data-b24-form.
+
+    const h = d.getElementsByTagName('script')[0];
+    h.parentNode.insertBefore(s, h);
+  })(window, document, 'https://cdn.bitrix24.com.br/b34224559/crm/form/loader_10.js');
+
+  // We need the data-b24-form element to exist for the loader to find it.
+  // The loader scans the DOM.
+  // Let's create a div or script that acts as the anchor.
+  // The user snippet had the data attribute ON the script tag itself efficiently.
+
+  // Let's append the anchor script to our container
+  container.innerHTML = ''; // Clear loading text
+  container.appendChild(script);
+
 }
 
 /**
  * Generic Search Setup Function
- * @param {string} inputId - ID of the input element
- * @param {string} resultsId - ID of the results container (which also holds the JSON data)
  */
 function setupSearch(inputId, resultsId) {
   const input = document.getElementById(inputId);
@@ -51,7 +135,6 @@ function setupSearch(inputId, resultsId) {
 
   if (!input || !resultsContainer) return;
 
-  // 1. Retrieve Data from Data Attribute
   let data = [];
   try {
     const rawData = resultsContainer.getAttribute('data-items');
@@ -61,9 +144,7 @@ function setupSearch(inputId, resultsId) {
     return;
   }
 
-  // 2. Filter Function
   const filterResults = (query) => {
-    // Clear previous results
     resultsContainer.innerHTML = '';
 
     if (!query) {
@@ -71,51 +152,43 @@ function setupSearch(inputId, resultsId) {
       return;
     }
 
-    // Filter items matching query
     const filtered = data.filter(item =>
       item.toLowerCase().includes(query.toLowerCase())
     );
 
-    // Render Logic
     if (filtered.length > 0) {
-      // Success State
       filtered.forEach(item => {
         const itemEl = document.createElement('div');
         itemEl.className = 'result-item';
-
-        // Using generic link # for now. In real implementation, this could come from the object.
         itemEl.innerHTML = `
           <span class="city-name">${item}</span>
           <a href="/contato" class="cta-link">Fale com a gente agora!</a>
         `;
-
-        // Populate input on click (optional UX enhancement)
         itemEl.addEventListener('click', (e) => {
-          // Prevent if clicking the link directly
           if (!e.target.classList.contains('cta-link')) {
             input.value = item;
             resultsContainer.classList.remove('visible');
           }
         });
-
         resultsContainer.appendChild(itemEl);
       });
     } else {
-      // Empty State (No results)
+      // Empty State
       const emptyEl = document.createElement('div');
       emptyEl.className = 'no-results';
+      // Added ID or class trigger logic here
       emptyEl.innerHTML = `
         <p>Não estamos disponíveis na sua região agora :(</p>
-        <a href="/contato" class="btn-sugerir">Sugira sua cidade</a>
+        <button type="button" class="btn-sugerir" onclick="window.openSuggestionModal()">Sugira sua cidade</button>
       `;
+      // Note: Changed <a> to <button> and added onclick handler simply
+      // because we exposed openSuggestionModal globally.
       resultsContainer.appendChild(emptyEl);
     }
 
-    // Show dropdown if there is input
     resultsContainer.classList.add('visible');
   };
 
-  // 3. Event Listeners
   input.addEventListener('input', (e) => {
     filterResults(e.target.value.trim());
   });
@@ -126,7 +199,6 @@ function setupSearch(inputId, resultsId) {
     }
   });
 
-  // Hide on click outside
   document.addEventListener('click', (e) => {
     if (!input.contains(e.target) && !resultsContainer.contains(e.target)) {
       resultsContainer.classList.remove('visible');
