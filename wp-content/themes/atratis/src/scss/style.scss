@@ -26,6 +26,9 @@
 @use 'blocks/secao_depoimentos';
 @use 'blocks/secao_video_full';
 @use 'blocks/secao_newsletter';
+@use 'blocks/secao_texto';
+@use 'blocks/secao_carrosel_logos';
+@use 'blocks/secao_carrosel_passo_a_passo';
 
 // 5. Páginas Específicas
 @use 'pages/not-found';

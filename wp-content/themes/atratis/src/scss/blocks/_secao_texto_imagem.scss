@@ -1,0 +1,211 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.secao-texto-imagem {
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden; // Evita que shapes vazem
+
+  @include mobile {
+    padding: 40px 0;
+  }
+
+  // --- Tipografia ---
+  .subtitulo-tag {
+    display: inline-block;
+    font-family: $font-primary;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: $secondary-color;
+    margin-bottom: 1rem;
+  }
+
+  .titulo-bloco {
+    font-family: $font-primary;
+    font-size: 2rem; // ~56px
+    line-height: 1.1;
+    font-weight: 700;
+    color: #1d1d1b;
+    margin-bottom: 1.5rem;
+
+    @include mobile {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+  }
+
+  .texto-editor {
+    font-size: 1.125rem;
+    color: #606060;
+    font-weight: 300;
+    line-height: 1.6;
+
+    p {
+      margin-bottom: 1.5rem;
+    }
+
+    strong {
+      font-weight: 600;
+      color: #1d1d1b;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 1.5rem;
+
+      li {
+        margin-bottom: 0.5rem;
+
+        &::marker {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+
+  // --- Botão ---
+  .btn-primary {
+    display: inline-block;
+    padding: 12px 40px;
+    background-color: $secondary-color;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    text-transform: uppercase; // Opcional
+    transition: all 0.3s;
+    text-align: center;
+
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+      transform: translateY(-2px);
+    }
+  }
+
+  .wrapper-conteudo {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  // --- Controle de Ordem (Substituindo Bootstrap Utilities) ---
+  &.imagem-direita {
+    .row {
+      @media (min-width: 992px) {
+        // Desktop apenas
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  &.texto_imagem_quem_somos {
+    .wrapper-conteudo {
+      max-width: 435px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h2 {
+        font-size: 3rem;
+        font-weight: 600;
+        line-height: 133%;
+      }
+
+      .btn-primary {
+        text-align: center;
+      }
+    }
+  }
+
+  &.texto_imagem_reclame_aqui {
+    .wrapper-conteudo {
+      max-width: 659px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      small {
+        font-family: $font-primary;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        line-height: 125%;
+        color: $text-color;
+        margin-bottom: 2.5rem;
+      }
+
+      span {
+        font-family: $font-primary;
+        font-size: 1.5rem;
+        font-weight: 400;
+        line-height: 125%;
+        color: $text-color-link-menu;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-family: $font-primary;
+        font-size: 1.125rem;
+        font-weight: 300;
+        line-height: 125%;
+        color: $text-color;
+        margin-bottom: 2.5rem;
+
+      }
+
+      img {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+
+    .wrapper-imagem {
+      img {
+        max-width: 492px;
+        width: 100%;
+      }
+    }
+  }
+
+  &.texto_imagem_credito_consignado {
+    .wrapper-conteudo {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h2 {
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-family: $font-primary;
+        font-size: 1.125rem;
+        font-weight: 300;
+        line-height: 125%;
+        color: $text-color;
+        margin-bottom: 1.5rem;
+      }
+
+      ul {
+        list-style: disc;
+
+        li::marker {
+          color: $text-color;
+        }
+      }
+    }
+
+    .wrapper-imagem {
+      img {
+        max-width: 600px;
+        width: 100%;
+      }
+    }
+  }
+}

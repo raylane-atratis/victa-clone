@@ -32,6 +32,15 @@ endif;
         elseif (get_row_layout() == 'secao_newsletter' && get_sub_field('exibir')):
             get_template_part('template-parts-blocos/secao_newsletter');
 
+        elseif (get_row_layout() == 'secao_texto' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_texto');
+
+        elseif (get_row_layout() == 'secao_carrosel_logos' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_carrosel_logos');
+
+        elseif (get_row_layout() == 'secao_carrosel_passo_a_passo' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_carrosel_passo_a_passo');
+
         endif;
 
     ?>

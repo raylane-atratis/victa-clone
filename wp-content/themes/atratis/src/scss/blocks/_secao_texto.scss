@@ -1,0 +1,48 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.secao-texto {
+  // Padding geralmente controlado via inline style do bloco, mas adicionamos um default
+  padding: 80px 0;
+
+  @include mobile {
+    padding: 40px 0;
+  }
+
+  .titulo-secao {
+    font-family: $font-primary; // Usando a fonte principal do tema
+    font-size: 3.5rem;
+    line-height: 133%;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 24px;
+    color: $text-color-link-menu; // Cor escura padrão
+
+    @include mobile {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .texto-editor {
+    font-family: $font-primary;
+    font-size: 1.125rem; // ~18px
+    font-weight: 300;
+    line-height: 1.6;
+    color: #606060;
+    text-align: left; // Texto alinhado a esquerda como na imagem
+
+    p {
+      margin-bottom: 1.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    strong {
+      font-weight: 700;
+      color: #1d1d1b;
+    }
+  }
+}

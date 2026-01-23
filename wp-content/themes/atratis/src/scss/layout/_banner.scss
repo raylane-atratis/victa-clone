@@ -172,4 +172,210 @@
       }
     }
   }
+
+  // --- Page Banner (Static) ---
+  &.page-banner {
+    width: 100%;
+    height: 80vh;
+    min-height: 400px;
+    max-height: 626px;
+
+    @include mobile {
+      height: 80vh;
+      min-height: 626px;
+      padding-top: 80px;
+    }
+
+    .banner-item {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .banner-bg-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+
+      .banner-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: linear-gradient(259deg, rgba(0, 0, 0, 0.00) 40.52%, rgba(0, 0, 0, 0.61) 98.65%);
+        opacity: 0.3 !important;
+      }
+
+      .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      .banner-content {
+        max-width: 800px;
+        color: #fff;
+
+        @include mobile {
+          width: 100%;
+          padding: 0 15px;
+        }
+
+        h1.banner-title {
+          font-family: $font-heading;
+          font-size: 3rem;
+          font-weight: 600;
+          line-height: 133%;
+          margin-bottom: 8px;
+
+          @include mobile {
+            font-size: 2.5rem;
+            line-height: 1.2;
+          }
+        }
+
+        .banner-subtitle {
+          font-family: $font-heading;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          color: $secondary-color;
+          font-weight: 500;
+          margin-bottom: 1rem;
+        }
+
+        .banner-description {
+          font-size: 1.125rem;
+          line-height: 1.6;
+          margin-bottom: 2.5rem;
+          color: rgba(255, 255, 255, 1);
+          max-width: 591px;
+        }
+
+        .banner-btn {
+          display: inline-block;
+          padding: 12px 40px;
+          background-color: #E55025;
+          color: #fff;
+          font-weight: 600;
+          border-radius: 50px;
+          text-transform: uppercase;
+          text-decoration: none;
+          transition: background 0.3s;
+          text-align: center;
+          min-width: 300px;
+
+          &:hover {
+            background-color: darken(#E55025, 10%);
+          }
+
+          @include mobile {
+            width: 100%;
+          }
+        }
+
+        &.content-right {
+          text-align: right;
+          margin-left: auto;
+        }
+
+        &.content-center {
+          text-align: center;
+          margin: 0 auto;
+        }
+      }
+
+
+    }
+
+    // Override para Quem Somos (ID 199)
+    @at-root body.page-id-199 & {
+      height: 100vh;
+      max-height: 1005px;
+
+      @include mobile {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        padding: 80px 0 0 !important;
+      }
+
+      .banner-item {
+        @include mobile {
+          display: block;
+          height: auto;
+        }
+
+        .banner-bg-img {
+          @include mobile {
+            position: relative !important;
+            height: auto !important;
+            width: 100%;
+          }
+        }
+      }
+
+      .banner-item .banner-overlay {
+        background: transparent !important;
+        opacity: 0 !important;
+        display: none;
+      }
+    }
+
+    @at-root body.page-id-211 & {
+      .banner-item {
+        .banner-content {
+          h1.banner-title {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+
+            @include mobile {
+              font-size: 2rem;
+              line-height: 120%;
+            }
+          }
+        }
+
+        .banner-buttons {
+          .banner-btn {
+            text-transform: none;
+            font-size: 1rem;
+
+            @include mobile {
+              font-size: 1rem;
+              margin-bottom: 1rem;
+            }
+
+            &:first-child {
+              background: #5B2580;
+              margin-right: 2rem;
+              border: 1px solid #5B2580;
+
+              &:hover {
+                background: #fff;
+                color: #5B2580;
+              }
+            }
+
+            &:last-child {
+              background: transparent;
+              border: 1px solid #fff;
+
+              &:hover {
+                background: #fff;
+                color: #5B2580;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

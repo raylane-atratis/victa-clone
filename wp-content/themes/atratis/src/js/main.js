@@ -16,11 +16,15 @@ import './banner.js';
 import './tabs.js';
 import { initDepoimentos } from './depoimentos.js';
 import { initOndeEstamos } from './onde-estamos.js';
+import { initCarroselLogos } from './carrosel-logos.js';
+import { initCarroselPassoAPasso } from './carrosel-passo-a-passo.js';
 
 // Inicializa os componentes
 document.addEventListener('DOMContentLoaded', () => {
   initDepoimentos();
   initOndeEstamos();
+  initCarroselLogos();
+  initCarroselPassoAPasso();
 });
 
 console.log('Atratis Theme: Vite Loaded');
