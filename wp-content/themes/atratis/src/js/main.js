@@ -18,6 +18,7 @@ import { initDepoimentos } from './depoimentos.js';
 import { initOndeEstamos } from './onde-estamos.js';
 import { initCarroselLogos } from './carrosel-logos.js';
 import { initCarroselPassoAPasso } from './carrosel-passo-a-passo.js';
+import { initFAQ } from './faq.js';
 
 // Inicializa os componentes
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initOndeEstamos();
   initCarroselLogos();
   initCarroselPassoAPasso();
+  initFAQ();
 });
 
 console.log('Atratis Theme: Vite Loaded');

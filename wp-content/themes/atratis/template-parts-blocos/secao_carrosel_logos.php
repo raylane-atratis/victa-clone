@@ -1,6 +1,6 @@
 <?php
 /**
- * Block: Seção Newsletter
+ * Block: Seção Carrossel de Logos
  */
 
 // 1. Configurações Gerais

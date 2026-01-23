@@ -41,6 +41,24 @@ endif;
         elseif (get_row_layout() == 'secao_carrosel_passo_a_passo' && get_sub_field('exibir')):
             get_template_part('template-parts-blocos/secao_carrosel_passo_a_passo');
 
+        elseif (get_row_layout() == 'secao_perguntas_frequentes' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_perguntas_frequentes');
+
+        elseif (get_row_layout() == 'secao_facilidades_tafacil' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_facilidades_tafacil');
+
+        elseif (get_row_layout() == 'secao_canais_de_atendimento' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_canais_de_atendimento');
+
+        elseif (get_row_layout() == 'secao_nossos_parceiros' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_nossos_parceiros');
+
+        elseif (get_row_layout() == 'secao_cards_flexiveis' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_cards_flexiveis');
+
+        elseif (get_row_layout() == 'secao_clube_vantagens' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_clube_vantagens');
+
         endif;
 
     ?>

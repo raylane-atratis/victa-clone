@@ -1,0 +1,199 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.sessao-clube-vantagens {
+    padding: 5rem 0; // 80px
+    overflow: visible;
+
+    @include mobile {
+        padding: 3rem 2.5rem; // 48px 40px
+        overflow: hidden;
+    }
+
+    .conteudo-clube {
+        @include mobile {
+            margin-top: 2.5rem; // 40px
+        }
+
+        h2 {
+            font-family: $font-primary;
+            font-size: 2rem; // 32px
+            font-weight: 600;
+            color: $text-color-link-menu;
+            line-height: 1.2;
+            letter-spacing: -0.04em; // -4%
+            margin-bottom: 1.25rem; // 20px
+            max-width: 400px;
+
+            @include mobile {
+                font-size: 1.75rem; // 28px
+            }
+        }
+    }
+
+    .descricao-clube {
+        font-family: $font-primary;
+        font-size: 1.125rem; // 18px
+        color: $text-color;
+        line-height: 1.5;
+        margin-bottom: 1.5rem; // 24px
+        font-weight: 300;
+
+        @include mobile {
+            font-size: 0.875rem; // 14px
+            margin-bottom: 1.5rem; // 24px
+        }
+    }
+
+    .texto-pequeno {
+        font-family: $font-primary;
+        font-size: 1rem; // 16px
+        font-weight: 600;
+        line-height: 1.25;
+        color: $text-color;
+        margin-bottom: 2.5rem; // 40px
+    }
+
+    .cards-beneficios {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem; // 24px
+
+        @include mobile {
+            grid-template-columns: 1fr;
+            gap: 1rem; // 16px
+        }
+    }
+
+    .card-beneficio {
+        background: #FAFAFA;
+        border-radius: 0.5rem; // 8px
+        padding: 2.5rem 2rem; // 40px 32px
+        transition: all 0.3s ease;
+        position: relative;
+        margin-top: 2rem; // 32px
+
+        &:first-child {
+            grid-column: span 2;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem; // 16px
+
+            @include mobile {
+                grid-column: span 1;
+                max-width: 100%;
+            }
+
+            .texto-beneficio {
+                margin-top: 0;
+
+                h4 {
+                    margin-top: 0;
+                }
+            }
+        }
+
+        &:hover {
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08); // 0 8px 24px
+            transform: translateY(-4px);
+        }
+
+        // Card que ocupa 2 colunas quando houver número ímpar (exceto o primeiro) 
+        // Lógica mantida do CSS original
+        &:last-child:nth-child(even) {
+            grid-column: span 2;
+            max-width: calc(50% - 0.75rem); // 50% - 12px
+
+            @include mobile {
+                grid-column: span 1;
+                max-width: 100%;
+            }
+        }
+    }
+
+    .icone-beneficio {
+        width: 3rem; // 48px
+        height: 3rem; // 48px
+        background: $secondary-color; // #E74E0F (Considerando que $secondary-color é #E75012, bem próximo, e o user pediu pra usar variaveis)
+        border-radius: 0.5rem; // 8px
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 0.5rem; // 8px
+        position: absolute;
+        top: -2rem; // -32px
+        left: 2rem; // 32px
+
+        svg {
+            width: 100%;
+            height: 100%;
+            fill: #FFFFFF;
+        }
+    }
+
+    .texto-beneficio {
+        h4 {
+            font-family: $font-primary;
+            font-size: 1.125rem; // 18px
+            font-weight: 600;
+            color: $text-color-link-menu;
+            margin-bottom: 0.75rem; // 12px
+            line-height: 1.25;
+
+            @include mobile {
+                font-size: 1rem; // 16px
+            }
+        }
+
+        p {
+            font-family: $font-primary;
+            font-size: 1rem; // 16px
+            color: $text-color;
+            line-height: 1.5;
+            font-weight: 300;
+            margin: 0;
+
+            @include mobile {
+                font-size: 0.875rem; // 14px
+            }
+        }
+    }
+
+    .imagem-clube {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+
+        @include mobile {
+            margin-right: -0.9375rem; // -15px
+            margin-left: -0.9375rem; // -15px
+        }
+    }
+
+    .imagem-container-clube {
+        position: relative;
+        width: 37.5rem; // 600px
+        height: 37.5rem; // 600px
+        padding: 0;
+        transform: translateY(-2.5rem); // -40px
+
+        @include mobile {
+            width: 100%;
+            max-width: 25rem; // 400px
+            height: auto;
+            aspect-ratio: 1;
+            padding: 0;
+            transform: translateY(0);
+            margin-bottom: 2.5rem; // 40px
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}

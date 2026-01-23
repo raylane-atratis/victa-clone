@@ -29,6 +29,12 @@
 @use 'blocks/secao_texto';
 @use 'blocks/secao_carrosel_logos';
 @use 'blocks/secao_carrosel_passo_a_passo';
+@use 'blocks/secao_perguntas_frequentes';
+@use 'blocks/secao_facilidades_tafacil';
+@use 'blocks/secao_canais_de_atendimento';
+@use 'blocks/secao_nossos_parceiros';
+@use 'blocks/secao_cards_flexiveis';
+@use 'blocks/secao_clube_vantagens';
 
 // 5. Páginas Específicas
 @use 'pages/not-found';
