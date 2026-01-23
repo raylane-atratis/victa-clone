@@ -5,6 +5,8 @@ export function initCarroselPassoAPasso() {
   const section = document.querySelector('.secao-passo-a-passo');
   if (!section) return;
 
+  const totalPassos = parseInt(section.dataset.totalPassos) || 0;
+
   // 1. Swiper de Imagem (Fade)
   const swiperImg = new Swiper('.swiper-passo-img', {
     modules: [EffectFade, Controller],
@@ -28,5 +30,25 @@ export function initCarroselPassoAPasso() {
       control: swiperImg,
       by: 'slide',
     },
+    on: {
+      // Verifica se está no último slide
+      slideChange: function () {
+        const isLastSlide = this.activeIndex === totalPassos - 1;
+
+        if (isLastSlide) {
+          section.classList.add('ultimo-passo');
+        } else {
+          section.classList.remove('ultimo-passo');
+        }
+      },
+      // Verifica no init também
+      init: function () {
+        const isLastSlide = this.activeIndex === totalPassos - 1;
+
+        if (isLastSlide) {
+          section.classList.add('ultimo-passo');
+        }
+      }
+    }
   });
 }

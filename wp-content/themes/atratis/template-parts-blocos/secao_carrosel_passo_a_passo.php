@@ -10,10 +10,13 @@ include 'conf_gerais.php';
 $titulo = get_sub_field('titulo');
 $descricao = get_sub_field('descricao'); // Campo padrão de descrição
 $passos = get_sub_field('passos'); // Repetidor
+$botao_cta = get_sub_field('botao_cta'); // Campo de link para o botão CTA
+
+$total_passos = $passos ? count($passos) : 0;
 
 ?>
 
-<section class="secao-passo-a-passo" style="<?php echo esc_attr($geraisCSS); ?>">
+<section class="secao-passo-a-passo" style="<?php echo esc_attr($geraisCSS); ?>" data-total-passos="<?php echo $total_passos; ?>">
     <div class="container">
 
         <?php if($passos): ?>
@@ -39,7 +42,7 @@ $passos = get_sub_field('passos'); // Repetidor
             </div>
 
             <!-- Coluna Texto (Direita) -->
-            <div class="col-lg-6 offset-lg-1">
+            <div class="col-lg-6 offset-lg-1" style="margin-top: auto; margin-bottom: auto;"> 
 
                 <!-- Cabeçalho da Seção -->
                 <?php if($titulo || $descricao): ?>
@@ -89,7 +92,6 @@ $passos = get_sub_field('passos'); // Repetidor
                     <!-- Navegação -->
                     <div class="passo-nav mt-4">
                         <div class="swiper-button-prev-custom">
-                            <i class="icon-arrow-left"></i> <!-- Ajustar ícone se necessário -->
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="12" cy="12" r="11.5" stroke="#E0E0E0"/>
                                 <path d="M14 8L10 12L14 16" stroke="#BDBDBD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -101,6 +103,17 @@ $passos = get_sub_field('passos'); // Repetidor
                                 <path d="M18 14L24 20L18 26" stroke="#5B2580" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
+                        
+                        <?php 
+                        $texto_botao = $botao_cta['texto_do_botao'] ?? '';
+                        $link_botao = $botao_cta['link_do_botao'] ?? '';
+                        if($texto_botao && $link_botao): 
+                        ?>
+                        <a href="<?php echo esc_url($link_botao); ?>" 
+                           class="btn-cta-passo">
+                            <?php echo esc_html($texto_botao); ?>
+                        </a>
+                        <?php endif; ?>
                     </div>
 
                 </div>
