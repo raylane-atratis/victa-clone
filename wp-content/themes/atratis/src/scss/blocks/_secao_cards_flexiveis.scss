@@ -1,12 +1,20 @@
 @use '../base/variables' as *;
 @use '../base/mixins' as *;
 
+body.page-id-205 .titulo-sessao h2 {
+    max-width: 800px;
+}
+
+body.page-id-208 .titulo-sessao h2 {
+    max-width: 690px;
+}
+
 .sessao-parceiros-acesso {
     padding: 5rem 0; // 80px
     background-color: #F9F9F9;
 
     @include mobile {
-        padding: 3rem 2.5rem; // 48px 40px
+        padding: 3rem 0; // 48px 
     }
 
     .titulo-sessao {
@@ -14,13 +22,16 @@
         justify-content: center;
         text-align: center;
 
+        .destaque {
+            color: $primary-color;
+        }
+
         h2 {
             font-size: 2rem; // 32px
             font-family: $font-primary;
             font-weight: 600;
             color: $text-color-link-menu;
             margin-bottom: 3rem; // 48px
-            max-width: 480px;
 
             @include mobile {
                 font-size: 1.75rem; // 28px

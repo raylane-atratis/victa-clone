@@ -49,8 +49,11 @@
         
         // Adicionando suporte a wrap para mobile se necessário, embora o design não especifique
         @include mobile {
-            flex-direction: column; 
-            align-items: stretch;
+            flex-direction: row; 
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem; // 16px
         }
 
         &__item {
@@ -128,5 +131,12 @@
         &__item:hover &__content p {
             color: #fff;
         }
+    }
+}
+
+@media (max-width: 992px) {
+    .canais_atendimento__canais {
+        justify-content: center;
+        padding-top: 7.875rem;
     }
 }

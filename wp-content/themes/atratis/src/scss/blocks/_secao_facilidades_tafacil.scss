@@ -2,7 +2,7 @@
 @use '../base/mixins' as *;
 
 .sessao-facilidades-tafacil {
-    padding: 5rem 0; // 80px
+    padding: 42px 0 20px;
     overflow: visible;
     position: relative;
 
@@ -103,8 +103,9 @@
 
     .imagem-container {
         position: relative;
-        width: 41.875rem; // 670px
-        height: 41.875rem; // 670px
+        top: -78px;
+        /* width: 41.875rem; // 670px
+        height: 41.875rem; // 670px */
 
         @include mobile {
             width: 100%;
@@ -119,5 +120,19 @@
             object-fit: cover;
             border-radius: 1rem; // 16px
         }
+    }
+}
+
+@media (max-width: 991px) {
+    .sessao-facilidades-tafacil .row {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .sessao-facilidades-tafacil .imagem-container {
+        top: 0;
+        margin-bottom: 40px
+    }
+    .sessao-facilidades-tafacil .imagem-container img {
+        height: auto;
     }
 }

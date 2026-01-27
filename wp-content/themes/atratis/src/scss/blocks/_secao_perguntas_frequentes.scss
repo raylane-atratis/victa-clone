@@ -9,18 +9,27 @@
         padding: 3rem 2.5rem; // 48px 40px
     }
 
-    &__header {
+    .faq__header {
         h2 {
             font-family: $font-primary;
             font-size: 2rem; // 32px
             font-weight: 600;
-            color: $text-color-link-menu;
+            color: #1A1A1A !important;
             line-height: 1.2;
             padding-top: 2rem; // 32px
 
             @include mobile {
                 font-size: 1.75rem; // 28px
             }
+        }
+
+        p {
+            font-family: $font-primary;
+            font-size: 1rem; // 16px
+            font-weight: 300;
+            color: #1A1A1A !important;
+            line-height: 150%;
+            padding-top: 12px;
         }
     }
 

@@ -197,3 +197,10 @@
         }
     }
 }
+
+@media (max-width: 991px) {
+    .sessao-clube-vantagens .row {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}

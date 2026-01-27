@@ -6,6 +6,7 @@
 // 1. Configurações Gerais
 include 'conf_gerais.php';
 
+$subtitulo = get_sub_field('subtitulo');
 $perguntas_selecionadas = get_sub_field('selecionar_perguntas');
 
 ?>
@@ -16,6 +17,9 @@ $perguntas_selecionadas = get_sub_field('selecionar_perguntas');
           <div class="col-lg-5 col-md-6 col-sm-12">
               <div class="faq__header">
                   <h2>Perguntas Frequentes</h2>
+                  <?php if ($subtitulo): ?>
+                      <p><?php echo $subtitulo; ?></p>
+                  <?php endif; ?>
               </div>
           </div>
           <div class="col-lg-7 col-md-6 col-sm-12">
