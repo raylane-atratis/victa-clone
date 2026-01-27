@@ -116,6 +116,17 @@
         line-height: 1.5;
         margin-bottom: 0.75rem;
       }
+
+      a {
+        color: $text-color-link-menu;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: $primary-color;
+          text-decoration: underline;
+        }
+      }
     }
   }
 
