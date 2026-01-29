@@ -39,28 +39,43 @@
 							$contatos = get_field('lista_contatos', 'option');
 							if ( $contatos ) :
 								$total_contatos = count( $contatos );
-								$i = 0;
-								foreach ( $contatos as $contato ) :
-									$i++;
-									$svg = $contato['svg'];
-									$link = $contato['link'];
-									$texto = $contato['texto'];
-									
-									// Verifica se é o último item
-									$is_last = ( $i == $total_contatos );
+
+								// Se houver 2 ou mais contatos, agrupa os dois últimos
+								if ( $total_contatos >= 2 ) {
+									// Exibe todos exceto os 2 últimos
+									for ( $i = 0; $i < $total_contatos - 2; $i++ ) {
+										$contato = $contatos[$i];
+										?>
+										<li>
+											<?php echo $contato['svg']; ?>
+											<a href="<?php echo esc_url( $contato['link'] ); ?>"><?php echo esc_html( $contato['texto'] ); ?></a>
+										</li>
+										<?php
+									}
+
+									// Pega e agrupa os dois últimos
+									$penultimo = $contatos[$total_contatos - 2];
+									$ultimo    = $contatos[$total_contatos - 1];
 									?>
 									<li>
-										<?php echo $svg; ?>
-										<?php if ( $is_last ) : ?>
-											<span>
-												<?php echo $texto; ?>
-											</span>
-										<?php else : ?>
-											<a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $texto ); ?></a>
-										<?php endif; ?>
+										<?php echo $penultimo['svg']; ?>
+										<span>
+											<a href="<?php echo esc_url( $penultimo['link'] ); ?>"><?php echo esc_html( $penultimo['texto'] ); ?></a> / <a href="<?php echo esc_url( $ultimo['link'] ); ?>"><?php echo esc_html( $ultimo['texto'] ); ?></a>
+										</span>
 									</li>
-								<?php endforeach; ?>
-							<?php else : ?>
+									<?php
+								} else {
+									// Caso tenha menos de 2 itens, exibe um por um normalmente
+									foreach ( $contatos as $contato ) :
+										?>
+										<li>
+											<?php echo $contato['svg']; ?>
+											<a href="<?php echo esc_url( $contato['link'] ); ?>"><?php echo esc_html( $contato['texto'] ); ?></a>
+										</li>
+										<?php
+									endforeach;
+								}
+							else : ?>
 								<li>
 									<img src="<?php echo get_template_directory_uri(); ?>/public/images/Phone.svg" alt="Telefone" class="footer-icon">
 									<a href="tel:08006650101">0800 665 0101 (Clientes)</a>

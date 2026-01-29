@@ -41,6 +41,32 @@
 						)
 					);
 					?>
+
+					<?php
+					// Campos do ACF para o Menu Mobile
+					$logo_secundaria = get_field('logo_secundaria', 'option');
+					$lista_de_redes = get_field('lista_de_redes', 'option');
+					?>
+
+					<div class="mobile-menu-footer">
+						<div class="mobile-branding">
+							<?php if ( $logo_secundaria ) : ?>
+								<img src="<?php echo esc_url( $logo_secundaria['url'] ); ?>" alt="<?php echo esc_attr( $logo_secundaria['alt'] ); ?>" class="logo-somapay" width="150">
+							<?php endif; ?>
+						</div>
+
+						<?php if ( $lista_de_redes ) : ?>
+							<ul class="mobile-social">
+								<?php foreach ( $lista_de_redes as $rede ) : ?>
+									<li>
+										<a href="<?php echo esc_url( $rede['link'] ); ?>" target="_blank" aria-label="<?php echo esc_attr( $rede['descricao'] ); ?>">
+											<?php echo $rede['svg']; ?>
+										</a>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif; ?>
+					</div>
 				</nav><!-- #site-navigation -->
 			</div>
 		</div>
