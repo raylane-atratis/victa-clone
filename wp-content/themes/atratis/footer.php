@@ -31,65 +31,59 @@ $lista_de_redes = get_field('lista_de_redes', 'option');
 					?>
 				</div>
 
-				<!-- Coluna 2: Contatos -->
-				<div class="col-lg-3 col-md-6">
-					<h4 class="footer-title">Contatos</h4>
-					<ul class="footer-contact">
-						<?php
-						$contatos = get_field('lista_contatos', 'option');
-						if ($contatos):
-							$total_contatos = count($contatos);
-							$i = 0;
-							foreach ($contatos as $contato):
-								$i++;
-								$svg = $contato['svg'];
-								$link = $contato['link'];
-								$texto = $contato['texto'];
-
-								// Verifica se é o último item
-								$is_last = ($i == $total_contatos);
-								?>
+					<!-- Coluna 2: Contatos -->
+					<div class="col-lg-3 col-md-6">
+						<h4 class="footer-title">Contatos</h4>
+						<ul class="footer-contact">
+							<?php 
+							$contatos = get_field('lista_contatos', 'option');
+							if ( $contatos ) :
+								$total_contatos = count( $contatos );
+								$i = 0;
+								foreach ( $contatos as $contato ) :
+									$i++;
+									$svg = $contato['svg'];
+									$link = $contato['link'];
+									$texto = $contato['texto'];
+									
+									// Verifica se é o último item
+									$is_last = ( $i == $total_contatos );
+									?>
+									<li>
+										<?php echo $svg; ?>
+										<?php if ( $is_last ) : ?>
+											<span>
+												<?php echo $texto; ?>
+											</span>
+										<?php else : ?>
+											<a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $texto ); ?></a>
+										<?php endif; ?>
+									</li>
+								<?php endforeach; ?>
+							<?php else : ?>
 								<li>
-									<?php echo $svg; ?>
-									<?php if ($is_last): ?>
-										<span>
-											<?php echo $texto; ?>
-										</span>
-									<?php else: ?>
-										<a href="<?php echo esc_url($link); ?>"
-											target="_blank"><?php echo esc_html($texto); ?></a> <?php endif; ?>
+									<img src="<?php echo get_template_directory_uri(); ?>/public/images/Phone.svg" alt="Telefone" class="footer-icon">
+									<a href="tel:08006650101">0800 665 0101 (Clientes)</a>
 								</li>
-							<?php endforeach; ?>
-						<?php else: ?>
-							<li>
-								<img src="<?php echo get_template_directory_uri(); ?>/public/images/Phone.svg"
-									alt="Telefone" class="footer-icon">
-								<a href="tel:08006650101">0800 665 0101 (Clientes)</a>
-							</li>
-							<li>
-								<img src="<?php echo get_template_directory_uri(); ?>/public/images/WhatsappLogoFooter.svg"
-									alt="Telefone" class="footer-icon">
-								<a href="tel:08000002435">0800 000 2435 (Parceiros)</a>
-							</li>
-							<li>
-								<img src="<?php echo get_template_directory_uri(); ?>/public/images/Phone.svg"
-									alt="Telefone" class="footer-icon">
-								<span>
-									<a href="tel:8540002985">(85) 4000 2985</a> / <a href="tel:08006650101">0800 665
-										0101</a>
-								</span>
-							</li>
+								<li>
+									<img src="<?php echo get_template_directory_uri(); ?>/public/images/WhatsappLogoFooter.svg" alt="Telefone" class="footer-icon">
+									<a href="tel:08000002435">0800 000 2435 (Parceiros)</a>
+								</li>
+								<li>
+									<img src="<?php echo get_template_directory_uri(); ?>/public/images/Phone.svg" alt="Telefone" class="footer-icon">
+									<span>
+										<a href="tel:8540002985">(85) 4000 2985</a> / <a href="tel:08006650101">0800 665 0101</a>
+									</span>
+								</li>
+							<?php endif; ?>
+						</ul>
+						<h4 class="footer-subtitle">E-mail</h4>
+						<?php if ( $email ) : ?>
+							<a href="mailto:<?php echo esc_attr( $email ); ?>" class="footer-email"><?php echo esc_html( $email ); ?></a>
+						<?php else : ?>
+							<a href="mailto:contato@tafacilconsignados.com.br" class="footer-email">contato@tafacilconsignados.com.br</a>
 						<?php endif; ?>
-					</ul>
-					<h4 class="footer-subtitle">E-mail</h4>
-					<?php if ($email): ?>
-						<a href="mailto:<?php echo esc_attr($email); ?>" target="_blank"
-							class="footer-email"><?php echo esc_html($email); ?></a>
-					<?php else: ?>
-						<a href="mailto:contato@tafacilconsignados.com.br"
-							class="footer-email">contato@tafacilconsignados.com.br</a>
-					<?php endif; ?>
-				</div>
+					</div>
 
 				<!-- Coluna 3: Horário e Endereço -->
 				<div class="col-lg-3 col-md-6">
