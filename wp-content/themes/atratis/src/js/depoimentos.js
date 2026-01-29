@@ -24,6 +24,7 @@ export function initDepoimentos() {
       el: '.swiper-depoimentos-pagination',
       clickable: true,
     },
+    watchOverflow: true,
     breakpoints: {
       // quando a largura da janela for >= 768px
       768: {
