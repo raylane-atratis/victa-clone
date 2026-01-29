@@ -167,6 +167,14 @@
       }
     }
 
+    .razao-footer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      left: -164px;
+    }
+
     .footer-social {
       display: flex;
       flex-direction: column;

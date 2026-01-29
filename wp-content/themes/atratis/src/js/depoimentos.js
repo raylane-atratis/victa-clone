@@ -15,7 +15,7 @@ export function initDepoimentos() {
     modules: [Navigation, Pagination],
     slidesPerView: 1,
     spaceBetween: 20,
-    loop: true,
+    loop: false,
     navigation: {
       nextEl: '.swiper-depoimentos-next',
       prevEl: '.swiper-depoimentos-prev',
