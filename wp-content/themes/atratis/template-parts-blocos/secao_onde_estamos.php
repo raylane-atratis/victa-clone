@@ -39,6 +39,8 @@ if ($estados_repeater) {
         }
     }
 }
+
+$link_contato = get_sub_field('link_contato');
 ?>
 
 <section class="secao-onde-estamos" style="<?php echo esc_attr($geraisCSS); ?>">
@@ -92,7 +94,7 @@ if ($estados_repeater) {
                                         <input type="text" class="form-control" id="busca-cidade" autocomplete="off" placeholder="Buscar minha cidade">
                                         <label class="input-label" for="busca-cidade">Buscar minha cidade</label>
                                     </div>
-                                    <div class="search-results custom-scrollbar" id="results-cidade" data-items='<?php echo json_encode($cidades_data); ?>'></div>
+                                    <div class="search-results custom-scrollbar" id="results-cidade" data-items='<?php echo json_encode($cidades_data); ?>' data-link-contato="<?php echo esc_url($link_contato); ?>"></div>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +117,7 @@ if ($estados_repeater) {
                                         <input type="text" class="form-control" id="busca-estado" autocomplete="off" placeholder="Buscar meu estado">
                                         <label class="input-label" for="busca-estado">Buscar meu estado</label>
                                     </div>
-                                    <div class="search-results custom-scrollbar" id="results-estado" data-items='<?php echo json_encode($estados_data); ?>'></div>
+                                    <div class="search-results custom-scrollbar" id="results-estado" data-items='<?php echo json_encode($estados_data); ?>' data-link-contato="<?php echo esc_url($link_contato); ?>"></div>
                                 </div>
                             </div>
                         </div>
