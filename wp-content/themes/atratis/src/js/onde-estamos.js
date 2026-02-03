@@ -144,6 +144,8 @@ function setupSearch(inputId, resultsId) {
     return;
   }
 
+  const linkContato = resultsContainer.getAttribute('data-link-contato') || '/contato';
+
   const filterResults = (query) => {
     resultsContainer.innerHTML = '';
 
@@ -162,7 +164,7 @@ function setupSearch(inputId, resultsId) {
         itemEl.className = 'result-item';
         itemEl.innerHTML = `
           <span class="city-name">${item}</span>
-          <a href="/contato" class="cta-link">Fale com a gente agora!</a>
+          <a href="${linkContato}" target="_blank" class="cta-link">Fale com a gente agora!</a>
         `;
         itemEl.addEventListener('click', (e) => {
           if (!e.target.classList.contains('cta-link')) {
