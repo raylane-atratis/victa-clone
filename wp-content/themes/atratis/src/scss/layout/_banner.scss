@@ -298,7 +298,7 @@
     // Override para Quem Somos (ID 199)
     @at-root body.page-id-199 & {
       height: 100vh;
-      max-height: 1005px;
+      max-height: 2005px;
 
       @include mobile {
         height: auto !important;

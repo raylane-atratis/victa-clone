@@ -60,10 +60,12 @@
 
   &__titulo {
     font-size: 2.5rem; // Aumentado conforme destaque visual
-    font-weight: 600;
-    color: #fff;
+    font-weight: 700;
+    color: #1a1a1a;
     line-height: 120%;
     font-family: $font-heading;
+    margin-bottom: 4rem;
+    text-align: center;
 
     @include mobile {
       font-size: 1.75rem;
