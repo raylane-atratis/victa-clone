@@ -1,40 +1,26 @@
 @use "sass:color";
 
 // 1. Configurações e Ferramentas (Base)
-@use 'base/variables';
-@use 'base/mixins';
-@use 'base/bootstrap-grid';
-@use 'base/reset';
+@use "base/variables";
+@use "base/mixins";
+@use "base/bootstrap-grid";
+@use "base/reset";
+@use "base/accessibility";
 
 // 2. Layout (Estruturas Globais)
-@use 'layout/header';
-@use 'layout/footer';
-@use 'layout/banner';
+@use "layout/header";
+@use "layout/footer";
+@use "layout/banner";
 
 // 3. Componentes (Botões, Cards, etc)
-@use 'components/buttons';
-@use 'components/video-modal';
-@use 'components/tabs';
+@use "components/buttons";
+@use "components/video-modal";
 
 // 4. Blocos (ACF Flexible Content)
 // Sempre que criar um bloco novo, importe aqui
 
-
-@use 'blocks/secao_texto_imagem';
-@use 'blocks/secao_solucoes';
-@use 'blocks/secao_onde_estamos';
-@use 'blocks/secao_depoimentos';
-@use 'blocks/secao_video_full';
-@use 'blocks/secao_newsletter';
-@use 'blocks/secao_texto';
-@use 'blocks/secao_carrosel_logos';
-@use 'blocks/secao_carrosel_passo_a_passo';
-@use 'blocks/secao_perguntas_frequentes';
-@use 'blocks/secao_facilidades_tafacil';
-@use 'blocks/secao_canais_de_atendimento';
-@use 'blocks/secao_nossos_parceiros';
-@use 'blocks/secao_cards_flexiveis';
-@use 'blocks/secao_clube_vantagens';
+@use "blocks/secao_texto_imagem";
+@use "blocks/secao_texto";
 
 // 5. Páginas Específicas
-@use 'pages/not-found';
+@use "pages/not-found";

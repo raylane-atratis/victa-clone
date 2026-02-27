@@ -1,16 +1,60 @@
-// Variáveis de Cores
-$primary-color: #5B2580;
-$secondary-color: #E75012;
-$tertiary-color: #931C80;
-$background-color: #fff;
-$text-color: #606060;
-$text-color-link-menu: #1A1A1A;
+// ============================================================
+// DESIGN TOKENS - Variáveis centralizadas do tema Atratis
+// ============================================================
 
-// Variáveis de Tipografia
-$font-primary: "Poppins", sans-serif;
-$font-heading: "Lexend", sans-serif;
+// Cores Primárias
+$primary-color: #00183b;
+$secondary-color: #157fff;
+$tertiary-color: #012971;
+
+// Cores de Superfície
+$background-color: #fff;
+$background-alt: #f8f8fa;
+$surface-dark: #1a1a1a;
+
+// Cores de Texto
+$text-color: #484d51;
+$text-color-light: #999;
+$text-color-dark: #1a1a1a;
+$text-color-link-menu: #1a1a1a;
+
+// Tipografia
+$font-primary: "Inter", sans-serif;
+$font-heading: "Inter Tight", sans-serif;
 $font-stack: $font-primary;
 $font-size-base: 16px;
 
-// Espaçamento
+// Espaçamento (escala)
 $gutter: 1rem;
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 40px;
+$spacing-2xl: 60px;
+$spacing-3xl: 80px;
+
+// Border Radius
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 20px;
+$radius-pill: 1000px;
+
+// Shadows
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease-in-out;
+
+// Z-index scale
+$z-dropdown: 100;
+$z-sticky: 200;
+$z-fixed: 300;
+$z-modal-backdrop: 400;
+$z-modal: 500;
+$z-tooltip: 600;

@@ -9,65 +9,78 @@
 
 <body <?php body_class(); ?>>
 
+	<!-- Skip Link para Acessibilidade -->
+	<a class="skip-link sr-only" href="#main-content">Pular para o conteúdo</a>
 
-	<header id="masthead" class="site-header">
+	<header id="masthead" class="site-header" role="banner">
 		<div class="container">
-			<div class="header-inner">
-				<div class="site-branding">
-					<?php if ( has_custom_logo() ) : ?>
-						<?php the_custom_logo(); ?>
-					<?php else : ?>
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="logo-link" title="<?php bloginfo( 'name' ); ?>">
-							<img src="<?php echo get_template_directory_uri(); ?>/public/images/Logo-Full.svg" alt="<?php bloginfo( 'name' ); ?>" width="213" height="100" loading="eager">
-						</a>
-					<?php endif; ?>
-				</div><!-- .site-branding -->
-
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Abrir menu">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-
-				<nav id="site-navigation" class="main-navigation">
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'menu_principal',
-							'menu_id'        => 'primary-menu',
-							'container'      => false,
-							'menu_class'     => 'menu-list',
-							'fallback_cb'    => false, // Se não tiver menu, não mostra nada (ou lista páginas se true)
-						)
-					);
-					?>
-
-					<?php
-					// Campos do ACF para o Menu Mobile
-					$logo_secundaria = get_field('logo_secundaria', 'option');
-					$lista_de_redes = get_field('lista_de_redes', 'option');
-					?>
-
-					<div class="mobile-menu-footer">
-						<div class="mobile-branding">
-							<?php if ( $logo_secundaria ) : ?>
-								<img src="<?php echo esc_url( $logo_secundaria['url'] ); ?>" alt="<?php echo esc_attr( $logo_secundaria['alt'] ); ?>" class="logo-somapay" width="150">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="header-inner">
+						<div class="site-branding">
+							<?php 
+							$logo_principal = get_field('logo_image', 'option');
+							if ( $logo_principal ) : ?>
+								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="logo-link" title="<?php bloginfo( 'name' ); ?>">
+									<img src="<?php echo esc_url( $logo_principal['url'] ); ?>" alt="<?php echo esc_attr( $logo_principal['alt'] ?: get_bloginfo( 'name' ) ); ?>" width="213" height="auto" loading="eager" fetchpriority="high">
+								</a>
+							<?php else : ?>
+								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="logo-link" title="<?php bloginfo( 'name' ); ?>">
+									<img src="<?php echo get_template_directory_uri(); ?>/public/images/Logo-Full.svg" alt="<?php bloginfo( 'name' ); ?>" width="213" height="100" loading="eager" fetchpriority="high">
+								</a>
 							<?php endif; ?>
-						</div>
+						</div><!-- .site-branding -->
 
-						<?php if ( $lista_de_redes ) : ?>
-							<ul class="mobile-social">
-								<?php foreach ( $lista_de_redes as $rede ) : ?>
-									<li>
-										<a href="<?php echo esc_url( $rede['link'] ); ?>" target="_blank" aria-label="<?php echo esc_attr( $rede['descricao'] ); ?>">
-											<?php echo $rede['svg']; ?>
-										</a>
-									</li>
-								<?php endforeach; ?>
-							</ul>
-						<?php endif; ?>
+						<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Abrir menu">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+
+						<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Menu principal">
+							<?php
+							wp_nav_menu(
+								array(
+									'theme_location' => 'menu_principal',
+									'menu_id'        => 'primary-menu',
+									'container'      => false,
+									'menu_class'     => 'menu-list',
+									'fallback_cb'    => false, // Se não tiver menu, não mostra nada (ou lista páginas se true)
+								)
+							);
+							?>
+
+							<?php
+							// Campos do ACF para o Menu Mobile
+							$logo_secundaria = get_field('logo_secundaria', 'option');
+							$lista_de_redes = get_field('lista_de_redes', 'option');
+							?>
+
+							<div class="mobile-menu-footer">
+								<div class="mobile-branding">
+									<?php if ( $logo_secundaria ) : ?>
+										<img src="<?php echo esc_url( $logo_secundaria['url'] ); ?>" alt="<?php echo esc_attr( $logo_secundaria['alt'] ); ?>" class="logo-somapay" width="150" height="auto" loading="lazy">
+									<?php endif; ?>
+								</div>
+
+								<?php if ( $lista_de_redes ) : ?>
+									<ul class="mobile-social">
+										<?php foreach ( $lista_de_redes as $rede ) : ?>
+											<li>
+												<a href="<?php echo esc_url( $rede['link'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $rede['descricao'] ); ?>">
+													<?php echo wp_kses_post( $rede['svg'] ); ?>
+												</a>
+											</li>
+										<?php endforeach; ?>
+									</ul>
+								<?php endif; ?>
+							</div>
+						</nav><!-- #site-navigation -->
 					</div>
-				</nav><!-- #site-navigation -->
+				</div>
 			</div>
+			
 		</div>
 	</header>
+
+	<main id="main-content" role="main">

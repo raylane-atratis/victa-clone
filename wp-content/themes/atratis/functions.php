@@ -32,10 +32,185 @@ if ( ! function_exists( 'atratis_setup' ) ) :
 			'comment-list',
 			'gallery',
 			'caption',
+			'style',
+			'script',
 		) );
+
+		// Tamanhos de imagem customizados
+		add_image_size( 'card-thumb', 400, 300, true );
+		add_image_size( 'banner-desktop', 1920, 800, true );
+		add_image_size( 'banner-mobile', 768, 600, true );
 	}
 endif;
 add_action( 'after_setup_theme', 'atratis_setup' );
+
+/**
+ * ============================================================
+ * LIMPEZA DO <head> - Remove bloat do WordPress (Performance)
+ * ============================================================
+ */
+function atratis_cleanup_head() {
+	// Remove emoji scripts/styles
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
+	// Remove wp-embed
+	remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+	remove_action( 'wp_head', 'wp_oembed_add_host_js' );
+
+	// Remove RSD link
+	remove_action( 'wp_head', 'rsd_link' );
+
+	// Remove wlwmanifest
+	remove_action( 'wp_head', 'wlwmanifest_link' );
+
+	// Remove WP version (segurança)
+	remove_action( 'wp_head', 'wp_generator' );
+
+	// Remove REST API link
+	remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
+
+	// Remove shortlink
+	remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
+
+	// Remove feed links (não usamos RSS)
+	remove_action( 'wp_head', 'feed_links', 2 );
+	remove_action( 'wp_head', 'feed_links_extra', 3 );
+}
+add_action( 'after_setup_theme', 'atratis_cleanup_head' );
+
+/**
+ * Remove Gutenberg Block CSS nas páginas que não usam editor de blocos.
+ * Mantém os estilos em posts do blog (single) que utilizam Gutenberg.
+ */
+function atratis_remove_block_css() {
+	// Preserva estilos do Gutenberg em posts do blog
+	if ( is_singular( 'post' ) ) {
+		return;
+	}
+
+	wp_dequeue_style( 'wp-block-library' );
+	wp_dequeue_style( 'wp-block-library-theme' );
+	wp_dequeue_style( 'wc-blocks-style' );
+	wp_dequeue_style( 'global-styles' );
+	wp_dequeue_style( 'classic-theme-styles' );
+}
+add_action( 'wp_enqueue_scripts', 'atratis_remove_block_css', 100 );
+
+/**
+ * Remove jQuery no frontend (não utilizamos)
+ */
+function atratis_remove_jquery() {
+	if ( ! is_admin() ) {
+		wp_deregister_script( 'jquery' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'atratis_remove_jquery' );
+
+/**
+ * ============================================================
+ * HELPERS DE IMAGEM - Performance & Core Web Vitals
+ * ============================================================
+ */
+
+/**
+ * Renderiza uma imagem ACF otimizada com lazy loading, width/height e srcset.
+ */
+function atratis_image( $image, $size = 'full', $lazy = true, $class = '', $alt_fallback = '' ) {
+	if ( empty( $image ) || empty( $image['ID'] ) ) return;
+
+	$attrs = array(
+		'class'   => $class,
+		'loading' => $lazy ? 'lazy' : 'eager',
+		'alt'     => ! empty( $image['alt'] ) ? $image['alt'] : $alt_fallback,
+	);
+
+	if ( ! $lazy ) {
+		$attrs['fetchpriority'] = 'high';
+	}
+
+	echo wp_get_attachment_image( $image['ID'], $size, false, $attrs );
+}
+
+/**
+ * Renderiza imagem responsiva com <picture> (desktop + mobile).
+ */
+function atratis_picture( $desktop, $mobile = null, $size = 'full', $lazy = true, $class = '' ) {
+	if ( empty( $desktop ) || empty( $desktop['ID'] ) ) return;
+
+	$attrs = array(
+		'class'   => $class,
+		'loading' => $lazy ? 'lazy' : 'eager',
+		'alt'     => ! empty( $desktop['alt'] ) ? $desktop['alt'] : '',
+	);
+
+	if ( ! $lazy ) {
+		$attrs['fetchpriority'] = 'high';
+	}
+
+	if ( $mobile && ! empty( $mobile['url'] ) ) {
+		echo '<picture>';
+		echo '<source media="(max-width: 991px)" srcset="' . esc_url( $mobile['url'] ) . '">';
+		echo wp_get_attachment_image( $desktop['ID'], $size, false, $attrs );
+		echo '</picture>';
+	} else {
+		echo wp_get_attachment_image( $desktop['ID'], $size, false, $attrs );
+	}
+}
+
+/**
+ * Retorna URL de imagem ACF com fallback.
+ */
+function atratis_image_url( $image, $fallback = '' ) {
+	if ( ! empty( $image ) && ! empty( $image['url'] ) ) {
+		return esc_url( $image['url'] );
+	}
+	return $fallback ? esc_url( $fallback ) : '';
+}
+
+/**
+ * ============================================================
+ * SCHEMA.ORG JSON-LD - Dados Estruturados para SEO
+ * ============================================================
+ */
+function atratis_schema_organization() {
+	$logo  = get_field( 'logo_image', 'option' );
+	$email = get_field( 'email', 'option' );
+	$redes = get_field( 'lista_de_redes', 'option' );
+
+	$schema = array(
+		'@context'    => 'https://schema.org',
+		'@type'       => 'Organization',
+		'name'        => get_bloginfo( 'name' ),
+		'description' => get_bloginfo( 'description' ),
+		'url'         => home_url( '/' ),
+	);
+
+	if ( $logo && ! empty( $logo['url'] ) ) {
+		$schema['logo'] = esc_url( $logo['url'] );
+	}
+
+	if ( $email ) {
+		$schema['email'] = sanitize_email( $email );
+	}
+
+	if ( $redes && is_array( $redes ) ) {
+		$social_urls = array();
+		foreach ( $redes as $rede ) {
+			if ( ! empty( $rede['link'] ) ) {
+				$social_urls[] = esc_url( $rede['link'] );
+			}
+		}
+		if ( ! empty( $social_urls ) ) {
+			$schema['sameAs'] = $social_urls;
+		}
+	}
+
+	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}
+add_action( 'wp_footer', 'atratis_schema_organization', 99 );
 
 /**
  * Adiciona resource hints (preconnect) para Google Fonts - Melhora LCP
@@ -50,8 +225,8 @@ add_action( 'wp_head', 'atratis_resource_hints', 1 );
  * Enqueue scripts and styles.
  */
 function atratis_scripts() {
-	// Google Fonts (Lexend & Poppins) - com preconnect para melhor performance
-	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap', array(), null );
+	// Google Fonts (Inter & Inter Tight) - com preconnect para melhor performance
+	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap', array(), null );
 
 	// Configuração do Vite
 	$vite_server = 'http://localhost:5173';

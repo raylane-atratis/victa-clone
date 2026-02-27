@@ -89,8 +89,13 @@ $mobileQuery = new WP_Query($mobileArgs);
 										<?php endif; ?>
 
 										<?php if ($btnNome && $btnLink) : ?>
-											<a href="<?php echo esc_url($btnLink); ?>" class="btn-primary banner-btn" target="<?php echo $target; ?>">
+											<a href="<?php echo esc_url($btnLink); ?>" class="btn" target="<?php echo $target; ?>" title="simular agora">
 												<?php echo esc_html($btnNome); ?>
+												<div class="svg-icon">
+													<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
+														<path d="M9.85292 0H4.11754V1.37649H8.65033L0 10.0268L0.973179 11L9.62351 2.34967V6.88246H11V1.14708C11 0.514808 10.4857 0 9.85292 0Z" fill="white"/>
+													</svg>	
+												</div>
 											</a>
 										<?php endif; ?>
 									</div>
@@ -121,10 +126,10 @@ $mobileQuery = new WP_Query($mobileArgs);
 					<div class="swiper-slide">
 						<?php if ($btnLink) : ?>
 							<a href="<?php echo esc_url($btnLink); ?>" target="<?php echo $target; ?>" class="d-block w-100 h-100">
-								<img src="<?php echo esc_url($img_url); ?>" alt="<?php the_title_attribute(); ?>" class="w-100 h-auto" loading="lazy">
+								<img src="<?php echo esc_url($img_url); ?>" alt="<?php the_title_attribute(); ?>" class="w-100 h-auto" loading="eager" fetchpriority="high">
 							</a>
 						<?php else : ?>
-							<img src="<?php echo esc_url($img_url); ?>" alt="<?php the_title_attribute(); ?>" class="w-100 h-auto" loading="lazy">
+							<img src="<?php echo esc_url($img_url); ?>" alt="<?php the_title_attribute(); ?>" class="w-100 h-auto" loading="eager" fetchpriority="high">
 						<?php endif; ?>
 					</div>
 				<?php endwhile; wp_reset_postdata(); ?>

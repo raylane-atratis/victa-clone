@@ -20,7 +20,7 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'dev_tema_performace' );
+define( 'DB_NAME', 'dev_marcelo_mota' );
 
 /** Database username */
 define( 'DB_USER', 'root' );
@@ -71,7 +71,7 @@ define( 'NONCE_SALT',       '@Dh?kvaF]$mv8HJollPZI6[%K_x)Er:~+yg}Y7106%.;,^P4kcJ
  *
  * @link https://developer.wordpress.org/advanced-administration/wordpress/wp-config/#table-prefix
  */
-$table_prefix = 'wp_';
+$table_prefix = 'mm_sec_';
 
 /**
  * For developers: WordPress debugging mode.

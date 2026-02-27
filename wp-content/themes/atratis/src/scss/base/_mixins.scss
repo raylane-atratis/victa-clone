@@ -1,17 +1,19 @@
-@use 'variables' as *;
+@use "variables" as *;
 
-/* Mixins Globais */
+/* ============================================================
+   MIXINS GLOBAIS - Utilitários reutilizáveis
+   ============================================================ */
 
 // Breakpoints
 $tablet: 768px;
 $desktop: 1024px;
+$desktop-lg: 1440px;
 
 @mixin mobile {
   @media (max-width: #{$tablet - 1px}) {
     @content;
   }
 }
-
 
 @mixin tablet {
   @media (min-width: #{$tablet}) {
@@ -25,9 +27,64 @@ $desktop: 1024px;
   }
 }
 
+@mixin desktop-lg {
+  @media (min-width: #{$desktop-lg}) {
+    @content;
+  }
+}
 
+// Layout
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Tipografia responsiva
+@mixin font-size($desktop-size, $mobile-size: null) {
+  font-size: $desktop-size;
+  @if $mobile-size {
+    @include mobile {
+      font-size: $mobile-size;
+    }
+  }
+}
+
+// Section padding padrão
+@mixin section-padding {
+  padding: $spacing-2xl 0;
+  @include mobile {
+    padding: $spacing-xl 0;
+  }
+}
+
+// Hover lift (micro-animação para cards)
+@mixin hover-lift($amount: -4px) {
+  transition:
+    transform $transition-base,
+    box-shadow $transition-base;
+  &:hover {
+    transform: translateY($amount);
+    box-shadow: $shadow-lg;
+  }
+}
+
+// Scrollbar customizada
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
 }

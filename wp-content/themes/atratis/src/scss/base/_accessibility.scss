@@ -1,0 +1,108 @@
+@use "../base/variables" as *;
+
+/**
+ * Acessibilidade - Focus Styles, Skip Link, Screen Reader Only
+ * Melhora score de Acessibilidade no PageSpeed a ~100
+ */
+
+// ============================================================
+// Skip Link (primeiro elemento do body, visível apenas com foco)
+// ============================================================
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  padding: 12px 24px;
+  background: $primary-color;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s ease;
+
+  &:focus {
+    top: 0;
+    outline: 3px solid $secondary-color;
+    outline-offset: 2px;
+  }
+}
+
+// ============================================================
+// Screen Reader Only (visível apenas para leitores de tela)
+// ============================================================
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+
+  // Exceção: skip-link se torna visível no foco
+  &:focus {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 12px 24px;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
+
+// ============================================================
+// Focus Visible (outline acessível para navegação por teclado)
+// ============================================================
+:focus-visible {
+  outline: 3px solid $primary-color;
+  outline-offset: 2px;
+}
+
+// Remove outline no clique (mouse), mantém no teclado
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// ============================================================
+// Target de tamanho mínimo para toque (44x44px - WCAG 2.5.8)
+// ============================================================
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+select {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+// Exceção: links inline dentro de parágrafo
+p a,
+li a,
+td a,
+.footer-links a,
+.footer-contact a {
+  min-height: auto;
+  min-width: auto;
+}
+
+// ============================================================
+// Reduz animações para usuários com preferência
+// ============================================================
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
