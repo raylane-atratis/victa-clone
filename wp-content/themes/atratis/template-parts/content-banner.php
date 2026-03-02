@@ -66,12 +66,21 @@ $mobileQuery = new WP_Query($mobileArgs);
 					// Parallax (Se for implementado via JS, adicionar data-attributes)
 					$parallax = get_field('parallax');
 					$parallaxAttr = $parallax ? 'data-swiper-parallax="50%"' : '';
+					// LCP Condicional para Desktop
+					$is_first = ($desktopQuery->current_post === 0);
+					$loading_attr = $is_first ? 'eager' : 'lazy';
+					$priority_attr = $is_first ? 'fetchpriority="high"' : '';
 				?>
-					<div class="swiper-slide banner-item" style="background-image: url('<?php echo esc_url($img_url); ?>'); background-size: <?php echo $tamanho_imagem; ?>;">
+					<div class="swiper-slide banner-item" style="position: relative; overflow: hidden;">
 						
-						<div class="banner-overlay" style="<?php echo $overlayStyle; ?>"></div>
+						<!-- Imagem base para Otimização de LCP e Native Lazy Load -->
+						<img src="<?php echo esc_url($img_url); ?>" alt="<?php the_title_attribute(); ?>" 
+							 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: <?php echo $tamanho_imagem ?: 'cover'; ?>; z-index: 0;"
+							 loading="<?php echo $loading_attr; ?>" <?php echo $priority_attr; ?>>
 
-						<div class="container">
+						<div class="banner-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; <?php echo $overlayStyle; ?>"></div>
+
+						<div class="container" style="position: relative; z-index: 2;">
 							<div class="row align-items-center">
 								<div class="col-12">
 									<div class="banner-content <?php echo $classePosicao; ?>" <?php echo $parallaxAttr; ?>>

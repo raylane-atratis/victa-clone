@@ -23,6 +23,7 @@ if ( ! function_exists( 'atratis_setup' ) ) :
 		register_nav_menus( array(
 			'menu_principal' => 'Menu Principal',
 			'menu_footer'    => 'Menu Footer',
+			'menu_lgpd'      => 'Menu LGPD',
 		) );
 		
 		// Suporte a HTML5

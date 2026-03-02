@@ -56,3 +56,49 @@ img {
   padding: 0 15px;
   margin: 0 auto;
 }
+
+/* ============================================================
+   ASSINATURA
+   ============================================================ */
+.assinatura {
+  float: right;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 615px;
+
+  @include mobile {
+    float: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  h2 {
+    float: right;
+    margin: 0;
+
+    a {
+      background: rgba(0, 0, 0, 0) var(--bg-image) no-repeat left center;
+      background-size: auto 100%;
+      float: right;
+      overflow: hidden;
+      text-indent: -9999px;
+      transition: width 300ms ease;
+
+      height: 18px;
+      width: 26px;
+
+      min-width: 24px;
+      min-height: 16px;
+
+      &:hover {
+        width: 80px;
+      }
+    }
+  }
+}

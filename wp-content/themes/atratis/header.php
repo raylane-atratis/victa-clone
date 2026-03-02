@@ -31,12 +31,6 @@
 							<?php endif; ?>
 						</div><!-- .site-branding -->
 
-						<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Abrir menu">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-
 						<div class="header-group">
 							<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Menu principal">
 							<?php
@@ -68,7 +62,7 @@
 									<ul class="mobile-social">
 										<?php foreach ( $lista_de_redes as $rede ) : ?>
 											<li>
-												<a href="<?php echo esc_url( $rede['link'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $rede['descricao'] ); ?>">
+												<a href="<?php echo esc_url( $rede['link'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $rede['descricao'] ?? '' ); ?>">
 													<?php echo $rede['svg']; ?>
 												</a>
 											</li>
@@ -101,7 +95,7 @@
 								<ul class="header-social">
 									<?php foreach ( $lista_de_redes as $rede ) : ?>
 										<li>
-											<a href="<?php echo esc_url( $rede['link'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $rede['titulo'] ); ?>">
+											<a href="<?php echo esc_url( $rede['link'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $rede['titulo'] ?? '' ); ?>">
 												<?php echo $rede['svg']; ?>
 											</a>
 										</li>
@@ -118,6 +112,12 @@
 							</button>
 
 						</div><!-- .header-actions -->
+						
+						<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Abrir menu">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
 						</div><!-- .header-group -->
 					</div>
 				</div>
