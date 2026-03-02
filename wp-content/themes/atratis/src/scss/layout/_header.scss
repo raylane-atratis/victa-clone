@@ -36,6 +36,15 @@
     justify-content: space-between;
   }
 
+  .header-group {
+    display: flex;
+    align-items: center;
+
+    @include desktop {
+      gap: 30.5px; // Espaçamento exato entre o último link e o CTA
+    }
+  }
+
   .site-branding {
     flex-shrink: 0;
 
@@ -156,15 +165,16 @@
           padding: 12px 32px;
           font-family: $font-primary;
           font-weight: 400;
-          color: $text-color-link-menu;
+          color: $text-color; // Alterado para a cor solicitada
           text-decoration: none;
           border-radius: 100px;
           transition: all 0.2s ease-in-out;
           font-size: 1.1rem;
 
+          // Removemos o background-color do hover mantendo nos submenus independentemente
           &:hover {
             color: $primary-color;
-            background-color: rgba($primary-color, 0.05);
+            background-color: transparent;
           }
         }
 
@@ -227,8 +237,9 @@
         // Item Ativo
         &.current-menu-item > a,
         &.current_page_item > a {
-          background-color: #f4f4f4;
-          font-weight: 400;
+          background-color: transparent; // Fundo removido
+          font-weight: 600; // Engrossamos um pouco para dar destaque já que perdeu a pílula de fundo
+          color: $primary-color; // Pode ser $text-color, mas o color ajuda a evidenciar a página atual
           width: 100%;
 
           @include desktop {
@@ -321,7 +332,7 @@
 
       .menu-list {
         flex-direction: row; // Linha no desktop
-        gap: 1rem;
+        gap: 25px; // Gap exato de distanciamento solicitado
         padding: 0;
         width: auto;
 
@@ -329,7 +340,7 @@
           width: auto;
 
           a {
-            padding: 8px 10px;
+            padding: 8px 0; // Removido o padding lateral para que o divisor seja apenas o gap de 25px
             font-size: 1rem;
           }
 
@@ -411,6 +422,91 @@
           &.submenu-open > ul.sub-menu {
             max-height: none;
           }
+        }
+      }
+    }
+  }
+
+  // --- Ações do Desktop (Botão CTA, Redes e Busca) ---
+  .header-actions {
+    display: none; // Escondido no mobile via classes HTML (d-none d-lg-flex), mas garantindo aqui
+
+    @include desktop {
+      display: flex;
+      align-items: center;
+      gap: 19px; // Gap base entre grupos (CTA, redes, search)
+
+      .btn-header {
+        // Estende as definições base do botão mas ajusta micro-detalhes se necessário
+        padding: 8px 25px; // Padding customizado para se adequar ao header (ajuste 25px conforme figma)
+        font-size: 1rem;
+      }
+
+      .header-separator {
+        width: 1px;
+        height: 20px;
+        background-color: #e5e5e5; // Cor sutil de divisória (ajuste conforme inspeção se houver cor exata)
+      }
+
+      .header-social {
+        display: flex;
+        align-items: center;
+        gap: 8px; // Gap menor entre os ícones de redes sociais (aparentemente curto na imagem)
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          background-color: $background-alt; // Variavel global #157fff1a
+          transition:
+            transform 0.2sease,
+            opacity 0.2s ease;
+
+          &:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+          }
+
+          svg {
+            // O fill do icone parece ser #157FFF que geralmente é a primary-color.
+            // Aqui assumimos que o próprio SVG no ACF já trará a cor, ou forçamos com CSS
+            width: auto;
+            height: auto;
+            max-width: 20px;
+            max-height: 20px;
+          }
+        }
+      }
+
+      .search-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 100px; // Pode ser redondo dependendo da UI
+        background-color: $background-alt;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition:
+          transform 0.2sease,
+          opacity 0.2s ease;
+
+        &:hover {
+          transform: scale(1.05);
+          opacity: 0.9;
+        }
+
+        svg {
+          width: 20px;
+          height: 20px;
         }
       }
     }
