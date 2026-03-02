@@ -1,0 +1,17 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.breadcrumb {
+  padding: 14px 0;
+  font-size: 15px;
+  font-weight: 400;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1px solid #cad1eb;
+
+  a {
+    color: $secondary-color;
+  }
+}

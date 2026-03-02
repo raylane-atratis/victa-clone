@@ -384,3 +384,69 @@ function atratis_register_banner_taxonomy() {
 	register_taxonomy( 'posicoes_banner', array( 'banners' ), $args );
 }
 add_action( 'init', 'atratis_register_banner_taxonomy' );
+
+/**
+ * Função de Breadcrumb Limpa e Genérica
+ */
+function get_breadcrumb() {
+    echo '<a href="' . home_url() . '" rel="nofollow">Inicial</a>';
+
+    if (is_tax() || is_category() || is_tag()) {
+        $current_term = get_queried_object();
+        $ancestors = get_ancestors($current_term->term_id, $current_term->taxonomy);
+        $ancestors = array_reverse($ancestors); // Inverte a ordem dos ancestrais
+        
+        foreach ($ancestors as $ancestor) {
+            $ancestor_term = get_term($ancestor, $current_term->taxonomy);
+            echo " &nbsp;&nbsp;&raquo;&nbsp;&nbsp; ";
+            echo '<a href="' . esc_url(get_term_link($ancestor_term->term_id, $current_term->taxonomy)) . '">' . esc_html($ancestor_term->name) . '</a>';
+        }
+        echo " &nbsp;&nbsp;&raquo;&nbsp;&nbsp; ";
+        echo esc_html($current_term->name);
+
+    } elseif (is_single()) {
+        $post_type = get_post_type();
+        
+        if ($post_type != 'post') { // CPT Genérico
+            $post_type_obj = get_post_type_object($post_type);
+            echo " &nbsp;&nbsp;&raquo;&nbsp;&nbsp; ";
+            echo '<a href="' . esc_url(get_post_type_archive_link($post_type)) . '">' . esc_html($post_type_obj->labels->name) . '</a>';
+        } else { // Posts normais (verificando categorias)
+            $categories = get_the_category();
+            if ($categories) {
+                $category = $categories[0]; // Pega a primeira
+                $parent = $category->category_parent;
+
+                if ($parent) {
+                    $parent_category = get_category($parent);
+                    echo " &nbsp;&nbsp;&raquo;&nbsp;&nbsp; ";
+                    echo '<a href="' . esc_url(get_category_link($parent_category->term_id)) . '">' . esc_html($parent_category->name) . '</a>';
+                }
+
+                echo " &nbsp;&nbsp;&raquo;&nbsp;&nbsp; ";
+                echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
+            }
+        }
+
+        echo " &nbsp;&nbsp;&raquo;&nbsp;&nbsp; ";
+        the_title();
+
+    } elseif (is_page()) {
+        echo " &nbsp;&nbsp;&raquo;&nbsp;&nbsp; ";
+        echo get_the_title();
+
+    } elseif (is_search()) {
+        echo " &nbsp;&nbsp;&raquo;&nbsp;&nbsp; Resultados da Pesquisa para... ";
+        echo '"<em>' . get_search_query() . '</em>"';
+
+    } elseif (is_post_type_archive()) {
+        $post_type = get_post_type();
+        $post_type_obj = get_post_type_object($post_type);
+        echo " &nbsp;&nbsp;&raquo;&nbsp;&nbsp; ";
+        echo esc_html($post_type_obj->labels->name);
+        
+    } elseif (is_archive()) {
+        echo " &nbsp;&nbsp;&raquo;&nbsp;&nbsp; ";
+        the_archive_title();
+    }
+}

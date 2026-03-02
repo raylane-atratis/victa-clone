@@ -1,5 +1,5 @@
-@use '../base/variables' as *;
-@use '../base/mixins' as *;
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
 
 .secao-texto-imagem {
   padding: 80px 0;
@@ -8,6 +8,18 @@
 
   @include mobile {
     padding: 40px 0;
+  }
+
+  &.sec-bg-texto-img {
+    background: linear-gradient(273deg, #000927 -1.19%, #002b7a 99.69%);
+
+    h2,
+    p,
+    strong,
+    small,
+    span {
+      color: #fff;
+    }
   }
 
   // --- Tipografia ---
@@ -24,14 +36,17 @@
 
   .titulo-bloco {
     font-family: $font-primary;
-    font-size: 2rem; // ~56px
-    line-height: 1.1;
-    font-weight: 700;
+    font-size: 2.5rem; // ~56px
+    line-height: 52px;
+    font-weight: 600;
     color: #1d1d1b;
     margin-bottom: 1.5rem;
 
+    max-width: 524px;
+
     @include mobile {
       font-size: 2rem;
+      line-height: 40px;
       margin-bottom: 20px;
     }
   }
@@ -132,7 +147,6 @@
   }
 
   &.texto_imagem_reclame_aqui {
-
     @media (max-width: 992px) {
       .row {
         display: flex;
@@ -185,7 +199,6 @@
         line-height: 125%;
         color: $text-color;
         margin-bottom: 2.5rem;
-
       }
 
       img {
@@ -193,9 +206,9 @@
         max-width: 320px;
 
         @media (max-width: 992px) {
-            text-align: center;
-            display: flex !important;
-            margin: 0 auto !important;
+          text-align: center;
+          display: flex !important;
+          margin: 0 auto !important;
         }
       }
     }

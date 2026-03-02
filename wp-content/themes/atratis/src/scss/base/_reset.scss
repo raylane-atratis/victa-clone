@@ -17,6 +17,10 @@ body {
     padding-top: 80px;
   }
 
+  @include mobile {
+    padding-top: 63px;
+  }
+
   &.no-scroll {
     overflow: hidden;
   }
