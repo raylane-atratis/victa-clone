@@ -26,6 +26,9 @@ endif;
         elseif (get_row_layout() == 'secao_fale_conosco' && get_sub_field('exibir')):
             get_template_part('template-parts-blocos/secao_fale_conosco');
 
+        elseif (get_row_layout() == 'secao_formulario_contato' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_formulario_contato');
+
         endif;
 
     ?>

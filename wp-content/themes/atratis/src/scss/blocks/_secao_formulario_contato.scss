@@ -1,0 +1,87 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.secao-formulario-contato {
+  padding: $spacing-3xl 0; // Aproximadamente 80px
+
+  @include mobile {
+    padding: $spacing-xl 0;
+  }
+
+  &__conteudo {
+    @include desktop {
+      padding-right: $spacing-xl;
+      max-width: 400px;
+    }
+  }
+
+  &__titulo {
+    font-family: $font-heading; // "Inter Tight" de acordo com o Figma
+    font-size: 40px;
+    font-weight: 600; // Semi-bold da captura
+    color: $primary-color; // A cor azul mais escura
+    line-height: 1.2;
+    margin-bottom: $spacing-md; // Espaçamento entre titulo e desc
+
+    @include mobile {
+      font-size: 32px;
+    }
+  }
+
+  &__descricao {
+    font-family: $font-primary;
+    font-size: 16px;
+    color: $text-color; // Aproximado para cinza texto padrão #606060
+    line-height: 1.6;
+    margin-bottom: $spacing-lg; // Espaçamento grande pras infos
+  }
+
+  &__infos {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg; // 24px entre o telefone e endereço
+  }
+
+  // Bloco individual de Telefone/Endereço
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-sm;
+
+    &__icone {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+    &__texto {
+      font-family: $font-primary;
+      font-size: 16px;
+      color: $text-color;
+      line-height: 1.5;
+      text-decoration: none;
+      transition: color $transition-fast;
+      max-width: 224px;
+
+      // Para links e href
+      &:hover,
+      &:focus-visible {
+        color: $secondary-color;
+      }
+    }
+  }
+
+  &__form-wrapper {
+    // Caso precise de algum espacamento extra no container lateral
+    // O formulário foi configurado via `_contact-form.scss` globalmente
+    width: 100%;
+  }
+}

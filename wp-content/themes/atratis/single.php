@@ -38,8 +38,12 @@ while (have_posts()) :
     <!-- Main Page Content -->
     <div class="page-content py-5">
         <div class="container">
-            <div class="content-wrapper">
-                <?php the_content(); ?>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="content-wrapper">
+                        <?php the_content(); ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

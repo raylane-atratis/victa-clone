@@ -14,8 +14,10 @@ import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import "./menu.js";
 import "./banner.js";
 import { initFAQ } from "./faq.js";
+import { initPhoneMasks } from "./masks.js";
 
 // Inicializa os componentes
 document.addEventListener("DOMContentLoaded", () => {
   initFAQ();
+  initPhoneMasks();
 });

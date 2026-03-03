@@ -1,0 +1,198 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.custom-contact-form {
+  // Container principal
+  border-radius: 20px;
+  background: var(
+    --Gradiente,
+    linear-gradient(273deg, #000927 -1.19%, #002b7a 99.69%)
+  );
+  padding: $spacing-xl; // Aprox 40px
+  color: $background-color;
+
+  @include mobile {
+    padding: $spacing-lg;
+  }
+
+  &__title {
+    font-family: $font-heading; // Inter Tight (ou Lexend se configurado assim)
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: $spacing-md;
+    color: $background-color;
+
+    @include mobile {
+      font-size: 26px;
+      margin-bottom: $spacing-md;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-family: $font-primary;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    color: $background-color;
+  }
+
+  // Desativa as quebras de linha (<br>) automáticas chatas geradas pelo Contact Form 7
+  br {
+    display: none;
+  }
+
+  &__input,
+  &__textarea,
+  select.custom-contact-form__input {
+    width: 100%;
+    margin-top: 8px; // 1° Ajuste: Margem no topo para separar o label e o input
+    background-color: $background-color;
+    border: none;
+    border-radius: 5px; // Cantos moderadamente arredondados para inputs
+    padding: 14px 16px;
+    font-size: 16px;
+    font-family: $font-primary;
+    color: $text-color-dark;
+    transition: outline $transition-fast;
+
+    &:focus-visible {
+      outline: 2px solid $secondary-color; // Azul claro no foco garantindo acessibilidade
+      outline-offset: 2px;
+    }
+
+    &::placeholder {
+      color: $text-color-light;
+    }
+  }
+
+  &__textarea {
+    min-height: 140px;
+    resize: vertical; // Permite usuário esticar apenas para baixo
+  }
+
+  // Tratamento especial para o <select>
+  select.custom-contact-form__input {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1a1a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    padding-right: 45px;
+  }
+
+  // Wrapper padronizado do CF7 para radio e checkboxes list-item
+  .wpcf7-list-item {
+    margin: 0;
+
+    // O CF7 envolve o input e a tag span do texto com uma tag <label>
+    // Precisamos aplicar o flexbox no label interno para que fiquem na mesma linha!
+    label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      cursor: pointer;
+      appearance: none;
+      background-color: #e2e8f0;
+      border-radius: 4px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:checked {
+        background-color: $secondary-color;
+
+        &::after {
+          content: "";
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+          margin-bottom: 2px;
+        }
+      }
+
+      &:focus-visible {
+        outline: 2px solid $secondary-color;
+        outline-offset: 2px;
+      }
+    }
+
+    // Estilo para radio buttons se usados
+    input[type="radio"] {
+      border-radius: 50%;
+      &:checked::after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border-radius: 50%;
+        border: none;
+        transform: none;
+        margin: 0;
+      }
+    }
+
+    .wpcf7-list-item-label {
+      font-size: 14px; // 2° Ajuste: Diminuir a fonte do aceito os termos
+      font-weight: 400;
+      color: $background-color;
+      cursor: pointer;
+    }
+  }
+
+  // Tratamento da mensagem de aviso do Contact form
+  .wpcf7-acceptance-missing {
+    display: block;
+    margin-top: 5px;
+  }
+
+  &__submit {
+    background-color: $secondary-color;
+    color: $background-color;
+    border: none;
+    border-radius: $radius-md; // Seguindo design tokens do _variables (8px)
+    padding: 14px 40px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color $transition-fast;
+    width: 100%;
+
+    @include tablet {
+      width: auto;
+      min-width: 150px;
+      display: block;
+      margin-left: auto; // Garante que o botão vá totalmente para a direita
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $tertiary-color;
+    }
+  }
+
+  // Respostas de validação e loaders do CF7
+  .wpcf7-spinner {
+    background-color: $background-color;
+    border-radius: 50%;
+  }
+
+  .wpcf7-response-output {
+    border-radius: 8px;
+    margin-top: 20px !important;
+    margin-bottom: 0 !important;
+  }
+}

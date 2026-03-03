@@ -20,6 +20,7 @@
 @use "components/title-page";
 @use "components/share";
 @use "components/cards_atuacoes";
+@use "components/contact-form";
 
 // 4. Blocos (ACF Flexible Content)
 // Sempre que criar um bloco novo, importe aqui
@@ -27,6 +28,7 @@
 @use "blocks/secao_texto_imagem";
 @use "blocks/secao_texto";
 @use "blocks/secao_fale_conosco";
+@use "blocks/secao_formulario_contato";
 
 // 5. Páginas Específicas
 @use "pages/not-found";
