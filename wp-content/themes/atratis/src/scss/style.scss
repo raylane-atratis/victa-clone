@@ -11,18 +11,22 @@
 @use "layout/header";
 @use "layout/footer";
 @use "layout/banner";
+@use "layout/archive-areas-de-atuacao";
 
 // 3. Componentes (Botões, Cards, etc)
 @use "components/buttons";
 @use "components/video-modal";
 @use "components/breadcrumb";
 @use "components/title-page";
+@use "components/share";
+@use "components/cards_atuacoes";
 
 // 4. Blocos (ACF Flexible Content)
 // Sempre que criar um bloco novo, importe aqui
 
 @use "blocks/secao_texto_imagem";
 @use "blocks/secao_texto";
+@use "blocks/secao_fale_conosco";
 
 // 5. Páginas Específicas
 @use "pages/not-found";

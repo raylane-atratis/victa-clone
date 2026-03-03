@@ -9,5 +9,9 @@
     font-size: 40px;
     font-weight: 600;
     color: $secondary-color;
+
+    @include mobile {
+      line-height: 44px;
+    }
   }
 }

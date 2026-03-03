@@ -1,0 +1,93 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.card-atuacao {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: $radius-xl;
+  border: 1px solid #bababa;
+  overflow: hidden;
+  text-decoration: none;
+  height: 420px;
+
+  // Imagem como background absoluto cobrindo todo o card
+  &__imagem-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-base;
+    }
+  }
+
+  // Overlay com gradiente escuro (de cima para baixo)
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      182deg,
+      rgba(0, 0, 0, 0) -0.76%,
+      rgba(0, 0, 0, 0.7) 98.55%
+    );
+  }
+
+  // Conteúdo textual empurrado para o fundo do card
+  &__conteudo {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 1;
+    padding: $spacing-lg;
+  }
+
+  // Título branco e bold
+  &__titulo {
+    color: #fff;
+    font-family: $font-heading;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 42px;
+    margin: 0 0 $spacing-sm;
+  }
+
+  // Descrição branca e leve
+  &__resumo {
+    color: #fff;
+    font-family: $font-primary;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 29px;
+    margin: 0;
+  }
+
+  // Hover: zoom suave na imagem
+  &:hover,
+  &:focus-visible {
+    .card-atuacao__imagem-bg img {
+      transform: scale(1.05);
+    }
+  }
+
+  @include mobile {
+    height: 350px;
+
+    &__titulo {
+      font-size: 24px;
+      line-height: 34px;
+    }
+
+    &__resumo {
+      font-size: 16px;
+      line-height: 26px;
+    }
+  }
+}

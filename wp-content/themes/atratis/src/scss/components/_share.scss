@@ -1,0 +1,45 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.share-links {
+  padding: $spacing-xl 0 0; // Utilizando espaçamento aproximado a 35px-40px
+
+  &__title {
+    font-family: $font-primary;
+    font-size: $font-size-base; // Equivale a 16px
+    font-weight: 400;
+    line-height: 1.8; // Aproximado para 29px
+    text-align: center;
+    color: $text-color-light; // Utilizada para substituir o #8d89a5
+    margin-bottom: $spacing-lg; // Equivale aproximadamente a 24-25px
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: $spacing-xl; // Equivale a 40px
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm; // Equivale a 8px
+      color: $text-color-light; // Utilizada para substituir o #8d89a5
+      text-decoration: none;
+      transition: color $transition-fast;
+
+      // Efeito de hover moderno
+      &:hover,
+      &:focus {
+        color: $primary-color;
+
+        // Caso deseje que o SVG mude de cor no hover (recomendado trocar o fill do SVG pra 'currentColor' no PHP)
+        svg path {
+          fill: $primary-color;
+          transition: fill $transition-fast;
+        }
+      }
+    }
+  }
+}

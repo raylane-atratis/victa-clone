@@ -42,7 +42,7 @@
     color: #1d1d1b;
     margin-bottom: 1.5rem;
 
-    max-width: 524px;
+    /*  max-width: 524px; */
 
     @include mobile {
       font-size: 2rem;
@@ -52,13 +52,13 @@
   }
 
   .texto-editor {
-    font-size: 1.125rem;
-    color: #606060;
+    font-size: 0.938rem;
+    color: $text-color;
     font-weight: 300;
-    line-height: 1.6;
+    line-height: 26px;
 
     p {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     strong {
@@ -120,6 +120,15 @@
     .wrapper-imagem {
       display: flex;
       justify-content: center;
+
+      img {
+        @include desktop {
+          min-height: 387px;
+        }
+
+        border-radius: 20px;
+        object-fit: cover;
+      }
     }
 
     .wrapper-conteudo {

@@ -1,0 +1,19 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+// Estilos específicos para a página de arquivo: Áreas de Atuação
+// Aplicável a classes de archive-areas-de-atuacao.php
+
+.post-type-archive-areas-de-atuacao {
+  // O body terá essa classe automaticamente via body_class() no WordPress
+
+  .page-content {
+    padding: $spacing-2xl 0;
+
+    .row {
+      @include mobile {
+        gap: $spacing-xl;
+      }
+    }
+  }
+}
