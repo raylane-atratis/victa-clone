@@ -1,0 +1,232 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+// Variáveis locais da Sidebar (legadas)
+$sidebar-bg-gray: #eef0f5;
+$sidebar-border-gray: #c9c9c9;
+$sidebar-text-dark: #484d51;
+$sidebar-bullet: #687078;
+
+.sidebar {
+  @include tablet {
+    margin-left: 0;
+  }
+
+  // --- 1. Bloco de Pesquisa ---
+  &__search {
+    .search-form {
+      border: 1px solid #d0d0d0;
+      padding: 11px 26px;
+      width: 100%;
+      border-radius: 5px;
+      background: $sidebar-bg-gray;
+
+      &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      &__input {
+        border: 0;
+        background: transparent;
+        flex: 1;
+        outline: none;
+        color: $sidebar-text-dark;
+        font-family: $font-primary;
+        font-size: 16px;
+
+        &::placeholder {
+          color: rgba($sidebar-text-dark, 0.7);
+        }
+      }
+
+      &__submit {
+        border: 0;
+        outline: 0;
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $primary-color; // Herdado do SVG original
+        padding: 0;
+      }
+    }
+  }
+
+  // --- 2. Bloco de Navegação (Categorias) ---
+  &__nav {
+    background: $sidebar-bg-gray;
+    padding: 27px 33px;
+    border: 1px solid $sidebar-border-gray;
+    border-radius: 5px;
+    margin-top: 30px;
+  }
+
+  &__title {
+    color: $secondary-color;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 15px; // Adaptado para a grid do `ul`
+    font-family: $font-heading; // Supondo q era a fonte de titulo
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+
+    &::before {
+      content: "";
+      display: inline-flex;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: $sidebar-bullet;
+      flex-shrink: 0;
+    }
+
+    &--active {
+      .sidebar__link {
+        color: $primary-color;
+        text-decoration: underline;
+      }
+
+      &::before {
+        background: $primary-color;
+      }
+    }
+  }
+
+  &__link {
+    color: $sidebar-text-dark;
+    font-family:
+      "Sora", $font-primary; // Mantendo preferência original Sora se existir
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 29px;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover,
+    &:focus-visible {
+      color: $secondary-color;
+    }
+  }
+
+  // --- 3. Bloco Newsletter ---
+  &__newsletter {
+    background: $primary-color; // Mapeado do #00002b
+    padding: 27px 33px;
+    border: 1px solid $sidebar-border-gray;
+    border-radius: 5px;
+    margin-top: 30px;
+
+    .sidebar__title {
+      color: $background-color;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 31px;
+      margin-bottom: 5px;
+      font-family: $font-heading;
+    }
+
+    .sidebar__text {
+      color: $background-color;
+      margin-bottom: 15px;
+      font-family: $font-primary;
+    }
+
+    // Formulário do Contact Form 7 interno
+    .wpcf7 {
+      .wpcf7-form-control-wrap {
+        display: block; // Garante que width 100% dos inputs funcione
+      }
+
+      input[type="email"],
+      input[type="text"] {
+        width: 100%;
+        padding: 14px 16px;
+        margin-bottom: 20px; // Espaçamento entre campos
+        border-radius: 6px;
+        border: none;
+        font-family: $font-primary;
+        font-size: 16px;
+        color: $text-color-dark;
+
+        &::placeholder {
+          color: $text-color-light;
+        }
+      }
+
+      // Estilização bonita para o Checkbox
+      .wpcf7-acceptance {
+        display: block;
+        margin-bottom: 24px;
+
+        .wpcf7-list-item {
+          margin: 0;
+
+          label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            margin: 0;
+          }
+
+          input[type="checkbox"] {
+            margin-top: 4px; // Alinha com a primeira linha de texto longo
+            min-width: 18px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            flex-shrink: 0;
+          }
+
+          .wpcf7-list-item-label {
+            color: $background-color; // Texto branco com base no fundo azul
+            font-size: 15px;
+            line-height: 1.5;
+            font-family: $font-primary;
+          }
+        }
+      }
+
+      input[type="submit"] {
+        width: 100%;
+        padding: 14px;
+        font-size: 18px;
+        background: $secondary-color;
+        color: $background-color; // Texto Branco na imagem
+        transition: $transition-base;
+        border: 0;
+        border-radius: 6px;
+        font-weight: 700; // Bold padrão
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+          filter: brightness(0.9);
+          color: $background-color !important;
+        }
+      }
+
+      // Remover avisinho do CF7 se existir
+      br {
+        display: none;
+      }
+    }
+  }
+}

@@ -12,6 +12,8 @@
 @use "layout/footer";
 @use "layout/banner";
 @use "layout/archive-areas-de-atuacao";
+@use "layout/sidebar";
+@use "layout/blog";
 
 // 3. Componentes (Botões, Cards, etc)
 @use "components/buttons";
@@ -21,6 +23,7 @@
 @use "components/share";
 @use "components/cards_atuacoes";
 @use "components/contact-form";
+@use "components/card_blog";
 
 // 4. Blocos (ACF Flexible Content)
 // Sempre que criar um bloco novo, importe aqui
@@ -29,6 +32,11 @@
 @use "blocks/secao_texto";
 @use "blocks/secao_fale_conosco";
 @use "blocks/secao_formulario_contato";
+@use "blocks/secao_perguntas_frequentes";
+@use "blocks/secao_sobre";
+@use "blocks/secao_areas_de_atuacao";
+@use "blocks/secao_depoimento";
 
 // 5. Páginas Específicas
 @use "pages/not-found";
+@use "pages/page-gutenberg";

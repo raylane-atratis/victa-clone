@@ -44,6 +44,19 @@ while (have_posts()) :
                         <?php the_content(); ?>
                     </div>
                 </div>
+
+                <!-- Coluna Lateral: Sidebar -->
+                <div class="col-lg-4 mt-5 mt-lg-0">
+                    <aside class="sidebar-wrapper">
+                        <?php get_sidebar(); ?>
+                    </aside>
+                </div>  
+            </div>
+            <div class="row share-post">
+                <div class="col-lg-12">
+                    <!-- Share Template -->
+                    <?php get_template_part('template-parts/share'); ?>
+                </div>
             </div>
         </div>
     </div>

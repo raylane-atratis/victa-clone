@@ -15,9 +15,11 @@ import "./menu.js";
 import "./banner.js";
 import { initFAQ } from "./faq.js";
 import { initPhoneMasks } from "./masks.js";
+import { initAtuacoesSwiper } from "./atuacoes-swiper.js";
 
 // Inicializa os componentes
 document.addEventListener("DOMContentLoaded", () => {
   initFAQ();
   initPhoneMasks();
+  initAtuacoesSwiper();
 });

@@ -1,0 +1,126 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.page-content {
+  padding: $spacing-2xl 0;
+
+  .row {
+    @include mobile {
+      gap: $spacing-xl;
+    }
+  }
+
+  .share-post {
+    border-top: 1px solid #cad1eb;
+    margin-top: $spacing-xl;
+
+    .share-links {
+      .share-links__title {
+        text-align: start;
+      }
+
+      .share-links__list {
+        justify-content: start;
+      }
+    }
+  }
+}
+
+// Estilos básicos para o conteúdo do Gutenberg gerado via the_content()
+.content-wrapper {
+  color: $text-color;
+  font-family: $font-primary;
+  font-size: 16px;
+  line-height: 1.8;
+
+  p {
+    margin-bottom: $spacing-lg;
+
+    // Evita margem no último parágrafo
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $primary-color;
+    font-family: $font-heading;
+    font-weight: 700;
+    margin-top: $spacing-xl;
+    margin-bottom: $spacing-md;
+    line-height: 1.3;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+  h3 {
+    font-size: 26px;
+  }
+  h4 {
+    font-size: 22px;
+  }
+
+  a {
+    color: $secondary-color;
+    text-decoration: underline;
+    transition: color $transition-fast;
+
+    &:hover,
+    &:focus {
+      color: $primary-color;
+      text-decoration: none;
+    }
+  }
+
+  ul,
+  ol {
+    margin-bottom: $spacing-lg;
+    padding-left: $spacing-lg;
+
+    li {
+      margin-bottom: $spacing-sm;
+    }
+  }
+
+  blockquote {
+    border-left: 4px solid $secondary-color;
+    padding-left: $spacing-md;
+    margin: $spacing-xl 0;
+    font-size: 20px;
+    font-style: italic;
+    color: $text-color-dark;
+  }
+
+  // Previne imagens de quebrarem o layout
+  img,
+  figure {
+    max-width: 100%;
+    height: auto;
+    border-radius: $radius-md;
+  }
+
+  figcaption {
+    font-size: 14px;
+    color: $text-color-light;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  // Galeria ou colunas do Gutenberg - Ajustes básicos
+  .wp-block-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+  }
+}

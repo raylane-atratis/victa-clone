@@ -1,0 +1,115 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.card-blog {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: $radius-xl; // Aprox 20px
+  overflow: hidden;
+  height: 500px; // Card comprido para evidenciar a foto do blog
+  margin-bottom: $spacing-lg;
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    position: relative;
+
+    // Animação de hover
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+
+      .card-blog__imagem-bg img {
+        transform: scale(1.05);
+      }
+      .btn-saiba-mais {
+        background-color: $tertiary-color;
+      }
+    }
+  }
+
+  // Imagem no fundo (Background)
+  &__imagem-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-color: $text-color-dark; // Cor de resguardo
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-base;
+    }
+  }
+
+  // Overlay Gradiente escuro
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 25%,
+      rgba(0, 0, 0, 0.85) 90%,
+      rgba(0, 0, 0, 0.95) 100%
+    );
+  }
+
+  // Textos e Botão posicionados abaixo
+  &__conteudo {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 1;
+    padding: $spacing-xl; // Aprox 40px
+    padding-bottom: $spacing-xl;
+  }
+
+  &__titulo {
+    color: #fff;
+    font-family: $font-heading;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 42px;
+    margin: 0 0 $spacing-sm;
+  }
+
+  &__resumo {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: $font-primary;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0 0 $spacing-lg;
+
+    p {
+      margin: 0;
+      color: inherit;
+    }
+  }
+
+  // O Botão de action azul
+  .btn-saiba-mais {
+    width: fit-content;
+  }
+
+  @include mobile {
+    height: 420px;
+
+    &__conteudo {
+      padding: $spacing-lg;
+    }
+
+    &__titulo {
+      font-size: 26px;
+    }
+  }
+}

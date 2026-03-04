@@ -1,50 +1,52 @@
 <?php
 /**
- * Block: Seção Newsletter
+ * Block: Seção Perguntas Frequentes
  */
 
 // 1. Configurações Gerais
 include 'conf_gerais.php';
 
-$subtitulo = get_sub_field('subtitulo');
-$perguntas_selecionadas = get_sub_field('selecionar_perguntas');
+$titulo = get_sub_field('titulo');
+$perguntas_selecionadas = get_sub_field('lista_de_perguntas_e_respostas');
 
 ?>
 
-<section class="faq-session">
+<section class="secao-faq <?php echo esc_attr($classe); ?>" style="<?php echo esc_attr($geraisCSS); ?>">
   <div class="container">
-      <div class="row">
-          <div class="col-lg-5 col-md-6 col-sm-12">
-              <div class="faq__header">
-                  <h2>Perguntas Frequentes</h2>
-                  <?php if ($subtitulo): ?>
-                      <p><?php echo $subtitulo; ?></p>
-                  <?php endif; ?>
-              </div>
-          </div>
-          <div class="col-lg-7 col-md-6 col-sm-12">
-              <div class="faq__wrapper">
-                  <?php foreach ($perguntas_selecionadas as $post):
-                      setup_postdata($post); ?>
-                      <div class="faq__item">
-                          <div class="faq__question">
-                              <span class="titulo"><?php the_title(); ?></span>
-                              <span class="seta">
-                                  <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M1 8.5L8.5 1L16 8.5" stroke="#606060" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  </svg>
-                              </span>
-                          </div>
-                          <div class="resposta">
-                              <div class="resposta__inner">
-                                  <?php the_content(); ?>
+      <div class="row justify-content-center">
+          <div class="col-lg-12">
+              
+              <?php if ($titulo) : ?>
+                  <div class="faq__header">
+                      <h2><?php echo esc_html($titulo); ?></h2>
+                  </div>
+              <?php endif; ?>
+              
+              <?php if ($perguntas_selecionadas) : ?>
+                  <div class="faq__wrapper">
+                      <?php foreach ($perguntas_selecionadas as $item) : 
+                          $pergunta = $item['pergunta'];
+                          $resposta = $item['resposta'];
+                      ?>
+                          <div class="faq__item">
+                              <button class="faq__question" type="button" aria-expanded="false">
+                                  <span class="faq__question-text"><?php echo esc_html($pergunta); ?></span>
+                                  <div class="faq__question-action">
+                                      <span class="faq__question-label"></span>
+                                      <span class="faq__question-icon" aria-hidden="true"></span>
+                                  </div>
+                              </button>
+                              <div class="resposta" aria-hidden="true">
+                                  <div class="resposta__inner">
+                                      <?php echo wp_kses_post($resposta); ?>
+                                  </div>
                               </div>
                           </div>
-                      </div>
-                  <?php endforeach; ?>
-              </div>
+                      <?php endforeach; ?>
+                  </div>
+              <?php endif; ?>
+
           </div>
       </div>
   </div>
 </section>
-<?php wp_reset_postdata(); ?>

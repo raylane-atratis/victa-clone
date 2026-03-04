@@ -1,0 +1,8 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.category {
+  .page-content {
+    padding: $spacing-2xl 0;
+  }
+}

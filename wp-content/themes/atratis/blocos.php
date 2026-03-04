@@ -29,6 +29,18 @@ endif;
         elseif (get_row_layout() == 'secao_formulario_contato' && get_sub_field('exibir')):
             get_template_part('template-parts-blocos/secao_formulario_contato');
 
+        elseif (get_row_layout() == 'secao_perguntas_frequentes' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_perguntas_frequentes');
+
+        elseif (get_row_layout() == 'secao_sobre' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_sobre');
+
+        elseif (get_row_layout() == 'secao_areas_de_atuacao' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_areas_de_atuacao');
+
+        elseif (get_row_layout() == 'secao_depoimento' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_depoimento');
+
         endif;
 
     ?>
