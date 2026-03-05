@@ -60,7 +60,9 @@
     }
 
     &--image {
-      display: none;
+      @include mobile {
+        display: none;
+      }
 
       @include desktop {
         flex: 1.3;
