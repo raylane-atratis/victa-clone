@@ -76,3 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScrollTop = scrollTop;
   }
 });
+
+const menuBtn = document.querySelector('.menu-toggle'); // Ajuste a classe do seu botão
+const navigation = document.querySelector('.main-navigation');
+
+menuBtn.addEventListener('click', () => {
+    navigation.classList.toggle('is-open');
+    
+    // Opcional: trava o scroll do corpo do site ao abrir o menu
+    document.body.style.overflow = navigation.classList.contains('is-open') ? 'hidden' : '';
+});

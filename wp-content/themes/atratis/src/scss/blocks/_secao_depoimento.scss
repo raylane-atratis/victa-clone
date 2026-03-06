@@ -9,8 +9,8 @@
   overflow: hidden;
 
   &__mapa-wrapper {
-    width: 156%; // Permite que a imagem do mapa fique um pouco maior e preencha a esquerda
-    margin-left: -40%; // Vaza ligeiramente pra esquerda fora do espaço de coluna
+    width: 150%; // Permite que a imagem do mapa fique um pouco maior e preencha a esquerda
+    margin-left: -48%; // Vaza ligeiramente pra esquerda fora do espaço de coluna
 
     img {
       width: 100%;
@@ -57,6 +57,14 @@
         flex: 1;
         padding: 30px;
       }
+
+      @include mobile {
+        padding: $spacing-xl;
+      }
+
+      @include tablet {
+        padding: $spacing-xl;
+      }
     }
 
     &--image {
@@ -84,6 +92,14 @@
       @include desktop {
         flex: 1;
         padding: 30px;
+      }
+
+      @include mobile {
+        padding: $spacing-xl;
+      }
+
+      @include tablet {
+        padding: $spacing-xl;
       }
     }
   }
@@ -165,7 +181,6 @@
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid $secondary-color;
   }
 
   &__citacao {
@@ -179,9 +194,27 @@
   &__autor-info {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; // Alinhado à direita no mockup
-    text-align: right;
-    margin-top: auto;
+
+    margin-left: auto; // Empurra o bloco INTEIRO para a direita
+    align-items: flex-start; // Garante que Nome e Cargo alinhem pela esquerda entre si
+    text-align: left; // Alinhamento padrão do texto
+
+    margin-top: auto; // Mantém ele no rodapé do card
+    width: fit-content; // Faz o bloco ter apenas o tamanho do conteúdo
+  }
+
+  &__autor-nome {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: $font-heading;
+    display: block; // Garante que ocupe sua linha
+  }
+
+  &__autor-cargo {
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0.8;
+    display: block; // Garante que ocupe sua linha
   }
 
   &__autor-cargo {

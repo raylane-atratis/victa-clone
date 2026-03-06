@@ -119,13 +119,13 @@
     }
   }
 
-  .main-navigation {
+  /* .main-navigation {
     // Estilos Mobile (Overlay)
     position: fixed;
     top: 65px;
     left: 0;
     width: 100%;
-    height: 100%; // Ajusta altura para caber na tela
+    height: auto; // Ajusta altura para caber na tela
     background-color: $background-color;
     padding-top: 100px; // Remove excesso de padding já que tem top offset
     padding-bottom: 100px;
@@ -423,6 +423,213 @@
           }
         }
       }
+    }
+  } */
+
+  .main-navigation {
+    // Configurações Base Mobile (Overlay)
+    position: fixed;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    height: auto /* calc(100vh - 65px) */; // Garante que ocupe o restante da tela
+    background-color: #ffffff;
+    padding: 60px 20px;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
+    overflow-y: auto;
+
+    // Classe que seu JS deve adicionar ao abrir o menu
+    &.is-open {
+      transform: translateX(0);
+
+      .menu-list li {
+        animation: fadeInUp 0.5s ease forwards;
+      }
+    }
+
+    .menu-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin: 0 0 40px;
+      padding: 0;
+      list-style: none;
+      width: 100%;
+
+      li {
+        width: 100%;
+        text-align: center;
+        opacity: 0; // Para a animação de entrada
+
+        a {
+          display: inline-block;
+          padding: 15px 20px;
+          font-family: $font-primary;
+          font-weight: 500;
+          font-size: 1.1rem;
+          color: $text-color;
+          text-decoration: none;
+          text-transform: uppercase; // Visual mais institucional
+          letter-spacing: 1.5px;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: $primary-color;
+          }
+        }
+        @media (max-width: 992px) {
+          &.current-menu-item,
+          &.active {
+            a {
+              color: $primary-color;
+              font-weight: 600;
+
+              // Cria uma barrinha vertical antes do texto
+              &::before {
+                content: "|";
+                margin-right: 10px;
+                color: $secondary-color;
+                font-weight: 900;
+              }
+            }
+          }
+        }
+        // Submenu (Accordion)
+        ul.sub-menu {
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          transition: all 0.3s ease;
+          background-color: rgba(0, 0, 0, 0.02);
+          border-left: 2px solid $primary-color;
+          margin: 0 20px;
+
+          li a {
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            padding: 10px;
+          }
+        }
+
+        &.submenu-open > ul.sub-menu {
+          max-height: 500px;
+          opacity: 1;
+          padding: 10px 0;
+        }
+      }
+    }
+
+    // Rodapé do Menu com a Grid 3x2
+    .mobile-menu-footer {
+      width: 100%;
+      margin-top: auto;
+      padding-top: 30px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .mobile-social {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr); // Base 6 para 3 e 2
+        gap: 20px;
+        width: 100%;
+        max-width: 250px; // Mantém os ícones agrupados ao centro
+        list-style: none;
+        padding: 0;
+
+        li {
+          display: flex;
+          justify-content: center;
+
+          // Lógica 3 em cima
+          &:nth-child(-n + 3) {
+            grid-column: span 2;
+          }
+
+          // Lógica 2 embaixo
+          &:nth-child(n + 4) {
+            grid-column: span 3;
+          }
+
+          a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+              width: 24px;
+              height: 24px;
+              fill: $text-color; // Cor única para elegância
+              transition: fill 0.3s;
+            }
+
+            &:hover svg {
+              fill: $primary-color;
+            }
+          }
+        }
+      }
+    }
+
+    // Reset/Estilos Desktop
+    @include desktop {
+      position: static;
+      height: auto;
+      width: auto;
+      transform: none;
+      display: block;
+      padding: 0;
+      background: transparent;
+
+      .menu-list {
+        flex-direction: row;
+        gap: 25px;
+        margin: 0;
+
+        li {
+          width: auto;
+          opacity: 1;
+
+          a {
+            text-transform: none;
+            letter-spacing: 0;
+            padding: 8px 0;
+          }
+        }
+      }
+
+      .mobile-menu-footer {
+        display: none;
+      }
+    }
+  }
+
+  // Animação de entrada dos itens
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // Delays para o efeito cascata (Stagger)
+  @for $i from 1 through 8 {
+    .menu-list li:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
     }
   }
 

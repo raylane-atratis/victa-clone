@@ -21,6 +21,18 @@
     flex-wrap: wrap;
     gap: $spacing-xl; // Equivale a 40px
 
+    @media (max-width: 768px) {
+      display: grid;
+      // Trocamos 1fr por max-content para a coluna não "esticar"
+      grid-template-columns: repeat(6, max-content);
+      // Centraliza a grid inteira na tela
+      justify-content: center;
+      // Ajuste o gap aqui para controlar a proximidade real
+      gap: $spacing-lg $spacing-xl;
+      // Margem lateral para garantir que não cole nas bordas do celular
+      padding: 0 $spacing-md;
+    }
+
     a {
       display: flex;
       align-items: center;
@@ -28,6 +40,24 @@
       color: $text-color-light; // Utilizada para substituir o #8d89a5
       text-decoration: none;
       transition: color $transition-fast;
+
+      @media (max-width: 768px) {
+        // Os 3 primeiros itens ocupam 2 frações cada (total 6)
+        &:nth-child(-n + 3) {
+          grid-column: span 2;
+        }
+
+        // Os 2 últimos ocupam 3 frações cada (total 6)
+        &:nth-child(n + 4) {
+          grid-column: span 3;
+        }
+        justify-content: center;
+      }
+      span {
+        @media (max-width: 768px) {
+          display: none; // Esconde o "Compartilhe:" no mobile
+        }
+      }
 
       // Efeito de hover moderno
       &:hover,

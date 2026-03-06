@@ -5,6 +5,10 @@
   padding: $spacing-3xl 0; // Aprox 80px superior e inferior
   background-color: $background-color;
 
+  @media (max-width: 768px) {
+    padding: $spacing-xl 0; // Reduz o padding em telas menores
+  }
+
   // --- Linha de Cima (Textos) ---
   &__text-row {
     position: relative;
@@ -91,9 +95,23 @@
     width: 100%;
 
     &--small {
+      display: flex;
+      justify-content: flex-start;
+      img {
+        max-width: 626px;
+      };
       @include mobile {
-        display: none;
+        /* display: none; */
+        margin-top: 15px;
       }
+    }
+
+    &--large {
+      display: flex;
+      justify-content: flex-end; // Alinha a imagem grande à direita
+      img {
+        max-width: 850px;
+      };
     }
 
     @include tablet {

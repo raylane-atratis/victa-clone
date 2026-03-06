@@ -141,8 +141,8 @@
 
   // --- Banner Mobile ---
   &.banner-mobile {
-    margin-top: 80px; // Compensar header no mobile se necessário (se não for transparente)
-
+/*     margin-top: 80px; // Compensar header no mobile se necessário (se não for transparente)
+ */
     // Esconder no Mobile/Tablet (< 992px)
     @media (min-width: 992px) {
       display: none !important;

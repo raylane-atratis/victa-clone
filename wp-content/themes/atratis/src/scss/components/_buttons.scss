@@ -17,10 +17,12 @@
   cursor: pointer;
   text-decoration: none;
   line-height: 1.5;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 
   background-color: $secondary-color;
   color: #fff;
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 
   // Ajuste padrão para ícones dentro do botão
   svg,
@@ -29,7 +31,7 @@
     transition: transform 0.3s ease;
   }
 
-  &:hover {
+  /*  &:hover {
     filter: brightness(0.9);
     color: #fff;
     text-decoration: none;
@@ -39,17 +41,42 @@
     img {
       transform: translateX(3px) translateY(-3px);
     }
+  } */
+
+  &:hover {
+    filter: none; 
+    transform: translateY(-3px); // Sobe o botão
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.086); // Sombra fica mais profunda
+    background-color:  #066be4; 
+    text-decoration: none;
+
+    svg,
+    img {
+      // Movimento mais fluido do ícone
+      transform: translate(4px, -2px);
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px); // Efeito de clique
   }
 
   // Variação outline (caso precise depois)
   &--outline {
     background-color: transparent;
-    border: 1px solid $secondary-color;
+    border: 2px solid $secondary-color; // Borda um pouco mais grossa passa mais confiança
     color: $secondary-color;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover {
       background-color: $secondary-color;
       color: #fff;
+      box-shadow: 0 0 15px rgba($secondary-color, 0.3); // Brilho externo sutil da cor do botão
+
+      svg {
+        filter: brightness(0) invert(1); // Garante que o ícone fique branco se for preto
+      }
     }
   }
 }
