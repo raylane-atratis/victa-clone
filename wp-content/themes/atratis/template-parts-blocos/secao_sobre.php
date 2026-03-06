@@ -44,7 +44,7 @@ $subtitulo = 'Sobre';
                     </div>
 
                     <?php if ($titulo) : ?>
-                        <h2 class="secao-sobre__titulo animate-on-scroll eff-fade-up">
+                        <h2 class="secao-sobre__titulo">
                             <?php echo wp_kses_post($titulo); ?>
                         </h2>
                     <?php endif; ?>
@@ -56,7 +56,7 @@ $subtitulo = 'Sobre';
             <div class="col-lg-5 offset-lg-2">
                 <div class="secao-sobre__conteudo">
                     <?php if ($descricao) : ?>
-                        <div class="secao-sobre__descricao animate-on-scroll eff-fade-up delay-100">
+                        <div class="secao-sobre__descricao">
                             <?php echo wp_kses_post($descricao); ?>
                         </div>
                     <?php endif; ?>
@@ -93,7 +93,7 @@ $subtitulo = 'Sobre';
                 if ($img1_url):
             ?>
                 <!-- Imagem Larga (7 colunas do grid de 12 - 58%) -->
-                <div class="col-lg-7 mb-4 mb-lg-0">
+                <div class="col-7">
                     <div class="secao-sobre__image-wrapper secao-sobre__image-wrapper--large animate-on-scroll eff-scale-up">
                         <img src="<?php echo esc_url($img1_url); ?>" 
                              alt="<?php echo esc_attr($img1_alt); ?>"
@@ -110,7 +110,7 @@ $subtitulo = 'Sobre';
                 if ($img2_url):
             ?>
                 <!-- Imagem Estreita (5 colunas restantes do grid - 42%) -->
-                <div class="col-lg-5">
+                <div class="col-5">
                     <div class="secao-sobre__image-wrapper secao-sobre__image-wrapper--small animate-on-scroll eff-scale-up delay-200">
                         <img src="<?php echo esc_url($img2_url); ?>" 
                              alt="<?php echo esc_attr($img2_alt); ?>"

@@ -10,6 +10,14 @@
     }
   }
 
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
   .share-post {
     border-top: 1px solid #cad1eb;
     margin-top: $spacing-xl;
