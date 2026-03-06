@@ -1,0 +1,62 @@
+/* ==========================================================================
+   ANIMAÇÕES DE ENTRADA (ALTA PERFORMANCE)
+   ========================================================================== */
+
+/* 1. Classe Base: Define o timing fluido */
+.animate-on-scroll {
+  opacity: 0;
+  visibility: hidden;
+  /* Utilizamos a curva bezier para um movimento mais "premium" que termina suave */
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform; /* Dá uma dica ao navegador para otimizar */
+}
+
+/* Estado Ativo (quando entra na tela) */
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, 0) scale(1) rotate(0) !important;
+}
+
+/* ==========================================================================
+   MODELOS DE EFEITOS (Basta adicionar junto com a classe base)
+   ========================================================================== */
+
+/* Modelo 1: Fade Up (Excelente para títulos, descrições e cards)
+   O elemento sobe levemente enquanto aparece */
+.eff-fade-up {
+  transform: translateY(40px);
+}
+
+/* Modelo 2: Fade In Simples (Excelente para imagens grandes ou blocos de texto longos) */
+.eff-fade-in {
+  /* A classe base já faz a opacidade = 0, então ele só faz desaparecer e reaparecer */
+  transform: translateY(0);
+}
+
+/* Modelo 3: Scale Up Suave (Ótimo para fotos principais, ícones ou ícones de serviços)
+   Nasce levemente menor e cresce para o tamanho normal */
+.eff-scale-up {
+  transform: scale(0.95);
+}
+
+/* ==========================================================================
+   DELAYS (Para listar itens um de cada vez - Efeito Cascata)
+   ========================================================================== */
+.delay-100 {
+  transition-delay: 100ms;
+}
+.delay-200 {
+  transition-delay: 200ms;
+}
+.delay-300 {
+  transition-delay: 300ms;
+}
+.delay-400 {
+  transition-delay: 400ms;
+}
+.delay-500 {
+  transition-delay: 500ms;
+}

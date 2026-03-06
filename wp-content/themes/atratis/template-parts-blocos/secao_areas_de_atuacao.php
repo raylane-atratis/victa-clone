@@ -29,7 +29,7 @@ $archive_link = get_post_type_archive_link('areas-de-atuacao');
 
         <!-- Cabeçalho -->
         <div class="secao-atuacoes__header">
-            <div class="secao-atuacoes__badge">
+            <div class="secao-atuacoes__badge animate-on-scroll eff-fade-up">
                 <svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <rect width="30" height="26" fill="url(#pattern0_6136_123)"/>
                   <defs>
@@ -44,7 +44,7 @@ $archive_link = get_post_type_archive_link('areas-de-atuacao');
             </div>
 
             <?php if ($titulo) : ?>
-                <h2 class="secao-atuacoes__titulo">
+                <h2 class="secao-atuacoes__titulo animate-on-scroll eff-fade-up delay-100">
                     <?php echo wp_kses_post($titulo); ?>
                 </h2>
             <?php endif; ?>
@@ -52,7 +52,7 @@ $archive_link = get_post_type_archive_link('areas-de-atuacao');
 
         <!-- Swiper Slider -->
         <?php if ($query_areas->have_posts()) : ?>
-            <div class="swiper swiper-atuacoes">
+            <div class="swiper swiper-atuacoes animate-on-scroll eff-fade-up delay-200">
                 <div class="swiper-wrapper">
                     <?php while ($query_areas->have_posts()) : $query_areas->the_post(); ?>
                         <div class="swiper-slide">
@@ -84,7 +84,7 @@ $archive_link = get_post_type_archive_link('areas-de-atuacao');
 
         <!-- Botão Ver Todos -->
         <?php if ($archive_link) : ?>
-            <div class="secao-atuacoes__cta">
+            <div class="secao-atuacoes__cta animate-on-scroll eff-fade-in delay-300">
                 <a href="<?php echo esc_url($archive_link); ?>" class="btn">
                     Ver todos
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" width="16" height="16">

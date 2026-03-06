@@ -1,0 +1,184 @@
+@use "../base/variables" as *;
+
+/* ==========================================================================
+   SEARCH MODAL (Overlay de Pesquisa)
+   ========================================================================== */
+
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Escondido por padrão
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  // Estado aberto
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+
+    .search-modal__container {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  // Backdrop escuro
+  &__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    cursor: pointer;
+  }
+
+  // Container central
+  &__container {
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    max-width: 680px;
+    padding: 40px;
+    background: $background-color;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-lg;
+
+    // Animação de entrada
+    transform: translateY(-20px);
+    opacity: 0;
+    transition:
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+    @media (max-width: 576px) {
+      padding: 30px 20px;
+    }
+  }
+
+  // Botão fechar
+  &__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      stroke: $text-color;
+    }
+  }
+
+  // Label
+  &__label {
+    display: block;
+    font-family: $font-heading;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: $primary-color;
+    margin-bottom: $spacing-md;
+  }
+
+  // Formulário
+  &__form {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    border-bottom: 2px solid #e5e5e5;
+    padding-bottom: $spacing-sm;
+    transition: border-color $transition-base;
+
+    &:focus-within {
+      border-color: $secondary-color;
+    }
+  }
+
+  // Ícone dentro do formulário
+  &__icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: $text-color-light;
+    }
+  }
+
+  // Input
+  &__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: $font-primary;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: $text-color-dark;
+    padding: $spacing-sm 0;
+
+    &::placeholder {
+      color: $text-color-light;
+      font-weight: 300;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 1rem;
+    }
+  }
+
+  // Botão submit
+  &__submit {
+    flex-shrink: 0;
+    background: $secondary-color;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 24px;
+    border-radius: $radius-pill;
+    font-family: $font-primary;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition:
+      opacity $transition-fast,
+      transform $transition-fast;
+
+    &:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 576px) {
+      padding: 8px 18px;
+      font-size: 0.85rem;
+    }
+  }
+}

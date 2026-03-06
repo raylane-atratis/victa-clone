@@ -126,4 +126,29 @@
 		</div>
 	</header>
 
+	<!-- Modal de Pesquisa -->
+	<div id="search-modal" class="search-modal" role="dialog" aria-modal="true" aria-label="Pesquisar no site">
+		<div class="search-modal__backdrop"></div>
+		<div class="search-modal__container">
+			<button class="search-modal__close" aria-label="Fechar pesquisa">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<line x1="18" y1="6" x2="6" y2="18"></line>
+					<line x1="6" y1="6" x2="18" y2="18"></line>
+				</svg>
+			</button>
+
+			<span class="search-modal__label">O que você procura?</span>
+
+			<form class="search-modal__form" role="search" action="<?php echo esc_url(home_url('/')); ?>" method="get">
+				<div class="search-modal__icon" aria-hidden="true">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M8.5 0C6.51 0 4.6 0.79 3.17 2.17C1.79 3.6 1 5.51 1 7.5C1 11.09 3.91 14 7.5 14C9.11 14 10.59 13.42 11.76 12.47L16.41 17.12C16.79 17.5 17.42 17.5 17.8 17.12C18.18 16.74 18.18 16.11 17.8 15.73L13.15 11.08C14.1 9.91 14.68 8.43 14.68 6.82C14.68 3.05 11.63 0 7.86 0H8.5ZM3 7.5C3 5.01 5.01 3 7.5 3C9.99 3 12 5.01 12 7.5C12 9.99 9.99 12 7.5 12C5.01 12 3 9.99 3 7.5Z"/>
+					</svg>
+				</div>
+				<input type="search" class="search-modal__input" name="s" placeholder="Digite sua busca..." autocomplete="off" required>
+				<button type="submit" class="search-modal__submit">Buscar</button>
+			</form>
+		</div>
+	</div>
+
 	<main id="main-content" role="main">

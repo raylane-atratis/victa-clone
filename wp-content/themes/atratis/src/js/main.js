@@ -16,12 +16,14 @@ import "./banner.js";
 import { initFAQ } from "./faq.js";
 import { initPhoneMasks } from "./masks.js";
 import { initAtuacoesSwiper } from "./atuacoes-swiper.js";
+import { initAnimations } from "./animations.js";
+import { initSearch } from "./search.js";
 
 // Inicializa os componentes
 document.addEventListener("DOMContentLoaded", () => {
   initFAQ();
   initPhoneMasks();
   initAtuacoesSwiper();
+  initAnimations();
+  initSearch();
 });
-
-

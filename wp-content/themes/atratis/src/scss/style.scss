@@ -6,6 +6,7 @@
 @use "base/bootstrap-grid";
 @use "base/reset";
 @use "base/accessibility";
+@use "base/animations";
 
 // 2. Layout (Estruturas Globais)
 @use "layout/header";
@@ -24,6 +25,7 @@
 @use "components/cards_atuacoes";
 @use "components/contact-form";
 @use "components/card_blog";
+@use "components/search-modal";
 
 // 4. Blocos (ACF Flexible Content)
 // Sempre que criar um bloco novo, importe aqui
