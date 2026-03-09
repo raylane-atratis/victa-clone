@@ -12,7 +12,6 @@
 @use "layout/header";
 @use "layout/footer";
 @use "layout/banner";
-@use "layout/archive-areas-de-atuacao";
 @use "layout/sidebar";
 @use "layout/blog";
 
@@ -22,7 +21,6 @@
 @use "components/breadcrumb";
 @use "components/title-page";
 @use "components/share";
-@use "components/cards_atuacoes";
 @use "components/contact-form";
 @use "components/card_blog";
 @use "components/search-modal";
@@ -36,9 +34,9 @@
 @use "blocks/secao_formulario_contato";
 @use "blocks/secao_perguntas_frequentes";
 @use "blocks/secao_sobre";
-@use "blocks/secao_areas_de_atuacao";
 @use "blocks/secao_depoimento";
 
 // 5. Páginas Específicas
 @use "pages/not-found";
 @use "pages/page-gutenberg";
+@use "pages/search";

@@ -37,17 +37,17 @@ get_header();
             
             <!-- Centralizei ligeiramente a listagem para melhorar leitura em telas ultra-wide -->
             <div class="col-lg-8">
-                <div class="search-results">
+                <div class="search-results-container">
                     
                     <?php 
                     // Se estiver em branco
                     if (!get_search_query()) : ?>
-                        <h2 class="search-results__title fs-4 mb-5 text-muted">
+                        <h2 class="search-results-container__title search-results-container__title--muted">
                             <?php esc_html_e('Você não digitou nada no campo de busca. Preencha o que procura ou navegue pelos nossos menus.', 'atratis'); ?>
                         </h2>
                     <?php else : ?>
                         <!-- Título dinâmico escapado visualizando o termo -->
-                        <h2 class="search-results__title fs-3 fw-bold mb-5">
+                        <h2 class="search-results-container__title">
                             <?php 
                             /* translators: %s: termo da pesquisa */
                             printf(
@@ -60,16 +60,16 @@ get_header();
 
                     <!-- LOOP DAS POSTAGENS -->
                     <?php if (have_posts() && get_search_query()) : ?>
-                        <div class="search-results__list">
+                        <div class="search-results-container__list">
                             <?php while (have_posts()) : the_post(); ?>
                                 
-                                <article <?php post_class('search-item mb-4 pb-4 border-bottom'); ?>>
+                                <article <?php post_class('search-item'); ?>>
                                     <!-- Escape e acessibilidade no link nativo -->
-                                    <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark d-block">
-                                        <h3 class="search-item__title fs-4 fw-bold mb-2">
+                                    <a href="<?php the_permalink(); ?>">
+                                        <h3 class="search-item__title">
                                             <?php the_title(); ?>
                                         </h3>
-                                        <div class="search-item__resume text-muted">
+                                        <div class="search-item__resume">
                                             <!-- Sub-strings limitadores de quebra e trim moderno -->
                                             <?php echo wp_trim_words(get_the_excerpt(), 30, '...'); ?>
                                         </div>
