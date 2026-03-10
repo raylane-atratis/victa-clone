@@ -4,7 +4,12 @@
 .banner-section {
   position: relative;
   width: 100%;
-  overflow: hidden;
+  margin-bottom: 50px; // Espaço para a paginação. Distância requerida é cerca de 28 a 44px + a altura do dot
+
+  // Global Swiper position override inside banners
+  .swiper-pagination {
+    bottom: -33px !important;
+  }
 
   // --- Banner Desktop ---
   &.banner-desktop {
@@ -54,7 +59,7 @@
         }
 
         .banner-content {
-          max-width: 401px;
+          max-width: 380px;
           color: #fff; // Texto branco por padrão em banners com fundo
 
           // Animação de entrada (Fade Up)
@@ -169,15 +174,6 @@
           font-size: 1.5rem;
         }
       }
-
-      .swiper-pagination-bullet {
-        background: $dot-inactive-color;
-        opacity: 1;
-
-        &-active {
-          background: $dot-active-color;
-        }
-      }
     }
   }
 
@@ -199,15 +195,6 @@
           width: 100%;
           height: auto;
           object-fit: cover;
-        }
-      }
-
-      .swiper-pagination-bullet {
-        background: $dot-inactive-color;
-        opacity: 1;
-
-        &-active {
-          background: $dot-active-color;
         }
       }
     }

@@ -3,11 +3,13 @@
 // ============================================================
 
 // --- Articulat CF (Local Font) ---
+// Caminho absoluto a partir da raiz do site WordPress
+
+$font-path: "/victa/wp-content/themes/atratis/public/fonts";
 
 @font-face {
   font-family: "Articulat CF";
-  src: url("../../../public/fonts/fonnts.com-Articulat_CF_Thin.otf")
-    format("opentype");
+  src: url("#{$font-path}/fonnts.com-Articulat_CF_Thin.otf") format("opentype");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -15,8 +17,7 @@
 
 @font-face {
   font-family: "Articulat CF";
-  src: url("../../../public/fonts/fonnts.com-Articulat_CF_Light.otf")
-    format("opentype");
+  src: url("#{$font-path}/fonnts.com-Articulat_CF_Light.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -24,7 +25,7 @@
 
 @font-face {
   font-family: "Articulat CF";
-  src: url("../../../public/fonts/fonnts.com-Articulat_CF_Regular.otf")
+  src: url("#{$font-path}/fonnts.com-Articulat_CF_Regular.otf")
     format("opentype");
   font-weight: 400; // Regular
   font-style: normal;
@@ -33,7 +34,7 @@
 
 @font-face {
   font-family: "Articulat CF";
-  src: url("../../../public/fonts/fonnts.com-Articulat_CF_Demi_Bold.otf")
+  src: url("#{$font-path}/fonnts.com-Articulat_CF_Demi_Bold.otf")
     format("opentype");
   font-weight: 700; // Demi Bold/Semi Bold
   font-style: normal;
@@ -42,7 +43,7 @@
 
 @font-face {
   font-family: "Articulat CF";
-  src: url("../../../public/fonts/fonnts.com-Articulat_CF_Extra_Bold.otf")
+  src: url("#{$font-path}/fonnts.com-Articulat_CF_Extra_Bold.otf")
     format("opentype");
   font-weight: 800; // Extra Bold
   font-style: normal;

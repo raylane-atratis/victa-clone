@@ -1,0 +1,33 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+// Estilos globais do Swiper (Paginação)
+.swiper-pagination {
+  position: absolute;
+  bottom: -33px !important; // Ajuste para ficar abaixo da área do carrossel principal
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.swiper-pagination-bullet {
+  width: 14px !important;
+  height: 14px !important;
+  background: $dot-inactive-color !important;
+  opacity: 1 !important;
+  border-radius: 6px 0 6px 0 !important; // Formato folha inativa (Borda Esquerda-Superior e Direita-Inferior arredondada)
+  margin: 0 !important;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &-active {
+    width: 38px !important;
+    background: $dot-active-color !important;
+    border-radius: 6px 0 6px 0 !important; // Formato folha esticada (Borda Esquerda-Superior e Direita-Inferior arredondada)
+  }
+}

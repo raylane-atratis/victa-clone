@@ -1,10 +1,15 @@
-import Swiper from 'swiper';
-import { Navigation, Pagination, Autoplay, Parallax, EffectFade } from 'swiper/modules';
+import Swiper from "swiper";
+import {
+  Navigation,
+  Pagination,
+  Autoplay,
+  Parallax,
+  EffectFade,
+} from "swiper/modules";
 
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener("DOMContentLoaded", () => {
   // 1. Banner Principal (Desktop)
-  const bannerDesktop = document.querySelector('.swiper-banner-principal');
+  const bannerDesktop = document.querySelector(".swiper-banner-principal");
   if (bannerDesktop) {
     new Swiper(bannerDesktop, {
       modules: [Navigation, Pagination, Autoplay, Parallax, EffectFade],
@@ -20,18 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
         disableOnInteraction: false,
       },
       pagination: {
-        el: '.swiper-pagination',
+        el: bannerDesktop.parentElement.querySelector(".swiper-pagination"),
         clickable: true,
       },
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
       },
     });
   }
 
   // 2. Banner Mobile
-  const bannerMobile = document.querySelector('.swiper-banner-mobile');
+  const bannerMobile = document.querySelector(".swiper-banner-mobile");
   if (bannerMobile) {
     new Swiper(bannerMobile, {
       modules: [Pagination, Autoplay],
@@ -43,10 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
         disableOnInteraction: false,
       },
       pagination: {
-        el: '.swiper-pagination',
+        el: bannerMobile.parentElement.querySelector(".swiper-pagination"),
         clickable: true,
       },
     });
   }
-
 });

@@ -117,11 +117,11 @@ $mobileQuery = new WP_Query($mobileArgs);
 					</div>
 				<?php endwhile; wp_reset_postdata(); ?>
 			</div>
-			<!-- Paginação e Navegação -->
-			<div class="swiper-pagination"></div>
+			<!-- Navegação -->
 			<div class="swiper-button-prev"></div>
 			<div class="swiper-button-next"></div>
 		</div>
+		<div class="swiper-pagination"></div>
 	</section>
 <?php endif; ?>
 
@@ -153,7 +153,7 @@ $mobileQuery = new WP_Query($mobileArgs);
 					</div>
 				<?php endwhile; wp_reset_postdata(); ?>
 			</div>
-			<div class="swiper-pagination"></div>
 		</div>
+		<div class="swiper-pagination"></div>
 	</section>
 <?php endif; ?>
