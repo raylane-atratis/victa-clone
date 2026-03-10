@@ -49,6 +49,8 @@ $mobileQuery = new WP_Query($mobileArgs);
 					$novaAba = get_field('nova_aba');
 					$target = $novaAba ? '_blank' : '_self';
 
+					$classe = get_field('classe_banner');
+
 					// Layout e Estilo
 					$posicaoConteudo = get_field('posicao_descricao'); // 1: Esq, 2: Dir, 3: Centro
 					$classePosicao = '';
@@ -83,7 +85,7 @@ $mobileQuery = new WP_Query($mobileArgs);
 						<div class="container" style="position: relative; z-index: 2;">
 							<div class="row align-items-center">
 								<div class="col-12">
-									<div class="banner-content <?php echo $classePosicao; ?>" <?php echo $parallaxAttr; ?>>
+									<div class="banner-content <?php echo $classe; ?> <?php echo $classePosicao; ?>" <?php echo $parallaxAttr; ?>>
 										<?php if ($subtitulo) : ?>
 											<h3 class="banner-subtitle"><?php echo $subtitulo; ?></h3>
 										<?php endif; ?>
@@ -102,9 +104,9 @@ $mobileQuery = new WP_Query($mobileArgs);
 											<a href="<?php echo esc_url($btnLink); ?>" class="btn" target="<?php echo esc_attr($target); ?>" title="<?php echo esc_attr($btnNome); ?>">
 												<?php echo esc_html($btnNome); ?>
 												<div class="svg-icon" aria-hidden="true">
-													<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true" focusable="false">
-														<path d="M9.85292 0H4.11754V1.37649H8.65033L0 10.0268L0.973179 11L9.62351 2.34967V6.88246H11V1.14708C11 0.514808 10.4857 0 9.85292 0Z" fill="white"/>
-													</svg>	
+													<svg width="28" height="14" viewBox="0 0 28 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M26.9763 4.66511L22.4608 0.328102C22.3523 0.224138 22.2233 0.141619 22.0811 0.0853057C21.9389 0.0289925 21.7864 0 21.6324 0C21.4783 0 21.3258 0.0289925 21.1837 0.0853057C21.0415 0.141619 20.9124 0.224138 20.804 0.328102C20.5866 0.535927 20.4647 0.817058 20.4647 1.1101C20.4647 1.40313 20.5866 1.68426 20.804 1.89209L24.9577 5.87415H1.1668C0.857342 5.87415 0.560563 5.99101 0.341746 6.19903C0.12293 6.40705 0 6.68918 0 6.98336C0 7.27754 0.12293 7.55967 0.341746 7.76769C0.560563 7.97571 0.857342 8.09257 1.1668 8.09257H25.0278L20.804 12.0968C20.6946 12.1999 20.6078 12.3226 20.5486 12.4578C20.4893 12.5929 20.4588 12.7379 20.4588 12.8844C20.4588 13.0308 20.4893 13.1758 20.5486 13.3109C20.6078 13.4461 20.6946 13.5688 20.804 13.6719C20.9124 13.7759 21.0415 13.8584 21.1837 13.9147C21.3258 13.971 21.4783 14 21.6324 14C21.7864 14 21.9389 13.971 22.0811 13.9147C22.2233 13.8584 22.3523 13.7759 22.4608 13.6719L26.9763 9.36816C27.6318 8.74423 28 7.89846 28 7.01664C28 6.13481 27.6318 5.28904 26.9763 4.66511Z" fill="#00512A"/>
+													</svg>
 												</div>
 											</a>
 										<?php endif; ?>

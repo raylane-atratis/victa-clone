@@ -4,61 +4,72 @@
 .btn {
   display: inline-flex;
   flex-direction: row; // Garante que o ícone fique ao lado do texto
-  padding: 8px 25px;
+  padding: 10px 30px;
   justify-content: center;
   align-items: center;
   gap: 10px;
 
+  min-height: 49px;
+
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   text-align: center;
-  border: none;
-  border-radius: 6px;
+  border: 1px solid transparent;
+  border-radius: 20px 0;
   cursor: pointer;
   text-decoration: none;
   line-height: 1.5;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 
-  background-color: $secondary-color;
-  color: #fff;
+  background-color: $primary-color;
+  color: #132b1b;
 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: $secondary-color;
+    transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: -1;
+  }
 
   // Ajuste padrão para ícones dentro do botão
   svg,
   img {
     flex-shrink: 0;
-    transition: transform 0.3s ease;
+    transition: all 0.4s ease;
   }
 
-  /*  &:hover {
-    filter: brightness(0.9);
+  &:hover {
     color: #fff;
     text-decoration: none;
+    box-shadow: none;
+    transform: none;
+    border: 1px solid $primary-color;
 
-    // Pequeno efeito no ícone ao passar o mouse (opcional, comum em setas)
-    svg,
-    img {
-      transform: translateX(3px) translateY(-3px);
+    &::before {
+      width: 100%; // Efeito de preenchimento deslizante
     }
-  } */
-
-  &:hover {
-    filter: none; 
-    transform: translateY(-3px); // Sobe o botão
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.086); // Sombra fica mais profunda
-    background-color:  #066be4; 
-    text-decoration: none;
 
     svg,
     img {
-      // Movimento mais fluido do ícone
-      transform: translate(4px, -2px);
+      // Apenas inversão de cor para branco, sem movimentação
+      filter: brightness(0) invert(1);
+      transform: none;
     }
   }
 
   &:active {
-    transform: translateY(-1px); // Efeito de clique
+    transform: scale(0.98); // Efeito de clique simples e clean
   }
 
   // Variação outline (caso precise depois)
@@ -78,5 +89,11 @@
         filter: brightness(0) invert(1); // Garante que o ícone fique branco se for preto
       }
     }
+  }
+
+  &-area-cliente {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
   }
 }

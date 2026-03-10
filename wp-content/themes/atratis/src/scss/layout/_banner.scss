@@ -42,8 +42,8 @@
           z-index: 1;
           background: linear-gradient(
             99deg,
-            rgba(0, 0, 0, 0.6) 36.23%,
-            rgba(0, 0, 0, 0.05) 61.09%
+            rgba(0, 0, 0, 0.25) 36.23%,
+            rgba(0, 0, 0, 0) 61.09%
           );
         }
 
@@ -54,7 +54,7 @@
         }
 
         .banner-content {
-          max-width: 600px;
+          max-width: 401px;
           color: #fff; // Texto branco por padrão em banners com fundo
 
           // Animação de entrada (Fade Up)
@@ -87,16 +87,15 @@
 
           h1.banner-title {
             font-family: $font-heading;
-            font-size: 40px;
+            font-size: 50px;
             font-weight: 300;
-            line-height: 50px;
-            margin-bottom: $spacing-sm;
+            line-height: 55px;
+            margin-bottom: $spacing-md;
 
             width: 100%;
-            max-width: 430px;
 
             strong {
-              font-weight: 700;
+              font-weight: 800;
             }
 
             @include mobile {
@@ -105,13 +104,51 @@
           }
 
           .banner-description {
-            max-width: 375px;
-            font-size: 0.938rem;
-            line-height: 26px;
             margin-bottom: $spacing-lg;
 
             p {
+              font-family: $font-heading;
+              font-size: 1.75rem;
+              line-height: 55px;
+              font-weight: 700;
               color: rgba(255, 255, 255, 0.9);
+            }
+          }
+
+          // ===== Variação Secundária (Fundo Claro/Verde Neon) =====
+          &.banner-content-secundario {
+            // Títulos verdes
+            h1.banner-title,
+            h3.banner-subtitle {
+              color: $secondary-color;
+            }
+
+            // Descrição branca e mais fina (peso 400)
+            .banner-description p {
+              color: #ffffff;
+              font-weight: 400;
+              margin-bottom: 0; // Opcional, para ajustar espaçamento do form/botão se necessário
+
+              strong {
+                font-weight: 800;
+              }
+            }
+
+            // Botão Verde Escuro (com seta branca)
+            .btn {
+              background-color: $secondary-color;
+              color: #ffffff;
+              border-color: $secondary-color; // Caso tenha borda
+
+              .svg-icon svg path {
+                fill: #ffffff; // Força a nova cor do ícone SVG para branco
+              }
+
+              &:hover {
+                background-color: darken($secondary-color, 8%);
+                border-color: darken($secondary-color, 8%);
+                color: #ffffff;
+              }
             }
           }
         }
@@ -133,15 +170,20 @@
         }
       }
 
-      .swiper-pagination-bullet-active {
-        background-color: $secondary-color;
+      .swiper-pagination-bullet {
+        background: $dot-inactive-color;
+        opacity: 1;
+
+        &-active {
+          background: $dot-active-color;
+        }
       }
     }
   }
 
   // --- Banner Mobile ---
   &.banner-mobile {
-/*     margin-top: 80px; // Compensar header no mobile se necessário (se não for transparente)
+    /*     margin-top: 80px; // Compensar header no mobile se necessário (se não for transparente)
  */
     // Esconder no Mobile/Tablet (< 992px)
     @media (min-width: 992px) {
@@ -160,8 +202,13 @@
         }
       }
 
-      .swiper-pagination-bullet-active {
-        background-color: $secondary-color;
+      .swiper-pagination-bullet {
+        background: $dot-inactive-color;
+        opacity: 1;
+
+        &-active {
+          background: $dot-active-color;
+        }
       }
     }
   }
@@ -207,9 +254,9 @@
         background: linear-gradient(
           259deg,
           rgba(0, 0, 0, 0) 40.52%,
-          rgba(0, 0, 0, 0.61) 98.65%
+          rgba(0, 0, 0, 0.25) 98.65%
         );
-        opacity: 0.3 !important;
+        opacity: 0.2 !important;
       }
 
       .container {

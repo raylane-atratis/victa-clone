@@ -219,6 +219,9 @@ add_action( 'wp_footer', 'atratis_schema_organization', 99 );
 function atratis_resource_hints() {
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
 	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+	
+	// Preload da fonte local principal (Articulat CF Demi Bold) para evitar FOIT/FOUT em títulos
+	echo '<link rel="preload" href="' . get_template_directory_uri() . '/public/fonts/fonnts.com-Articulat_CF_Demi_Bold.otf" as="font" type="font/otf" crossorigin>' . "\n";
 }
 add_action( 'wp_head', 'atratis_resource_hints', 1 );
 
@@ -226,8 +229,8 @@ add_action( 'wp_head', 'atratis_resource_hints', 1 );
  * Enqueue scripts and styles.
  */
 function atratis_scripts() {
-	// Google Fonts (Inter & Inter Tight) - com preconnect para melhor performance
-	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap', array(), null );
+	// Google Fonts (Sora) - com preconnect prévio para melhor performance
+	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap', array(), null );
 
 	// Configuração do Vite
 	$vite_server = 'http://localhost:5173';

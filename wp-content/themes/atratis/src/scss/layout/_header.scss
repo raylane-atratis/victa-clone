@@ -2,9 +2,8 @@
 @use "../base/mixins" as *;
 
 .site-header {
-  background-color: $background-color;
+  background-color: $background-header;
   padding: 15px 0;
-  border-bottom: 1px solid #f0f0f0;
 
   // SEMPRE fixo para animação suave
   position: fixed;
@@ -164,9 +163,9 @@
           display: inline-block;
           padding: 15px 20px;
           font-family: $font-primary;
-          font-weight: 500;
+          font-weight: 400;
           font-size: 1.1rem;
-          color: $text-color;
+          color: #fff;
           text-decoration: none;
           text-transform: uppercase; // Visual mais institucional
           letter-spacing: 1.5px;
@@ -279,23 +278,137 @@
       height: auto;
       width: auto;
       transform: none;
-      display: block;
+      display: flex;
+      flex: 1;
+      justify-content: center;
       padding: 0;
       background: transparent;
+      overflow: visible; // Remove barra de rolagem remanescente do mobile
 
       .menu-list {
         flex-direction: row;
         gap: 25px;
         margin: 0;
+        justify-content: center;
 
         li {
           width: auto;
           opacity: 1;
+          position: relative; // Para posicionar o submenu
 
           a {
             text-transform: none;
             letter-spacing: 0;
             padding: 8px 0;
+          }
+
+          // Classe a ser adicionada no Painel do WordPress
+          &.menu-icon-search > a {
+            display: flex;
+            align-items: center;
+            gap: 8px; // Espaçamento entre o ícone e o texto
+
+            &::before {
+              content: "";
+              display: inline-block;
+              width: 18px; // Tamanho do ícone
+              height: 18px;
+              background-color: $primary-color; // A cor verde neon do design
+
+              // SVG injetado via Mask para herdar as configurações de cor facilmente
+              -webkit-mask: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='15' y2='15'%3E%3C/line%3E%3C/svg%3E")
+                no-repeat center / contain;
+              mask: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='15' y2='15'%3E%3C/line%3E%3C/svg%3E")
+                no-repeat center / contain;
+              transition: background-color 0.3s ease;
+            }
+
+            // Caso queira mudar a cor do ícone no hover
+            // &:hover::before {
+            //   background-color: #fff;
+            // }
+          }
+
+          &.menu-item-has-children {
+            > a {
+              display: flex;
+              align-items: center;
+              gap: 6px;
+
+              &::after {
+                content: "";
+                display: inline-block;
+                width: 12px;
+                height: 8px;
+                background-color: currentColor;
+                -webkit-mask: url("data:image/svg+xml;charset=utf-8,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.707038 0.707101L5.72168 5.72174L10.7363 0.707101' stroke='white' stroke-width='2'/%3E%3C/svg%3E")
+                  no-repeat center / contain;
+                mask: url("data:image/svg+xml;charset=utf-8,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.707038 0.707101L5.72168 5.72174L10.7363 0.707101' stroke='white' stroke-width='2'/%3E%3C/svg%3E")
+                  no-repeat center / contain;
+                transition: transform 0.3s ease;
+              }
+            }
+
+            &:hover > a::after {
+              transform: rotate(180deg);
+            }
+
+            // Submenu Dropdown (Reset do Accordion e config absoluta)
+            > ul.sub-menu {
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              transform: translateX(-50%) translateY(10px);
+              min-width: 220px;
+              background-color: #ffffff;
+              border: none;
+              border-top: 3px solid $primary-color;
+              padding: 10px 0;
+              margin: 15px 0 0 0; // Margem para afastar do item e ficar mais fácil passar o mouse
+              max-height: none; // Remove o limite do mobile
+              overflow: visible; // Reseta config do mobile para nao ter scroll bar nem em submenus
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+              opacity: 0;
+              visibility: hidden;
+              transition: all 0.3s ease;
+              z-index: 99;
+
+              // Pequena ponte invisível para o ponteiro do mouse não se perder
+              &::before {
+                content: "";
+                position: absolute;
+                top: -15px;
+                left: 0;
+                width: 100%;
+                height: 15px;
+              }
+
+              li {
+                width: 100%;
+                a {
+                  color: $text-color; // Mantém texto escuro no sub menu
+                  padding: 10px 20px;
+                  display: block;
+                  text-align: left;
+                  font-weight: 400;
+                  font-size: 0.95rem;
+                  transition: all 0.2s ease;
+
+                  &:hover {
+                    color: $primary-color;
+                    background-color: rgba(0, 0, 0, 0.02);
+                    padding-left: 25px; // Pequeno efeito de avanço
+                  }
+                }
+              }
+            }
+
+            // Efeito Hover Desktop
+            &:hover > ul.sub-menu {
+              opacity: 1;
+              visibility: visible;
+              transform: translateX(-50%) translateY(0);
+            }
           }
         }
       }
@@ -389,7 +502,7 @@
         width: 40px;
         height: 40px;
         border-radius: 100px; // Pode ser redondo dependendo da UI
-        background-color: $background-alt;
+        background-color: #0b7c35;
         border: none;
         cursor: pointer;
         padding: 0;

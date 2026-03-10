@@ -3,24 +3,31 @@
 // ============================================================
 
 // Cores Primárias
-$primary-color: #00183b;
-$secondary-color: #157fff;
-$tertiary-color: #012971;
+$primary-color: #42ce02;
+$secondary-color: #00512a;
+$tertiary-color: #c4d663;
 
 // Cores de Superfície
 $background-color: #fff;
-$background-alt: #157fff1a;
+$background-alt: rgba(#00512a, 0.1);
 $surface-dark: #1a1a1a;
+$background-header: #003f21;
+
+// Cores Específicas
+$dot-active-color: #bebebe;
+$dot-inactive-color: #bebebe4d;
+$title-color: #00512a;
+$btn-text-color: #00512a;
 
 // Cores de Texto
 $text-color: #484d51;
 $text-color-light: #999;
-$text-color-dark: #1a1a1a;
+$text-color-dark: #00512a; // Títulos geralmente usam essa variável
 $text-color-link-menu: #1a1a1a;
 
 // Tipografia
-$font-primary: "Inter", sans-serif;
-$font-heading: "Inter Tight", sans-serif;
+$font-primary: "Sora", sans-serif;
+$font-heading: "Articulat CF", sans-serif;
 $font-stack: $font-primary;
 $font-size-base: 16px;
 
