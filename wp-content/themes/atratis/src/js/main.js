@@ -18,6 +18,8 @@ import { initPhoneMasks } from "./masks.js";
 import { initAtuacoesSwiper } from "./atuacoes-swiper.js";
 import { initAnimations } from "./animations.js";
 import { initSearch } from "./search.js";
+import { initSecaoDepoimentoSwiper } from "./secao-depoimento-swiper.js";
+import { VideoModal } from "./video-modal.js";
 
 // Inicializa os componentes
 document.addEventListener("DOMContentLoaded", () => {
@@ -26,4 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initAtuacoesSwiper();
   initAnimations();
   initSearch();
+  initSecaoDepoimentoSwiper();
+  VideoModal.init();
 });

@@ -2,230 +2,230 @@
 @use "../base/mixins" as *;
 
 .secao-depoimento {
-  // Pelo Figma, metade da altura total da seção é cinza "#F5F5F5" na parte de baixo
-  background: linear-gradient(180deg, #ffffff 50%, #f5f5f5 50%);
-  padding: $spacing-xl 0 0;
-  position: relative;
-  overflow: hidden;
+  @include section-padding;
+  background-color: $background-color;
+  overflow: hidden; // Previne scroll horizontal por causa do Swiper
 
-  &__mapa-wrapper {
-    width: 150%; // Permite que a imagem do mapa fique um pouco maior e preencha a esquerda
-    margin-left: -48%; // Vaza ligeiramente pra esquerda fora do espaço de coluna
+  &__subtitle {
+    font-family: $font-heading;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $title-color; // Verde escuro
+    margin-bottom: $spacing-sm;
+    text-align: center;
+    display: block;
+    width: 100%;
+    letter-spacing: 3.24px;
+  }
 
-    img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
+  &__title {
+    font-family: $font-heading;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: $title-color; // Verde escuro
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 40px;
 
     @include mobile {
-      position: absolute;
-      top: -8px;
-      z-index: 1;
+      font-size: 28px;
     }
   }
 
-  &__card {
-    display: flex;
-    flex-direction: column;
-    border-radius: $radius-xl;
+  &__swiper-container {
+    width: 100%;
+    padding-bottom: 40px; // Espaço para a paginação
+  }
+
+  .swiper-depoimentos {
+    width: 100%;
+    overflow: hidden; // Permite ver os slides adjacentes se configurado assim
+  }
+
+  // Selector class + swiper-slide to ensure CSS specificity beats Swiper's height: 100%
+  &__slide.swiper-slide {
+    position: relative;
+    width: 384px; // Definido no Figma
+    height: 500px; // Definido no Figma
+    min-height: 500px;
+    border-radius: 30px;
     overflow: hidden;
-    box-shadow: $shadow-lg;
+    display: block; // Volta para block porque os filhos absolutos não precisam de flex
+    background-color: #eee; // Fallback
+    cursor: pointer;
 
-    @include desktop {
-      flex-direction: row;
-      max-height: 306px;
+    // O hover do card deve ser o efeito de scale na imagem
+    &:hover {
+      .secao-depoimento__slide-img {
+        transform: scale(1.05);
+      }
+      .secao-depoimento__play-btn {
+        background-color: rgba(30, 30, 30, 0.1);
+      }
     }
 
     @include mobile {
-      position: relative;
-      z-index: 2;
+      width: 100%;
+      height: 450px;
+      min-height: 450px;
+      max-width: 384px;
+      margin: 0 auto;
     }
   }
 
-  &__card-col {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-
-    &--info {
-      background-color: #d1d8d3;
-      padding: $spacing-2xl $spacing-xl;
-      justify-content: center;
-
-      @include desktop {
-        flex: 1;
-        padding: 30px;
-      }
-
-      @include mobile {
-        padding: $spacing-xl;
-      }
-
-      @include tablet {
-        padding: $spacing-xl;
-      }
-    }
-
-    &--image {
-      @include mobile {
-        display: none;
-      }
-
-      @include desktop {
-        flex: 1.3;
-      }
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-
-    &--quote {
-      background-color: $tertiary-color;
-      padding: $spacing-2xl $spacing-xl;
-      color: #fff;
-      justify-content: center;
-
-      @include desktop {
-        flex: 1;
-        padding: 30px;
-      }
-
-      @include mobile {
-        padding: $spacing-xl;
-      }
-
-      @include tablet {
-        padding: $spacing-xl;
-      }
-    }
+  &__slide-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform $transition-base;
   }
 
-  // --- LADO ESQUERDO (Info) ---
-  &__icon {
-    width: 48px;
-    height: 48px;
+  &__slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    // Gradiente do Figma: preto 20% transparente em cima, 60% escuro embaixo
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+  }
+
+  &__play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    background-color: $secondary-color; // Azul claro/vivo
+    background-color: #ffffff14;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: $spacing-md;
+    z-index: 3;
+    pointer-events: none; // O clique será absorvido pelo slide
 
     svg {
       width: 24px;
-      height: 28px;
+      height: auto;
+      margin-left: 4px; // Compensação ótica para o formato do triângulo
     }
   }
 
-  &__card-titulo {
-    color: $primary-color;
+  &__slide-text {
+    position: absolute;
+    top: calc(50% + 56px); // 32px do raio do btn + 24px de gap
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    padding: 0 20px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
     font-family: $font-heading;
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 1.3;
-    margin-bottom: $spacing-xl;
-    max-width: 250px;
+    font-size: 30px;
+    font-weight: 300;
+    max-width: 280px;
 
-    @include desktop {
-      font-size: 22px;
-      max-width: 152px;
+    strong,
+    b {
+      font-weight: 700;
     }
   }
 
-  &__link-fale {
-    display: inline-flex;
+  // Paginação Customizada
+  .swiper-depoimentos-pagination {
+    bottom: -10px; // Ajusta a posição
+    display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 8px;
-    color: $text-color-dark;
-    font-family: $font-primary;
-    font-weight: 700;
-    font-size: 16px;
-    text-decoration: none;
-    transition: color $transition-fast;
-    margin-top: auto;
 
-    svg {
-      transition: transform $transition-fast;
-    }
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 6px;
+      border-radius: 4px;
+      background: #e0e0e0;
+      opacity: 1;
+      margin: 0;
+      transition:
+        width $transition-fast,
+        background-color $transition-fast;
 
-    &:hover {
-      color: $secondary-color;
-
-      svg {
-        transform: translateX(4px); // Anima seta p direita
+      &-active {
+        width: 24px;
+        background-color: #e75012; // A cor laranja do design de referência
       }
     }
   }
 
-  // --- LADO DIREITO (Azul Escuro e Citação) ---
-  &__citacao-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center; // Centraliza verticalmente o conteúdo
-  }
-
-  &__autor-header {
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: $spacing-md;
-  }
-
-  &__autor-foto {
-    width: 50px;
-    height: 50px;
+  // Setas Customizadas de Navegação
+  &__nav {
+    width: 64px;
+    height: 64px;
+    background-color: #f4f4f4;
     border-radius: 50%;
-    object-fit: cover;
-  }
-
-  &__citacao {
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 26px;
-    margin-bottom: $spacing-md;
-    opacity: 0.9;
-  }
-
-  &__autor-info {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e0e0e0;
+    position: absolute;
+    top: 425px; // Metade da altura exata do slide (500px)
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    transition:
+      background-color $transition-base,
+      transform $transition-base;
 
-    margin-left: auto; // Empurra o bloco INTEIRO para a direita
-    align-items: flex-start; // Garante que Nome e Cargo alinhem pela esquerda entre si
-    text-align: left; // Alinhamento padrão do texto
+    &:hover {
+      background-color: #e8e8e8;
+      transform: translateY(-50%) scale(1.05);
+    }
 
-    margin-top: auto; // Mantém ele no rodapé do card
-    width: fit-content; // Faz o bloco ter apenas o tamanho do conteúdo
-  }
+    &::after {
+      display: none; // Remove o ícone padrão da fonte do Swiper
+    }
 
-  &__autor-nome {
-    font-size: 20px;
-    font-weight: 700;
-    font-family: $font-heading;
-    display: block; // Garante que ocupe sua linha
-  }
+    svg {
+      width: 15px;
+      height: 28px;
+    }
 
-  &__autor-cargo {
-    font-size: 15px;
-    font-weight: 400;
-    opacity: 0.8;
-    display: block; // Garante que ocupe sua linha
-  }
+    &--prev {
+      left: 16px;
+      @include desktop {
+        left: -32px; // Metade do botão fora do container no desktop
+      }
+    }
 
-  &__autor-cargo {
-    font-size: 15px;
-    font-weight: 400;
-    opacity: 0.8;
-  }
+    &--next {
+      right: 16px;
+      @include desktop {
+        right: -32px;
+      }
+    }
 
-  &__autor-nome {
-    font-size: 20px;
-    font-weight: 700;
-    font-family: $font-heading;
+    // Como o mobile tem cards que preenchem 100% da tela estreita, as setas costumam vazar.
+    // Opcionalmente podemos esconder no mobile ou deixá-la. Vou deixá-la visível pra tablet+ apenas.
+    @include mobile {
+      display: none;
+    }
   }
 }

@@ -22,8 +22,12 @@ if ( ! function_exists( 'atratis_setup' ) ) :
 		// Adiciona suporte a menus
 		register_nav_menus( array(
 			'menu_principal' => 'Menu Principal',
-			'menu_footer'    => 'Menu Footer',
-			'menu_lgpd'      => 'Menu LGPD',
+			'footer_sobre'       => 'Footer - Sobre a Victa',
+			'footer_conteudo'    => 'Footer - Conteúdo',
+			'footer_contatos'    => 'Footer - Contatos',
+			'footer_cliente'     => 'Footer - Cliente',
+			'footer_transparencia'=> 'Footer - Transparência',
+			'footer_encontre'    => 'Footer - Encontre seu apê',
 		) );
 		
 		// Suporte a HTML5

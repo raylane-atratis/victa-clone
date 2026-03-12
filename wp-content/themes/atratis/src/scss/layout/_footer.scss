@@ -2,214 +2,48 @@
 @use "../base/mixins" as *;
 
 .site-footer {
-  background: linear-gradient(265deg, #010a29 7.42%, #012976 132.12%);
-  color: #fff;
-  padding-top: 42px;
+  background: $secondary-color;
 
-  .footer-top {
-    padding-bottom: 44px;
+  // ===== Área de Links =====
+  .footer-links-area {
+    position: relative;
+    overflow: hidden;
+    padding: 60px 0 40px;
+    border-top: 1px solid #e8e8e8;
+
+    @include mobile {
+      padding: 40px 0 30px;
+    }
+  }
+
+  .footer-row {
+    margin-bottom: 32px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .footer-col {
-    margin-bottom: 32px;
-
-    @include desktop {
-      margin-bottom: 0;
-    }
-
-    @include mobile {
-      text-align: center;
-    }
-  }
-
-  .footer-logo {
     margin-bottom: 24px;
 
     @include mobile {
-      display: flex;
-      justify-content: center;
-    }
-
-    img {
-      max-width: 200px;
-      height: auto;
-    }
-  }
-
-  .footer-social {
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      gap: 12px;
-
-      @include mobile {
-        justify-content: center;
-      }
-
-      li {
-        a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 40px;
-          height: 40px;
-          border-radius: 8px;
-          background: #157fff1a;
-          color: #fff;
-          transition: all 0.3s ease;
-
-          &:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-          }
-
-          svg {
-            width: 20px;
-            height: 20px;
-            fill: none;
-            path {
-              fill: $secondary-color;
-            }
-          }
-        }
-      }
+      margin-bottom: 20px;
+      text-align: center;
     }
   }
 
   .footer-title {
     display: block;
-    color: #fff;
+    font-family: $font-heading;
     font-size: 23px;
     font-weight: 700;
-    line-height: 31px;
-    margin-bottom: 14px;
-  }
-
-  .footer-address,
-  .footer-contacts li,
-  .footer-links li a {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 25px;
-    text-decoration: none;
-  }
-
-  .footer-address {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
+    color: #fff;
+    margin-bottom: $spacing-sm;
+    line-height: 1.4;
 
     @include mobile {
-      flex-direction: column;
-      align-items: center;
       text-align: center;
-    }
-
-    .icon {
-      flex-shrink: 0;
-      margin-top: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      svg {
-        width: 24px;
-        height: 24px;
-      }
-    }
-
-    .text {
-      margin: 0;
-    }
-  }
-
-  .footer-contacts {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    @include mobile {
-      align-items: center;
-    }
-
-    li {
-      a {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        color: rgba(255, 255, 255, 0.8);
-        transition: color 0.3s ease;
-        text-decoration: none;
-        margin-left: 12px;
-
-        strong {
-          font-weight: 800;
-        }
-
-        &:hover {
-          color: #fff;
-        }
-
-        .icon {
-          flex-shrink: 0;
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 2;
-          background: $primary-color;
-
-          svg {
-            width: 24px;
-            height: 24px;
-          }
-        }
-
-        &.border-btn {
-          border: 1px solid #157fff;
-          border-radius: 6px;
-          padding: 8px 11px 8px 21px;
-
-          &:hover {
-            background: rgba(21, 127, 255, 0.1);
-            border-color: #157fff;
-          }
-        }
-      }
-    }
-  }
-
-  .footer-email {
-    margin-top: $spacing-md;
-
-    @include mobile {
-      display: flex;
-      justify-content: center;
-    }
-
-    a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #ffffffcc;
-
-      .icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        svg {
-          width: 24px;
-          height: 24px;
-        }
-      }
     }
   }
 
@@ -218,97 +52,168 @@
     padding: 0;
     margin: 0;
 
-    &#lgpd-menu {
-      a {
-        &:hover {
-          text-decoration: underline;
-          color: #ffffffcc;
-        }
-      }
-    }
-
     @include mobile {
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
     }
 
     li {
-      position: relative;
-      padding-left: 16px;
       margin-bottom: 12px;
 
-      &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 8px;
-        width: 4px;
-        height: 4px;
-        border-radius: 50%;
-        background: #d2d6dc;
+      &:last-child {
+        margin-bottom: 0;
       }
 
       a {
-        transition: color 0.3s ease;
-        color: #d2d6dc;
+        font-family: $font-primary;
+        font-size: 16px;
+        font-weight: 400;
+        color: #ffffffb2; // #484d51
+        text-decoration: none;
+        transition: all $transition-fast;
+        line-height: 1.5;
+        display: inline-block;
+
         &:hover {
-          color: #fff;
+          text-decoration: underline;
         }
       }
     }
   }
 
-  .footer-final {
-    background: #0a1e3e;
+  // ===== Decoração SVG =====
+  .footer-decoration {
+    position: absolute;
+    right: -240px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 0;
 
-    .footer-bottom {
-      display: flex;
+    img {
+      max-width: 670px;
+      height: auto;
+      opacity: 1;
+    }
+
+    @media (max-width: #{$desktop - 1px}) {
+      display: none;
+    }
+  }
+
+  // ===== Barra Inferior =====
+  .footer-bottom-bar {
+    background: #004122; // #00512a
+    padding: 18px 0;
+  }
+
+  .footer-bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    @include mobile {
       flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 0;
+      text-align: center;
+      gap: 20px;
+    }
+  }
 
-      @include tablet {
-        flex-direction: row;
+  .footer-info-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    @include mobile {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      img {
+        max-width: 120px;
+        height: auto;
+        // Filtro para transformar a logo para o verde $primary-color (#42ce02) a partir de qualquer cor:
+        filter: brightness(0) saturate(100%) invert(54%) sepia(96%)
+          saturate(2643%) hue-rotate(63deg) brightness(105%) contrast(100%);
       }
+    }
 
-      .footer-bottom-left {
-        p {
-          color: #d2d6dc;
-          font-size: 14px;
-          margin: 0;
-        }
+    .footer-separator {
+      width: 1px;
+      height: 24px;
+      background-color: #ffffff4d; // Divisor solicitado
+
+      @include mobile {
+        width: 100%;
+        height: 1px;
       }
+    }
 
-      .footer-bottom-center {
-        margin: 16px 0;
-        @include tablet {
-          margin: 0;
-        }
-      }
-
-      .footer-bottom-right {
+    .footer-social {
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
         display: flex;
-        align-items: center;
-        justify-content: flex-end;
+        gap: 12px;
 
-        .atratis-logo {
+        li a {
           display: flex;
           align-items: center;
           justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 5px; // Raio quadrado de 5px (não mais 50%)
+          background: rgba(255, 255, 255, 0.15);
+          transition: background $transition-fast;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.3);
+          }
+
           svg {
-            width: 24px;
-            height: 24px;
-            transition: opacity 0.3s ease;
+            width: 18px;
+            height: 18px;
+
             path {
-              fill: #d2d6dc;
+              fill: #fff;
             }
           }
-          &:hover svg {
-            opacity: 0.8;
-          }
         }
+      }
+    }
+
+    .footer-cnpj {
+      p {
+        margin: 0;
+        font-family: $font-primary;
+        font-size: 1rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+
+  .footer-bottom-right {
+    .atratis-badge {
+      display: flex;
+      align-items: center;
+
+      .atratis-logo {
+        max-height: 24px;
+        width: auto;
+        filter: brightness(0) invert(1);
+        opacity: 0.7;
+        transition: opacity $transition-fast;
+      }
+
+      &:hover .atratis-logo {
+        opacity: 1;
       }
     }
   }

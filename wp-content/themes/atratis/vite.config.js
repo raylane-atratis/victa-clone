@@ -11,6 +11,7 @@ export default defineConfig({
       }
     }
   },
+  publicDir: false,
   build: {
     // Pasta de saída dos arquivos compilados
     outDir: 'assets',
