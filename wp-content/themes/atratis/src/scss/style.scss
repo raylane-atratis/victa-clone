@@ -37,6 +37,11 @@
 @use "blocks/secao_perguntas_frequentes";
 @use "blocks/secao_sobre";
 @use "blocks/secao_depoimento";
+@use "blocks/secao_blog";
+@use "blocks/secao_condicoes_especiais";
+@use "blocks/secao_imagem_lista";
+@use "blocks/secao_quem_somos";
+@use "blocks/secao_empreendimentos";
 
 // 5. Páginas Específicas
 @use "pages/not-found";

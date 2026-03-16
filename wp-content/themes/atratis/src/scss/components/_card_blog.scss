@@ -1,115 +1,127 @@
 @use "../base/variables" as *;
 @use "../base/mixins" as *;
 
+// ============================================================
+// COMPONENTE: Card Blog
+// Design: White card com imagem, badge, data, título e CTA
+// ============================================================
+
 .card-blog {
   display: flex;
   flex-direction: column;
-  position: relative;
-  border-radius: $radius-xl; // Aprox 20px
-  overflow: hidden;
-  height: 500px; // Card comprido para evidenciar a foto do blog
-  margin-bottom: $spacing-lg;
+  height: 100%;
 
   &__link {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 100%;
     text-decoration: none;
-    position: relative;
+    color: inherit;
+    gap: $spacing-md;
 
-    // Animação de hover
     &:hover,
     &:focus-visible {
       text-decoration: none;
 
-      .card-blog__imagem-bg img {
-        transform: scale(1.05);
-      }
-      .btn-saiba-mais {
-        background-color: $tertiary-color;
+      .card-blog__img {
+        transform: scale(1.06);
       }
     }
   }
 
-  // Imagem no fundo (Background)
-  &__imagem-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background-color: $text-color-dark; // Cor de resguardo
-
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform $transition-base;
-    }
-  }
-
-  // Overlay Gradiente escuro
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0) 10%,
-      rgba(0, 0, 0, 0.85) 70%,
-      rgba(0, 0, 0, 0.95) 100%
-    );
-  }
-
-  // Textos e Botão posicionados abaixo
-  &__conteudo {
+  // Wrapper da imagem
+  &__imagem {
     position: relative;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    flex: 1;
-    padding: $spacing-xl; // Aprox 40px
-    padding-bottom: $spacing-xl;
-  }
+    border-radius: $radius-lg; // 12px
+    overflow: hidden;
+    aspect-ratio: 16 / 11;
+    background-color: #f0f0f0; // placeholder bg
 
-  &__titulo {
-    color: #fff;
-    font-family: $font-heading;
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 42px;
-    margin: 0 0 $spacing-sm;
-  }
-
-  &__resumo {
-    color: rgba(255, 255, 255, 0.9);
-    font-family: $font-primary;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.6;
-    margin: 0 0 $spacing-lg;
-
-    p {
-      margin: 0;
-      color: inherit;
+    @include mobile {
+      aspect-ratio: 16 / 10;
     }
   }
 
-  // O Botão de action azul
-  .btn-saiba-mais {
+  // Imagem principal
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-base;
+  }
+
+  // Badge de categoria
+  &__categoria {
+    position: absolute;
+    top: $spacing-md;
+    left: $spacing-md;
+    z-index: 2;
+    display: inline-block;
+    padding: 1px 10px;
+
+    background: $background-color;
+    border: 1px solid #f6f6f6; // Cor específica do Figma
+    border-radius: 10px;
+
+    font-family: $font-heading;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 30px;
+    color: $secondary-color;
+    white-space: nowrap;
+  }
+
+  // Meta (ícone relógio + data)
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    svg {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+    }
+
+    time {
+      font-family: $font-primary;
+      font-size: 14px;
+      font-weight: 400;
+      color: $text-color;
+      line-height: 1.4;
+    }
+  }
+
+  // Título do post
+  &__titulo {
+    display: block;
+    color: $secondary-color;
+    font-family: $font-heading;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 33px;
+    margin: 0;
+
+    // Limitar a 3 linhas
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  // Botão CTA
+  &__btn {
+    margin-top: auto;
     width: fit-content;
   }
 
+  // ─── Responsivo ───
   @include mobile {
-    height: 420px;
-
-    &__conteudo {
-      padding: $spacing-lg;
-    }
-
     &__titulo {
-      font-size: 26px;
+      font-size: 20px;
+      line-height: 28px;
     }
   }
 }

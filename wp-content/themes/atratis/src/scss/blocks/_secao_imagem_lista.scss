@@ -1,0 +1,157 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+// ============================================================
+// BLOCO: Seção Imagem + Lista
+// Layout: 2 colunas — imagem | conteúdo+grid
+// ============================================================
+
+.secao-imagem-lista {
+  @include section-padding;
+
+  // ─── Coluna Esquerda: Imagem e Selo ───
+  &__visual {
+    position: relative;
+    width: 100%;
+    margin-bottom: $spacing-xl; // Para mobile
+
+    @include desktop {
+      margin-bottom: 0;
+      padding-right: $spacing-xl; // Espaçamento entre colunas
+    }
+  }
+
+  &__imagem-principal {
+    img {
+      border-radius: 40px; // Bordas bem redondas como no design da família
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  // O selo do Minha Casa Minha Vida sobreposto
+  &__selo {
+    position: absolute;
+    bottom: -15px;
+    right: 15px;
+    background: var(--branco-100, #fff);
+    border-radius: 20px 0;
+    border: 1px solid #b6b6b6; // Solicitado pelo usuário
+    padding: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); // Toque sutil de profundidade
+    max-width: 250px;
+
+    @include desktop {
+      bottom: -30px;
+      right: -10px; // Vazando um pouco para fora
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  // ─── Coluna Direita: Conteúdo ───
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__subtitulo {
+    font-family: $font-heading;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 3.24px;
+    text-transform: uppercase;
+    color: $secondary-color;
+    margin-bottom: 12px;
+  }
+
+  &__titulo {
+    font-family: $font-heading;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 47px;
+    color: $secondary-color;
+    margin: 0 0 18px;
+    max-width: 421px;
+
+    @include mobile {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+
+  // ─── Grid de Condições ───
+  &__grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 6px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    width: 100%;
+
+    @include desktop {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 0px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__icone {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 32px;
+      height: 32px;
+      path,
+      g {
+        fill: $secondary-color; // Força a cor verde na master
+      }
+    }
+  }
+
+  &__item-texto {
+    font-family: $font-primary;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: $text-color;
+    margin: 0;
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  // ─── CTA ───
+  &__cta {
+    display: block;
+    margin-top: $spacing-md;
+
+    .btn {
+      // O global .btn já possui o fundo verde (var(--Verde-escuro) / primary color) e as propriedades
+      // necessárias, mas garantimos largura aqui se for mobile
+      @include mobile {
+        width: 100%;
+      }
+    }
+  }
+}

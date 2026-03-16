@@ -151,7 +151,7 @@
 
   // Paginação Customizada
   .swiper-depoimentos-pagination {
-    bottom: -10px; // Ajusta a posição
+    bottom: 0 !important; // Ajusta a posição para o rodapé do container com as 40px de respiro
     display: flex;
     align-items: center;
     justify-content: center;

@@ -72,10 +72,10 @@ $classe_extra = get_sub_field('classe');
                         <?php endforeach; ?>
 
                     </div>
-                    
-                    <!-- Navegação / Dots -->
-                    <div class="swiper-pagination swiper-depoimentos-pagination mt-4"></div>
                 </div>
+
+                <!-- Navegação / Dots -->
+                <div class="swiper-pagination swiper-depoimentos-pagination mt-4"></div>
 
                 <!-- Botões de Navegação -->
                 <div class="swiper-button-prev secao-depoimento__nav secao-depoimento__nav--prev">

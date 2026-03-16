@@ -75,20 +75,8 @@
   // Variação outline (caso precise depois)
   &--outline {
     background-color: transparent;
-    border: 2px solid $secondary-color; // Borda um pouco mais grossa passa mais confiança
     color: $secondary-color;
-    position: relative;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:hover {
-      background-color: $secondary-color;
-      color: #fff;
-      box-shadow: 0 0 15px rgba($secondary-color, 0.3); // Brilho externo sutil da cor do botão
-
-      svg {
-        filter: brightness(0) invert(1); // Garante que o ícone fique branco se for preto
-      }
-    }
+    border: 1px solid $secondary-color;
   }
 
   &-area-cliente {

@@ -1,0 +1,123 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+// ============================================================
+// BLOCO: Seção Condições Especiais
+// Layout: 2 colunas — título+CTA | lista+selo
+// ============================================================
+
+.secao-condicoes-especiais {
+  @include section-padding;
+
+  // ─── Coluna Esquerda ───
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include mobile {
+      margin-bottom: $spacing-xl;
+    }
+  }
+
+  &__subtitulo {
+    font-family: $font-heading;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 3.24px;
+    text-transform: uppercase;
+    color: $secondary-color;
+    margin-bottom: 12px;
+  }
+
+  &__titulo {
+    font-family: $font-heading;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 47px;
+    color: $secondary-color;
+    margin: 0 0 24px;
+    max-width: 580px;
+
+    @include mobile {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+
+  &__btn {
+    margin-top: $spacing-sm;
+  }
+
+  // ─── Coluna Direita ───
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  // Lista de condições
+  &__lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  &__lista-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  // Ícone SVG (quadrado arredondado verde escuro)
+  &__icone {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $secondary-color;
+    border-radius: $radius-md;
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  // Texto da condição (com <strong> para destaques)
+  &__lista-texto {
+    font-family: $font-heading;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $secondary-color;
+    margin: 0;
+    max-width: 330px;
+
+    strong {
+      font-size: 25px;
+      font-weight: 700;
+      color: $secondary-color;
+    }
+  }
+
+  // Selo / Imagem
+  &__selo {
+    display: inline-flex;
+
+    img {
+      border-radius: $radius-xl 0;
+      border: 1px solid #b6b6b6; // Cor específica do Figma
+      background: $background-color;
+      max-width: 200px;
+      height: auto;
+      padding: 16px;
+    }
+  }
+}

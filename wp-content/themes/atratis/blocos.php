@@ -38,9 +38,26 @@ endif;
         elseif (get_row_layout() == 'secao_depoimento' && get_sub_field('exibir')):
             get_template_part('template-parts-blocos/secao_depoimento');
 
+        elseif (get_row_layout() == 'secao_blog' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_blog');
+
+        elseif (get_row_layout() == 'secao_condicoes_especiais' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_condicoes_especiais');
+
+        elseif (get_row_layout() == 'secao_imagem_lista' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_imagem_lista');
+
+        elseif (get_row_layout() == 'secao_quem_somos' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_quem_somos');
+
+        elseif (get_row_layout() == 'secao_empreendimentos' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_empreendimentos');
+
         endif;
 
-    ?>
-    <?php endwhile; ?>
-<?php endif; // Fim Blocos de Layout 
+?>
+    <?php
+    endwhile; ?>
+<?php
+endif; // Fim Blocos de Layout 
 ?>

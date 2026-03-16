@@ -20,6 +20,7 @@ import { initAnimations } from "./animations.js";
 import { initSearch } from "./search.js";
 import { initSecaoDepoimentoSwiper } from "./secao-depoimento-swiper.js";
 import { VideoModal } from "./video-modal.js";
+import { initEmpreendimentos } from "./empreendimentos.js";
 
 // Inicializa os componentes
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,4 +31,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initSearch();
   initSecaoDepoimentoSwiper();
   VideoModal.init();
+  initEmpreendimentos();
 });
