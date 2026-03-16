@@ -46,6 +46,15 @@ export function initEmpreendimentos() {
           .replace(/\b\w/g, (l) => l.toUpperCase())
       : "Lançamento";
 
+    // SVG do estágio: usa o SVG do ACF se disponível, senão usa o ícone padrão
+    let estagioSvg = imovel.estagio_svg
+      ? imovel.estagio_svg
+      : `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 2C6.486 2 2 6.486 2 12C2 17.514 6.486 22 12 22C17.514 22 22 17.514 22 12C22 6.486 17.514 2 12 2ZM12 20C7.589 20 4 16.411 4 12C4 7.589 7.589 4 12 4C16.411 4 20 7.589 20 12C20 16.411 16.411 20 12 20Z" fill="currentColor"/>
+                          <path d="M11 7H13V13H11V7Z" fill="currentColor"/>
+                          <path d="M11 15H13V17H11V15Z" fill="currentColor"/>
+                      </svg>`;
+
     return `
       <div class="card-imovel">
           <div class="card-imovel__imagem">
@@ -76,11 +85,7 @@ export function initEmpreendimentos() {
               </div>
               <div class="card-imovel__footer">
                   <span class="card-imovel__estagio">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 2C6.486 2 2 6.486 2 12C2 17.514 6.486 22 12 22C17.514 22 22 17.514 22 12C22 6.486 17.514 2 12 2ZM12 20C7.589 20 4 16.411 4 12C4 7.589 7.589 4 12 4C16.411 4 20 7.589 20 12C20 16.411 16.411 20 12 20Z" fill="currentColor"/>
-                          <path d="M11 7H13V13H11V7Z" fill="currentColor"/>
-                          <path d="M11 15H13V17H11V15Z" fill="currentColor"/>
-                      </svg>
+                      ${estagioSvg}
                       ${estagioFormatado}
                   </span>
                   <a href="${imovel.link}" class="btn">Mais detalhes</a>

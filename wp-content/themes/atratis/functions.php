@@ -508,7 +508,12 @@ function injetar_dados_empreendimentos_json()
 			$estado = wp_get_post_terms(get_the_ID(), 'estado', array('fields' => 'slugs'));
 			$cidade = wp_get_post_terms(get_the_ID(), 'cidade', array('fields' => 'slugs'));
 			$bairro = wp_get_post_terms(get_the_ID(), 'bairro', array('fields' => 'slugs'));
-			$estagio = wp_get_post_terms(get_the_ID(), 'estagio_obra', array('fields' => 'slugs'));
+			$estagio_terms = wp_get_post_terms(get_the_ID(), 'estagio_obra');
+			$estagio_slug = !empty($estagio_terms) ? $estagio_terms[0]->slug : '';
+			$estagio_svg = '';
+			if (!empty($estagio_terms)) {
+				$estagio_svg = get_field('svg', $estagio_terms[0]);
+			}
 
 			// Monta o Array Limpo
 			$imoveis[] = array(
@@ -526,7 +531,8 @@ function injetar_dados_empreendimentos_json()
 				'estado' => !empty($estado) ? $estado[0] : '',
 				'cidade' => !empty($cidade) ? $cidade[0] : '',
 				'bairro' => !empty($bairro) ? $bairro[0] : '',
-				'estagio' => !empty($estagio) ? $estagio[0] : '',
+				'estagio' => $estagio_slug,
+				'estagio_svg' => $estagio_svg ?: '',
 			);
 		}
 		wp_reset_postdata();
