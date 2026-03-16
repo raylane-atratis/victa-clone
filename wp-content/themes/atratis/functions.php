@@ -436,8 +436,9 @@ function get_breadcrumb()
 
 		if ($post_type != 'post') { // CPT Genérico
 			$post_type_obj = get_post_type_object($post_type);
+			$label = ($post_type === 'empreendimentos') ? 'Imóveis' : $post_type_obj->labels->name;
 			echo " &nbsp;&nbsp;&raquo;&nbsp;&nbsp; ";
-			echo '<a href="' . esc_url(get_post_type_archive_link($post_type)) . '">' . esc_html($post_type_obj->labels->name) . '</a>';
+			echo '<a href="' . esc_url(get_post_type_archive_link($post_type)) . '">' . esc_html($label) . '</a>';
 		}
 		else { // Posts normais (verificando categorias)
 			$categories = get_the_category();
@@ -473,8 +474,9 @@ function get_breadcrumb()
 	elseif (is_post_type_archive()) {
 		$post_type = get_post_type();
 		$post_type_obj = get_post_type_object($post_type);
+		$label = ($post_type === 'empreendimentos') ? 'Imóveis' : $post_type_obj->labels->name;
 		echo " &nbsp;&nbsp;&raquo;&nbsp;&nbsp; ";
-		echo esc_html($post_type_obj->labels->name);
+		echo esc_html($label);
 
 	}
 	elseif (is_archive()) {

@@ -313,9 +313,9 @@
       background-color: #f8f8f8;
       border-radius: 6px;
       font-family: $font-primary;
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 500;
-      color: $text-color;
+      color: $secondary-color;
 
       svg {
         width: 18px;
@@ -424,7 +424,7 @@
     }
   }
 
-  // Paginação Customizada
+  // Paginação Customizada (Swiper)
   .swiper-empreendimentos-pagination {
     position: relative !important;
     bottom: auto !important;
@@ -447,6 +447,112 @@
         width: 24px;
         background-color: var(--Verde-claro, #46d20f);
       }
+    }
+  }
+
+  // ─── CTA "Ver todos" ───
+  &__cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__btn-ver-todos {
+    background-color: transparent;
+    color: $secondary-color;
+    border: 1px solid $secondary-color;
+
+    svg path {
+      fill: $secondary-color;
+    }
+  }
+
+  &--archive {
+    background: #fff;
+  }
+
+  // ─── MODO ARCHIVE (Grid + Paginação) ───
+  &__grid-archive {
+    display: grid;
+
+    gap: 30px;
+    width: 100%;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  // Paginação numérica (Archive)
+  &__paginacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: $spacing-xl;
+    padding-bottom: $spacing-md;
+  }
+
+  &__pag-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid #e0e0e0;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    svg path {
+      fill: $secondary-color;
+    }
+
+    &:hover:not(.disabled) {
+      background-color: $secondary-color;
+      border-color: $secondary-color;
+
+      svg path {
+        fill: #fff;
+      }
+    }
+
+    &.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
+  &__pag-num {
+    min-width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid #e0e0e0;
+    background-color: transparent;
+    font-family: $font-primary;
+    font-size: 15px;
+    font-weight: 600;
+    color: $text-color;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: $secondary-color;
+      color: $secondary-color;
+    }
+
+    &.active {
+      background-color: $secondary-color;
+      border-color: $secondary-color;
+      color: #fff;
     }
   }
 }
