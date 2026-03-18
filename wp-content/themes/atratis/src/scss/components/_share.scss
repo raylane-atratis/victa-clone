@@ -59,6 +59,12 @@
         }
       }
 
+      svg {
+        path {
+          fill: $primary-color;
+        }
+      }
+
       // Efeito de hover moderno
       &:hover,
       &:focus {
@@ -66,7 +72,7 @@
 
         // Caso deseje que o SVG mude de cor no hover (recomendado trocar o fill do SVG pra 'currentColor' no PHP)
         svg path {
-          fill: $primary-color;
+          fill: $secondary-color;
           transition: fill $transition-fast;
         }
       }

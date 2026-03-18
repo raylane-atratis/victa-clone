@@ -3,10 +3,13 @@
  * O template para exibir a barra lateral (Sidebar) do Blog
  * Refatorado seguindo as boas práticas do SKILL.md (BEM, Escaping, Acessibilidade)
  */
+
+ $newsletter_class = isset($args['layout']) && $args['layout'] === 'horizontal' ? 'sidebar__newsletter--horizontal' : '';
 ?>
 
 <aside class="sidebar">
     
+    <?php if (!isset($args['only_newsletter']) || !$args['only_newsletter']) : ?>
     <!-- 1. Pesquisa -->
     <div class="sidebar__section sidebar__search">
         <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
@@ -36,11 +39,11 @@
     $blog_category = get_term_by('name', 'Blog', 'category');
 
     if ($blog_category) {
-        $args = array(
+        $args_cats = array(
             'child_of' => $blog_category->term_id,
             'hide_empty' => true, // Boa prática: não exibir abas vazias onde o loop irá falhar
         );
-        $subcategories = get_categories($args);
+        $subcategories = get_categories($args_cats);
 
         if (!empty($subcategories)): ?>
                     <div class="sidebar__section sidebar__nav">
@@ -61,11 +64,14 @@
                     </div>
             <?php endif;
     } ?>
+    <?php endif; ?>
 
     <!-- 3. Newsletter Custom Form -->
-    <div class="sidebar__section sidebar__newsletter">
-        <h3 class="sidebar__title"><?php esc_html_e('Cadastre-se e receba novidades', 'atratis'); ?></h3>
-        <p class="sidebar__text"><?php esc_html_e('Fique por dentro das novidades', 'atratis'); ?></p>
+    <div class="sidebar__section sidebar__newsletter <?php echo esc_attr($newsletter_class); ?>">
+        <div class="sidebar__newsletter-content">
+            <h3 class="sidebar__title"><?php esc_html_e('Cadastre-se e receba novidades', 'atratis'); ?></h3>
+            <p class="sidebar__text"><?php esc_html_e('Fique por dentro das novidades', 'atratis'); ?></p>
+        </div>
 
         <div class="sidebar__form">
             <?php echo do_shortcode('[contact-form-7 id="8d0aa93" title="Formulário de Newsletter Blog"]'); ?>

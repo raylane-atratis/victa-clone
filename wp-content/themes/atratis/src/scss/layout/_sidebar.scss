@@ -127,11 +127,15 @@ $sidebar-bullet: #687078;
 
   // --- 3. Bloco Newsletter ---
   &__newsletter {
-    background: $secondary-color; // Mapeado do #00002b
+    background: $secondary-color;
     padding: 27px 33px;
     border: 1px solid $sidebar-border-gray;
     border-radius: 5px;
     margin-top: 30px;
+
+    .btn {
+      width: 100% !important;
+    }
 
     .sidebar__title {
       color: $primary-color;
@@ -144,37 +148,41 @@ $sidebar-bullet: #687078;
 
     .sidebar__text {
       color: $background-color;
-      margin-bottom: 15px;
+      margin-bottom: 25px;
       font-family: $font-primary;
     }
 
-    // Formulário do Contact Form 7 interno
-    .wpcf7 {
-      .wpcf7-form-control-wrap {
-        display: block; // Garante que width 100% dos inputs funcione
+    .wpcf7-list-item {
+      display: block;
+      margin: 8px 0;
+      span {
+        color: $background-color !important;
+      }
+    }
+
+    // Formulário Newsletter (Com classes customizadas do CF7)
+    .form-newsletter {
+      &__wrapper {
+        display: flex;
+        flex-direction: column;
       }
 
-      input[type="email"],
-      input[type="text"] {
+      &__input {
         width: 100%;
         padding: 14px 16px;
-        margin-bottom: 20px; // Espaçamento entre campos
         border-radius: 6px;
         border: none;
         font-family: $font-primary;
         font-size: 16px;
         color: $text-color-dark;
+        margin-bottom: 10px;
 
         &::placeholder {
           color: $text-color-light;
         }
       }
 
-      // Estilização bonita para o Checkbox
-      .wpcf7-acceptance {
-        display: block;
-        margin-bottom: 24px;
-
+      &__acceptance {
         .wpcf7-list-item {
           margin: 0;
 
@@ -184,48 +192,102 @@ $sidebar-bullet: #687078;
             gap: 12px;
             cursor: pointer;
             margin: 0;
+            color: $background-color !important;
+            font-size: 14px;
+            line-height: 1.4;
+            font-family: $font-primary;
           }
 
           input[type="checkbox"] {
-            margin-top: 4px; // Alinha com a primeira linha de texto longo
-            min-width: 18px;
-            width: 18px;
-            height: 18px;
+            margin-top: 3px;
+            min-width: 16px;
+            width: 16px;
+            height: 16px;
             cursor: pointer;
             flex-shrink: 0;
           }
+        }
+      }
+    }
 
-          .wpcf7-list-item-label {
-            color: $background-color; // Texto branco com base no fundo azul
-            font-size: 15px;
-            line-height: 1.5;
-            font-family: $font-primary;
+    // Variante Horizontal (para interna do post)
+    &--horizontal {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 30px 36px 20px;
+      max-width: 100%;
+      border: none;
+      border-radius: 5px;
+      background: $secondary-color;
+
+      @include mobile {
+        flex-direction: column;
+        padding: 30px 20px;
+        text-align: center;
+      }
+
+      .sidebar__newsletter-content {
+        flex: 1;
+
+        .sidebar__title {
+          color: $primary-color;
+          font-size: 32px;
+          line-height: 1.1;
+          margin-bottom: 15px;
+
+          @include mobile {
+            font-size: 24px;
           }
         }
-      }
 
-      input[type="submit"] {
-        width: 100%;
-        padding: 14px;
-        font-size: 18px;
-        background: $primary-color;
-        color: $background-color; // Texto Branco na imagem
-        transition: $transition-base;
-        border: 0;
-        border-radius: 6px;
-        font-weight: 700; // Bold padrão
-        cursor: pointer;
-
-        &:hover,
-        &:focus {
-          filter: brightness(0.9);
-          color: $background-color !important;
+        .sidebar__text {
+          font-size: 18px;
+          margin-bottom: 0;
+          color: $background-color;
         }
       }
 
-      // Remover avisinho do CF7 se existir
-      br {
-        display: none;
+      .sidebar__form {
+        flex: 1.5;
+        width: 100%;
+
+        .form-newsletter__wrapper {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 15px;
+
+          .form-group {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 0 !important;
+
+            @include mobile {
+              flex: none;
+              width: 100%;
+            }
+
+            // Ocupar 100% para o checkbox e submit se necessário
+            &:nth-last-child(2),
+            &:last-child {
+              flex: none;
+              width: 100%;
+            }
+          }
+
+          .wpcf7-list-item {
+            margin: -10px 0;
+            label {
+              span {
+                color: $background-color !important;
+              }
+            }
+          }
+
+          .form-newsletter__submit {
+          }
+        }
       }
     }
   }

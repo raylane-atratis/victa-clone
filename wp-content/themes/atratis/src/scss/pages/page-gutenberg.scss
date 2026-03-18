@@ -24,10 +24,12 @@
   }
 
   .share-post {
-    border-top: 1px solid #cad1eb;
     margin-top: $spacing-xl;
 
     .share-links {
+      border-top: 1px solid #cad1eb;
+      padding-top: 24px;
+
       .share-links__title {
         text-align: start;
       }
