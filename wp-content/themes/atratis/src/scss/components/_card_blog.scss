@@ -18,6 +18,7 @@
     text-decoration: none;
     color: inherit;
     gap: $spacing-md;
+    margin-bottom: $spacing-xl;
 
     &:hover,
     &:focus-visible {
@@ -101,6 +102,23 @@
     font-size: 25px;
     font-weight: 700;
     line-height: 33px;
+    margin: 0;
+
+    // Limitar a 3 linhas
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  // Descrição do post
+  &__descricao {
+    font-family: $font-primary;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+    color: $text-color;
     margin: 0;
 
     // Limitar a 3 linhas

@@ -9,20 +9,20 @@
 include 'conf_gerais.php';
 
 // Campos Específicos do Bloco
-$subtitulo  = get_sub_field('subtitulo');
-$titulo     = get_sub_field('titulo');
-$link       = get_sub_field('link');
+$subtitulo = get_sub_field('subtitulo');
+$titulo = get_sub_field('titulo');
+$link = get_sub_field('link');
 
 $classe_extra = get_sub_field('classe');
 
 
 // Query dinâmica dos últimos posts
 $args = [
-    'post_type'      => 'post',
+    'post_type' => 'post',
     'posts_per_page' => 3,
-    'post_status'    => 'publish',
-    'orderby'        => 'date',
-    'order'          => 'DESC',
+    'post_status' => 'publish',
+    'orderby' => 'date',
+    'order' => 'DESC',
 ];
 
 $blog_query = new WP_Query($args);
@@ -31,35 +31,36 @@ $blog_query = new WP_Query($args);
 <section class="secao-blog <?php echo esc_attr($classe_extra); ?>" style="<?php echo esc_attr($geraisCSS); ?>">
     <div class="container">
 
-        <?php if ($subtitulo || $titulo) : ?>
-            <div class="secao-blog__header">
-                <?php if ($subtitulo) : ?>
-                    <span class="secao-blog__subtitulo"><?php echo esc_html($subtitulo); ?></span>
-                <?php endif; ?>
+        <?php if ($subtitulo || $titulo): ?>
+                <div class="secao-blog__header">
+                    <?php if ($subtitulo): ?>
+                            <span class="secao-blog__subtitulo"><?php echo esc_html($subtitulo); ?></span>
+                    <?php endif; ?>
 
-                <?php if ($titulo) : ?>
-                    <h2 class="secao-blog__titulo"><?php echo wp_kses_post($titulo); ?></h2>
-                <?php endif; ?>
-            </div>
+                    <?php if ($titulo): ?>
+                            <h2 class="secao-blog__titulo"><?php echo wp_kses_post($titulo); ?></h2>
+                    <?php endif; ?>
+                </div>
         <?php endif; ?>
 
-        <?php if ($blog_query->have_posts()) : ?>
-            <div class="row secao-blog__grid">
-                <?php while ($blog_query->have_posts()) : $blog_query->the_post(); ?>
-                    <div class="col-lg-4 col-md-6">
-                        <?php get_template_part('template-parts/content-card-blog'); ?>
-                    </div>
-                <?php endwhile; ?>
-            </div>
-            <?php wp_reset_postdata(); ?>
+        <?php if ($blog_query->have_posts()): ?>
+                <div class="row secao-blog__grid">
+                    <?php while ($blog_query->have_posts()):
+                        $blog_query->the_post(); ?>
+                            <div class="col-lg-4 col-md-6">
+                                <?php get_template_part('template-parts/content-card-blog'); ?>
+                            </div>
+                    <?php endwhile; ?>
+                </div>
+                <?php wp_reset_postdata(); ?>
         <?php endif; ?>
 
-        <?php 
-            // Usa link do ACF se houver, ou a página da categoria "conteudo" / fallback
-            $cat_conteudo = get_category_by_slug('conteudo');
-            $url_todas = $link ? $link['url'] : ($cat_conteudo ? get_category_link($cat_conteudo->term_id) : home_url('/conteudo/'));
-            $titulo_todas = $link ? $link['title'] : 'Ver todas as novidades';
-            $target_todas = ($link && !empty($link['target'])) ? 'target="_blank" rel="noopener noreferrer"' : '';
+        <?php
+        // Usa link do ACF se houver, ou a página da categoria "conteudo" / fallback
+        $cat_conteudo = get_category_by_slug('blog');
+        $url_todas = $link ? $link['url'] : ($cat_conteudo ? get_category_link($cat_conteudo->term_id) : home_url('/conteudo/'));
+        $titulo_todas = $link ? $link['title'] : 'Ver todas as novidades';
+        $target_todas = ($link && !empty($link['target'])) ? 'target="_blank" rel="noopener noreferrer"' : '';
         ?>
         <div class="secao-blog__cta">
             <a href="<?php echo esc_url($url_todas); ?>"

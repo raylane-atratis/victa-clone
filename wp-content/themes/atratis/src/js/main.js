@@ -11,6 +11,7 @@ import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 // Aqui você pode adicionar seus scripts JS modernos
 // Exemplo de importação: import './modules/meu-script.js';
+import { initDestaquesSwiper } from "./destaques-swiper.js";
 import "./menu.js";
 import "./banner.js";
 import { initFAQ } from "./faq.js";
@@ -32,4 +33,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initSecaoDepoimentoSwiper();
   VideoModal.init();
   initEmpreendimentos();
+  initDestaquesSwiper();
 });

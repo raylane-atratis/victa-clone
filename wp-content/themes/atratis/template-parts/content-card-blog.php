@@ -7,29 +7,29 @@
  * Requer estar dentro de um loop WP (the_post() já chamado).
  */
 
-$post_id    = get_the_ID();
+$post_id = get_the_ID();
 $categories = get_the_category();
-$cat_name   = !empty($categories) ? $categories[0]->name : '';
-$title      = get_the_title();
-$post_slug  = $post->post_name;
-$permalink  = home_url('/conteudo/' . $post_slug); // Correção do link
-$date       = get_the_date('d, F, Y');
-$thumb_id   = get_post_thumbnail_id($post_id);
+$cat_name = !empty($categories) ? $categories[0]->name : '';
+$title = get_the_title();
+$post_slug = $post->post_name;
+$permalink = home_url('/conteudo/' . $post_slug); // Correção do link
+$date = get_the_date('d, F, Y');
+$thumb_id = get_post_thumbnail_id($post_id);
 ?>
 
 <article <?php post_class('card-blog'); ?>>
     <a href="<?php echo esc_url($permalink); ?>" class="card-blog__link" aria-label="<?php echo esc_attr(sprintf('Ler artigo: %s', $title)); ?>">
 
         <div class="card-blog__imagem">
-            <?php if ($cat_name) : ?>
-                <span class="card-blog__categoria"><?php echo esc_html($cat_name); ?></span>
+            <?php if ($cat_name): ?>
+                    <span class="card-blog__categoria"><?php echo esc_html($cat_name); ?></span>
             <?php endif; ?>
 
-            <?php if ($thumb_id) : ?>
-                <?php echo wp_get_attachment_image($thumb_id, 'medium_large', false, [
-                    'class'   => 'card-blog__img',
-                    'loading' => 'lazy',
-                ]); ?>
+            <?php if ($thumb_id): ?>
+                    <?php echo wp_get_attachment_image($thumb_id, 'medium_large', false, [
+                        'class' => 'card-blog__img',
+                        'loading' => 'lazy',
+                    ]); ?>
             <?php endif; ?>
         </div>
 
@@ -41,6 +41,12 @@ $thumb_id   = get_post_thumbnail_id($post_id);
         </div>
 
         <strong class="card-blog__titulo"><?php echo esc_html($title); ?></strong>
+
+        <?php if (has_excerpt() && !is_front_page()): ?>
+                <div class="card-blog__descricao">
+                    <?php echo wp_kses_post(get_the_excerpt()); ?>
+                </div>
+        <?php endif; ?>
 
         <span class="btn card-blog__btn">
             Ler mais

@@ -1,0 +1,220 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+// ============================================================
+// COMPONENTE: Card Destaque (Carrosel Hero)
+// Design: Big card with full bg image, top badge, bottom title
+// ============================================================
+
+.card-destaque {
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  text-decoration: none;
+  aspect-ratio: 21 / 9;
+  max-height: 500px;
+
+  @include tablet {
+    aspect-ratio: 16 / 9;
+  }
+
+  @include mobile {
+    aspect-ratio: 1 / 1;
+  }
+
+  &__imagem {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-slow;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    z-index: 2;
+  }
+
+  &:hover,
+  &:focus-visible {
+    .card-destaque__img {
+      transform: scale(1.05);
+    }
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: $spacing-2xl;
+
+    @include mobile {
+      padding: $spacing-lg;
+    }
+  }
+
+  &__categoria {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 1px 16px;
+    background: $background-color;
+    border-radius: $radius-lg;
+    font-family: $font-heading;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 28px;
+    color: $secondary-color;
+    white-space: nowrap;
+  }
+
+  &__text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__titulo {
+    font-family: $font-heading;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 60px;
+    color: #fff;
+    margin: 0;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    @include tablet {
+      font-size: 36px;
+      line-height: 44px;
+    }
+
+    @include mobile {
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    color: #fff;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    time {
+      font-family: $font-primary;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+}
+
+// Container do carrosel e navegação
+.destaques-carousel {
+  position: relative;
+  margin-bottom: $spacing-2xl;
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 54px;
+    height: 54px;
+    margin: 0;
+    background-color: #f4f4f4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: transparent; // Esconde ícone padrão se houver
+
+    &::after {
+      display: none; // Remove ícone padrão do Swiper
+    }
+
+    // Usando background image para a seta conforme o padrão do projeto
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 12px 22px;
+
+    &:hover {
+      background-color: $secondary-color;
+      border-color: $secondary-color;
+    }
+
+    &.swiper-button-disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    @include mobile {
+      width: 40px;
+      height: 40px;
+      background-size: 10px 18px;
+    }
+  }
+
+  .swiper-button-prev {
+    left: -27px;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='22' viewBox='0 0 12 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 1L1 11L11 21' stroke='%2300512A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+    &:hover {
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='22' viewBox='0 0 12 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 1L1 11L11 21' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+
+    @include mobile {
+      left: 10px;
+    }
+  }
+
+  .swiper-button-next {
+    right: -27px;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='22' viewBox='0 0 12 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L11 11L1 21' stroke='%2300512A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+    &:hover {
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='22' viewBox='0 0 12 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L11 11L1 21' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+
+    @include mobile {
+      right: 10px;
+    }
+  }
+}

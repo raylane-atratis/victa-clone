@@ -33,33 +33,33 @@
     <!-- 2. Navegação Categoria -->
     <?php
     // Usando get_term_by ao invés de get_cat_ID para garantir versatilidade
-    $blog_category = get_term_by('name', 'Conteúdos', 'category');
+    $blog_category = get_term_by('name', 'Blog', 'category');
 
     if ($blog_category) {
         $args = array(
-            'child_of'   => $blog_category->term_id,
+            'child_of' => $blog_category->term_id,
             'hide_empty' => true, // Boa prática: não exibir abas vazias onde o loop irá falhar
         );
         $subcategories = get_categories($args);
 
-        if (!empty($subcategories)) : ?>
-            <div class="sidebar__section sidebar__nav">
-                <h3 class="sidebar__title"><?php esc_html_e('Navegue por:', 'atratis'); ?></h3>
-                <ul class="sidebar__list">
-                    <?php foreach ($subcategories as $subcategory) :
-                        $is_current_category = is_category($subcategory->term_id);
-                        // Atribuição condicional de modificador BEM (--active)
-                        $item_class = 'sidebar__item' . ($is_current_category ? ' sidebar__item--active' : ''); 
-                    ?>
-                        <li class="<?php echo esc_attr($item_class); ?>">
-                            <a href="<?php echo esc_url(get_category_link($subcategory->term_id)); ?>" class="sidebar__link">
-                                <?php echo esc_html($subcategory->name); ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        <?php endif; 
+        if (!empty($subcategories)): ?>
+                    <div class="sidebar__section sidebar__nav">
+                        <h3 class="sidebar__title"><?php esc_html_e('Navegue por:', 'atratis'); ?></h3>
+                        <ul class="sidebar__list">
+                            <?php foreach ($subcategories as $subcategory):
+                                $is_current_category = is_category($subcategory->term_id);
+                                // Atribuição condicional de modificador BEM (--active)
+                                $item_class = 'sidebar__item' . ($is_current_category ? ' sidebar__item--active' : '');
+                                ?>
+                                    <li class="<?php echo esc_attr($item_class); ?>">
+                                        <a href="<?php echo esc_url(get_category_link($subcategory->term_id)); ?>" class="sidebar__link">
+                                            <?php echo esc_html($subcategory->name); ?>
+                                        </a>
+                                    </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+            <?php endif;
     } ?>
 
     <!-- 3. Newsletter Custom Form -->

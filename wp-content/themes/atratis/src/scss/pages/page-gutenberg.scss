@@ -4,6 +4,11 @@
 .page-content {
   padding: $spacing-2xl 0;
 
+  .justify-content-center {
+    display: flex;
+    justify-content: center;
+  }
+
   .row {
     @include mobile {
       gap: $spacing-xl;
@@ -130,5 +135,102 @@
     flex-wrap: wrap;
     gap: $spacing-md;
     margin-bottom: $spacing-lg;
+  }
+
+  // ─── Post Header (Single Article) ───
+  &__header {
+    margin-bottom: $spacing-xl;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: $secondary-color !important;
+    margin-top: 0;
+    margin-bottom: $spacing-md;
+
+    @include mobile {
+      font-size: 28px;
+    }
+  }
+
+  &__description {
+    font-family: $font-primary;
+    font-size: 20px;
+    line-height: 1.6;
+    color: $text-color;
+    margin-bottom: $spacing-md;
+
+    @include mobile {
+      font-size: 18px;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing-lg;
+    padding: $spacing-sm 0;
+    margin-bottom: 24px;
+
+    @include mobile {
+      gap: $spacing-md;
+    }
+  }
+
+  &__author,
+  &__time,
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    font-family: $font-primary;
+    font-size: 15px;
+    font-weight: 400;
+    color: $text-color;
+
+    strong,
+    b {
+      font-weight: 700;
+      color: $text-color-dark;
+    }
+  }
+
+  &__author-name {
+    font-weight: 400;
+    color: $text-color;
+  }
+
+  &__time-icon,
+  &__date-icon {
+    display: flex;
+    align-items: center;
+    color: $primary-color;
+
+    svg {
+      width: 20px;
+      height: auto;
+    }
+  }
+
+  &__thumbnail {
+    margin-bottom: $spacing-xl;
+    border-radius: $radius-xl;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+      border-radius: $radius-xl;
+    }
   }
 }

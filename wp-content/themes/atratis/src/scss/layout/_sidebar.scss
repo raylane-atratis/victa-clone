@@ -127,14 +127,14 @@ $sidebar-bullet: #687078;
 
   // --- 3. Bloco Newsletter ---
   &__newsletter {
-    background: $primary-color; // Mapeado do #00002b
+    background: $secondary-color; // Mapeado do #00002b
     padding: 27px 33px;
     border: 1px solid $sidebar-border-gray;
     border-radius: 5px;
     margin-top: 30px;
 
     .sidebar__title {
-      color: $background-color;
+      color: $primary-color;
       font-size: 20px;
       font-weight: 900;
       line-height: 31px;
@@ -208,7 +208,7 @@ $sidebar-bullet: #687078;
         width: 100%;
         padding: 14px;
         font-size: 18px;
-        background: $secondary-color;
+        background: $primary-color;
         color: $background-color; // Texto Branco na imagem
         transition: $transition-base;
         border: 0;
