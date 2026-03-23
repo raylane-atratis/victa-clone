@@ -1,0 +1,145 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+// ============================================================
+// COMPONENTE: Card Material (Materiais Gratuitos)
+// Design: White card com imagem, badge, data, título e CTA
+// ============================================================
+
+.card-material {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    gap: $spacing-md;
+    margin-bottom: $spacing-xl;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+
+      .card-material__img {
+        transform: scale(1.06);
+      }
+    }
+  }
+
+  // Wrapper da imagem
+  &__imagem {
+    position: relative;
+    border-radius: 30px 0; // 12px
+    overflow: hidden;
+    aspect-ratio: 16 / 11;
+    background-color: #f0f0f0; // placeholder bg
+
+    @include mobile {
+      aspect-ratio: 16 / 10;
+    }
+  }
+
+  // Imagem principal
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-base;
+  }
+
+  // Badge de categoria
+  &__categoria {
+    position: absolute;
+    top: $spacing-md;
+    left: $spacing-md;
+    z-index: 2;
+    display: inline-block;
+    padding: 1px 10px;
+
+    background: $background-color;
+    border: 1px solid #f6f6f6; // Cor específica do Figma
+    border-radius: 10px;
+
+    font-family: $font-heading;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 30px;
+    color: $secondary-color;
+    white-space: nowrap;
+  }
+
+  // Meta (ícone relógio + data)
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    svg {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+    }
+
+    time {
+      font-family: $font-primary;
+      font-size: 14px;
+      font-weight: 400;
+      color: $text-color;
+      line-height: 1.4;
+    }
+  }
+
+  // Título do post
+  &__titulo {
+    display: block;
+    color: $secondary-color;
+    font-family: $font-heading;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 33px;
+    margin: 0;
+
+    // Limitar a 3 linhas
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  // Descrição do post
+  &__descricao {
+    font-family: $font-primary;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+    color: $text-color;
+    margin: 0;
+
+    // Limitar a 3 linhas
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  // Botão CTA
+  &__btn {
+    margin-top: auto;
+    width: fit-content;
+  }
+
+  // ─── Responsivo ───
+  @include mobile {
+    &__titulo {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+}

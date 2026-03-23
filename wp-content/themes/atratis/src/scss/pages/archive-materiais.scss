@@ -1,0 +1,8 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.secao-materiais-gratuitos {
+  &__archive {
+    padding: 60px 0;
+  }
+}

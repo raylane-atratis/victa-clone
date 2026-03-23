@@ -543,3 +543,22 @@ function injetar_dados_empreendimentos_json()
 	echo 'const imoveisData = ' . json_encode($imoveis) . ';';
 	echo '</script>';
 }
+
+/**
+ * Bloqueia o acesso à página individual (Single) do CPT Materiais Gratuitos
+ * Redirecionando o usuário de volta para a página de listagem (Archive)
+ */
+add_action( 'template_redirect', 'bloquear_single_materias_gratuitos' );
+
+function bloquear_single_materias_gratuitos() {
+    // Confirme se o slug do seu post type é exatamente 'materias-gratuitos'
+    if ( is_singular( 'materiais-gratuitos' ) ) {
+        
+        // Pega o link automático da sua página de listagem
+        $link_da_listagem = get_post_type_archive_link( 'materiais-gratuitos' );
+        
+        // Redireciona o usuário para a listagem (301 indica que a página individual não existe mais)
+        wp_safe_redirect( $link_da_listagem, 301 );
+        exit;
+    }
+}

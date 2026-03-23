@@ -27,6 +27,7 @@
 @use "components/card_destaque";
 @use "components/search-modal";
 @use "components/swiper";
+@use "components/card_materiais_gratuitos";
 
 // 4. Blocos (ACF Flexible Content)
 // Sempre que criar um bloco novo, importe aqui
@@ -48,3 +49,4 @@
 @use "pages/not-found";
 @use "pages/page-gutenberg";
 @use "pages/search";
+@use "pages/archive-materiais";
