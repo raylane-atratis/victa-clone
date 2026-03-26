@@ -1,0 +1,198 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.secao-timeline {
+  width: 100%;
+  background-image: var(--bg-timeline);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  padding: rem(60) 0 rem(50);
+
+  &__header {
+    text-align: center;
+    margin-bottom: rem(30);
+    color: #fff;
+  }
+
+  &__sub {
+    display: block;
+    font-size: rem(18);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $primary-color;
+    margin-bottom: rem(2);
+  }
+
+  &__titulo-principal {
+    font-size: rem(38);
+    font-weight: 700;
+    margin: 0;
+    @include mobile {
+      font-size: rem(28);
+    }
+  }
+
+  &__slider-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 0 rem(20);
+    overflow: visible; // Mantém visível os cards e a paginação
+    padding-bottom: rem(20); // Ajuste o respiro inferiorF
+  }
+
+  .swiper {
+    width: 100%;
+    overflow: visible !important;
+    padding-bottom: rem(20); // ← empurra espaço para a paginação
+  }
+
+  .swiper-slide {
+    height: auto;
+    flex-shrink: 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: rem(280) !important; // ← fixo de volta
+  }
+
+  // Novo wrapper que agrupa dot + card
+  &__card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+    overflow: visible;
+    margin-top: rem(15);
+  }
+
+  &__node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%; // Ocupa a largura total do slide (280px)
+    z-index: 2;
+  }
+
+  &__ano {
+    font-size: rem(22);
+    font-weight: 700;
+    color: $primary-color;
+    white-space: nowrap;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: rem(30); // Altura fixa para alinhar a linha no meio do texto
+
+    // A LINHA (Pseudo-elemento)
+    &::after {
+      content: "";
+      position: absolute;
+      left: 100%; // Começa onde o texto termina
+      margin-left: rem(15); // Pequeno respiro após o número
+      width: rem(
+        200
+      ); // Tamanho da linha (ajuste conforme o spaceBetween do Swiper)
+      height: 1px;
+      background-color: #d1d1d1; // Cor do seu SVG
+      pointer-events: none;
+    }
+  }
+
+  // Remove a linha do último item da timeline
+  .swiper-slide:last-child {
+    .secao-timeline__ano::after {
+      display: none;
+    }
+  }
+
+  // Ajuste o wrapper do carrossel para não cortar a linha que "vaza"
+  .swiper {
+    overflow: visible !important;
+  }
+
+  &__line-svg {
+    flex-shrink: 0;
+    margin-left: rem(11.5);
+  }
+
+  // Remove o ::after que gerava a linha antiga
+  .swiper-slide {
+    &:not(:last-child)::after {
+      display: none;
+    }
+  }
+
+  &__dot {
+    position: relative;
+    z-index: 3;
+    margin-bottom: rem(-14); // ← metade do SVG (28px/2), sobrepõe o card
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    svg {
+      display: block;
+    }
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: rem(20);
+    padding: rem(22) rem(6) rem(6);
+    padding-top: rem(22); // espaço para o dot não cobrir o título
+    width: rem(280);
+    height: rem(323);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    overflow: visible;
+  }
+
+  &__card-title {
+    color: $primary-color;
+    font-size: rem(22);
+    font-weight: 700;
+    margin-bottom: rem(13);
+    width: 100%;
+  }
+
+  // ← Caixa interna acinzentada para a descrição
+  &__card-text {
+    background: #f3f5f9;
+    border: 1px solid #d7d7d7;
+    border-radius: rem(20);
+    padding: rem(22) rem(10);
+    font-size: rem(18);
+    line-height: 1.65;
+    color: $secondary-color;
+    width: 100%;
+    flex: 1;
+  }
+
+  .timeline-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: rem(40);
+
+    .swiper-pagination-bullet {
+      width: rem(14) !important;
+      height: rem(14) !important;
+      border-radius: 0 rem(6) !important;
+      background: rgba(190, 190, 190, 0.3);
+      opacity: 1;
+      margin: 0 rem(5) !important;
+      transition: all 0.3s ease;
+
+      &-active {
+        background: #bebebe;
+        width: rem(39) !important;
+      }
+    }
+  }
+}

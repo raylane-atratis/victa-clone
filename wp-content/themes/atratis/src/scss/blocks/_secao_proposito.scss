@@ -1,0 +1,175 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.secao-proposito {
+  @include section-padding;
+  text-align: center;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3.75rem; // 60px
+
+    @include mobile {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__subtitulo {
+    font-family: $font-heading;
+    font-size: 1.125rem; // 18px
+    font-weight: 400;
+    line-height: 1.75rem; // 28px
+    letter-spacing: 0.2025rem; // 3.24px
+    text-transform: uppercase;
+    color: $secondary-color; 
+    margin-bottom: 0.3125rem; // 5px
+  }
+
+  &__titulo {
+    font-family: $font-heading;
+    font-size: 2.375rem; // 38px
+    font-weight: 700;
+    color: $secondary-color;
+    margin: 0;
+
+    @include mobile {
+      font-size: 1.75rem; // 28px
+    }
+  }
+
+  // --- GRID DINÂMICA ---
+  &__grid {
+    display: grid;
+    gap: 1.875rem; // 30px
+    margin-bottom: 3.125rem; // 50px
+    justify-content: center;
+
+    &--3 {
+      grid-template-columns: repeat(3, 22.75rem); // 364px
+
+      @media (max-width: 1200px) {
+        grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr)); // 300px
+      }
+    }
+
+    &--2 {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 56.25rem; // 900px
+      margin-left: auto;
+      margin-right: auto;
+
+      > *:last-child:nth-child(odd) {
+        grid-column: span 2;
+        justify-self: center;
+        max-width: 28.125rem; // 450px
+      }
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  &__item {
+    text-align: left;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+
+    &-titulo {
+      font-family: $font-heading;
+      font-size: rem(24);
+      font-weight: 700;
+      color: $secondary-color;
+      margin-bottom: 0.9375rem; // 15px
+      display: inline-block;
+      position: relative;
+
+      // Linha animada sob o título
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -0.25rem;
+        width: 0;
+        height: 2px;
+        background-color: #42CE02; // Verde vibrante
+        transition: width 0.3s ease;
+      }
+    }
+
+    &-texto {
+      font-size: 1rem; // 16px
+      line-height: 1.6;
+      color: #444;
+      transition: color 0.3s ease;
+    }
+
+    // Hover dos itens da grid
+    &:hover {
+      transform: translateY(-0.5rem); // Sobe 8px
+
+      .secao-proposito__item-titulo::after {
+        width: 100%;
+      }
+
+      .secao-proposito__item-texto {
+        color: #000;
+      }
+    }
+
+    @include mobile {
+      text-align: center;
+      &:hover { transform: none; }
+    }
+  }
+
+  // --- CARD DESTAQUE (BAIXO) ---
+  &__destaque-wrapper {
+    margin-top: 4.75rem; // 76px
+  }
+
+  &__card {
+    background: #fff;
+    padding: 1.6875rem 2.5rem 2.3125rem; // 27px 40px 37px
+    border-radius: 1.875rem 0; // 30px 0
+    box-shadow: 0 0.25rem 0.9375rem 0 rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: 0 0 1.25rem; // 20px
+    transition: all 0.5s ease;
+    border: 1px solid transparent;
+
+    // Hover do card grande
+    &:hover {
+      border-radius: 0 1.875rem; // Inverte o arredondado
+      box-shadow: 0 1.25rem 2.5rem 0 rgba(0, 0, 0, 0.12);
+      border-color: rgba(66, 206, 2, 0.2);
+      transform: scale(1.01);
+    }
+
+    &-titulo {
+      font-family: $font-heading;
+      font-size: 1.5rem; // 24px
+      font-weight: 700;
+      color: $secondary-color;
+      line-height: 1.5;
+      transition: color 0.3s ease;
+    }
+
+    &:hover &-titulo {
+      color: #42CE02;
+    }
+
+    &-texto {
+      font-size: 1rem; // 16px
+      line-height: 1.8;
+      color: $secondary-color;
+      margin: 0;
+    }
+
+    @include mobile {
+      padding: 1.875rem 1.25rem; // 30px 20px
+    }
+  }
+}

@@ -399,7 +399,6 @@ function display_plugins_table() {
 			);
 			break;
 		case 'install_plugins_featured':
-			echo '<br>';
 			break;
 		case 'install_plugins_recommended':
 			echo '<p>' . __( 'These suggestions are based on the plugins you and other users have installed.' ) . '</p>';
@@ -409,6 +408,9 @@ function display_plugins_table() {
 				return;
 			}
 			break;
+	}
+	if ( isset( $_GET['tab'] ) && 'featured' === $_GET['tab'] ) {
+		echo '<br />';
 	}
 	?>
 	<form id="plugin-filter" method="post">

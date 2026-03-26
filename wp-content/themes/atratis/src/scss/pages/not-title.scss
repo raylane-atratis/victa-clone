@@ -1,0 +1,16 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.page-template-tmpl-no-title {
+    &.page-id-900 {
+        .share-links {
+            background-color: #F7F8FB;
+        }
+    }
+
+    &.page-id-1094 {
+        .share-links {
+            background-color: #F3F5F9;
+        }
+    }
+}

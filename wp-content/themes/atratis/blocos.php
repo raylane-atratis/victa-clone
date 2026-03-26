@@ -53,6 +53,33 @@ endif;
         elseif (get_row_layout() == 'secao_empreendimentos' && get_sub_field('exibir')):
             get_template_part('template-parts-blocos/secao_empreendimentos');
 
+        elseif (get_row_layout() == 'banner' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/banner');
+
+        elseif (get_row_layout() == 'secao_imagem' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_imagem');
+
+        elseif (get_row_layout() == 'secao-proposito' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao-proposito');
+
+        elseif (get_row_layout() == 'secao_conquistas' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_conquistas');
+
+        elseif (get_row_layout() == 'secao_video_total' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_video_total');
+
+        elseif (get_row_layout() == 'secao_timeline' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_timeline');
+
+        elseif (get_row_layout() == 'secao_linhas_de_produtos' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_linhas_de_produtos');
+
+        elseif (get_row_layout() == 'secao_certificados' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_certificados');
+
+        elseif (get_row_layout() == 'secao_ods' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_ods');
+
         endif;
 
 ?>

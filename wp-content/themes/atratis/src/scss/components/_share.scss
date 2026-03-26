@@ -2,7 +2,7 @@
 @use "../base/mixins" as *;
 
 .share-links {
-  padding: $spacing-xl 0 0; // Utilizando espaçamento aproximado a 35px-40px
+  padding: $spacing-xl 0 $spacing-xl; // Utilizando espaçamento aproximado a 35px-40px
 
   &__title {
     font-family: $font-primary;

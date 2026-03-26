@@ -1,0 +1,137 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.secao-certificados {
+  padding: rem(50) 0;
+  background-color: #F3F5F9;
+
+  &__header {
+    margin-bottom: rem(34);
+    text-align: center;
+  }
+
+  &__sub {
+    display: block;
+    font-size: rem(18);
+    color: $secondary-color;
+    font-weight: 400;
+    margin-bottom: rem(2);
+  }
+
+  &__titulo-principal {
+    font-size: rem(38);
+    font-weight: 700;
+    color: $secondary-color;
+    line-height: 1.2;
+  }
+
+  &__grid {
+    display: grid;
+    gap: rem(30);
+
+    &--cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    &--cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    &--cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    // --- LAYOUT HORIZONTAL (50/50) ---
+    &.is-horizontal {
+      .secao-certificados__card {
+        flex-direction: row;
+        align-items: stretch;
+        padding: 0;
+
+        .secao-certificados__card-icone {
+          flex: 0 0 50%;
+        }
+
+        .secao-certificados__card-content {
+          flex: 0 0 50%;
+          padding: rem(40) rem(30);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+    }
+
+    // --- LAYOUT VERTICAL (Ícone no Topo) ---
+    &.is-vertical {
+      .secao-certificados__card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: rem(50) rem(30);
+        border-top: 5px solid $primary-color;
+
+        .secao-certificados__card-icone {
+          margin-bottom: rem(30);
+          width: 100%;
+        }
+      }
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr !important;
+      .secao-certificados__card {
+        flex-direction: column !important;
+        .secao-certificados__card-icone,
+        .secao-certificados__card-content {
+          flex: none !important;
+          width: 100% !important;
+          border-right: none !important;
+        }
+      }
+    }
+  }
+
+  &__card {
+    border-radius: rem(30);
+    border: 2px solid #E8E8E8;
+    background-color: #fff;
+    display: flex;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      .secao-certificados__card-icone img {
+        transform: scale(1.08);
+      }
+    }
+  }
+
+  &__card-icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: rem(180);
+
+    img {
+      // AJUSTE SOLICITADO:
+      width: 100%;
+      height: auto;
+      max-width: 244px;
+      object-fit: contain;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  &__card-title {
+    font-size: rem(25);
+    font-weight: 700;
+    color: $secondary-color;
+    margin-bottom: rem(6);
+  }
+
+  &__card-text {
+    font-size: rem(16);
+    line-height: 1.6;
+    color: #484D51;
+  }
+}

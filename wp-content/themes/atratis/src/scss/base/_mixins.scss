@@ -88,3 +88,10 @@ $desktop-lg: 1440px;
     border-radius: 3px;
   }
 }
+
+@function rem($pixel) {
+    @return calc($pixel / 16) + rem;
+}
+
+// Exemplo de uso:
+// font-size: rem(38); -> Resulta em 2.375rem

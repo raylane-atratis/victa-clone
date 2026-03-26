@@ -1,0 +1,186 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+// ============================================================
+// BLOCO: Banner LP
+// ============================================================
+
+.secao-banner {
+  @include section-padding;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  min-height: 600px;
+
+  // --- Lógica de Visibilidade (Breakpoint 992px) ---
+  &--desktop {
+    display: flex;
+    @media (max-width: 991px) {
+      display: none !important;
+    }
+  }
+
+  &--mobile {
+    display: none;
+    @media (max-width: 991px) {
+      display: flex !important;
+      height: auto;
+      text-align: center;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media (max-width: 991px) {
+      align-items: center;
+      width: 100%;
+    }
+  }
+
+  &__titulo {
+    font-family: $font-heading;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+
+    &--branco {
+      color: #ffffff;
+    }
+    &--verde {
+      color: #285e39;
+    }
+
+    @include mobile {
+      font-size: 32px;
+    }
+  }
+
+  &__subtitulo {
+    font-family: $font-heading;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    max-width: 550px;
+    transition: all 0.3s ease;
+
+    // REGRA 1: Se o subtítulo for VERDE (#00512A), o tamanho é 16px sempre
+    &--verde {
+      color: #00512a;
+      font-size: 16px;
+    }
+
+    // REGRA 2: Se o subtítulo for BRANCO (#fff)
+    &--branco {
+      color: #ffffff;
+
+      // Se o título também for BRANCO -> 28px
+      &-on-branco {
+        font-size: 28px;
+        color: #ffffff;
+      }
+
+      // Se o título for VERDE -> 35px
+      &-on-verde {
+        font-size: 35px;
+        color: #ffffff;
+      }
+    }
+
+    @include mobile {
+      // No mobile você pode querer reduzir um pouco proporcionalmente
+      font-size: 16px !important;
+    }
+  }
+
+  // --- Estilos do Botão ---
+  a:hover {
+    text-decoration: none;
+  }
+  &__btn {
+    // 1. Garante que o botão use border-box
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(10);
+    padding: rem(12) rem(35);
+
+    // O seu border-radius customizado
+    border-radius: 20px 0;
+
+    // IMPORTANTE: A borda deve existir desde o estado normal
+    border: 1px solid transparent;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    span,
+    svg {
+      position: relative;
+      z-index: 3; // Fica acima do slide de cor
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      // 2. O segredo: use inset 0 para ele preencher o espaço interno
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 100%;
+
+      // 3. Herda o border-radius para não "comer" a borda nos cantos
+      border-radius: inherit;
+
+      transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 1;
+    }
+
+    &:hover {
+      &::before {
+        width: 100%;
+      }
+    }
+
+    // VARIANTES
+    &--escuro {
+      background-color: $secondary-color;
+      border-color: $secondary-color;
+      color: #fff !important;
+      font-weight: 700;
+      &::before {
+        background-color: $primary-color;
+      }
+
+      &:hover {
+        // Forçamos a borda a mudar de cor junto com o background
+        border-color: $secondary-color !important;
+        color: $secondary-color !important;
+      }
+    }
+
+    &--claro {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      color: #00512a !important;
+      font-weight: 700;
+
+      &::before {
+        background-color: $secondary-color;
+      }
+
+      &:hover {
+        border-color: $primary-color !important;
+        color: #fff !important;
+      }
+    }
+  }
+}

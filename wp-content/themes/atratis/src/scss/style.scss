@@ -44,9 +44,18 @@
 @use "blocks/secao_imagem_lista";
 @use "blocks/secao_quem_somos";
 @use "blocks/secao_empreendimentos";
+@use "blocks/secao_banner";
+@use "blocks/secao_proposito";
+@use "blocks/secao_conquistas";
+@use "blocks/secao_video";
+@use "blocks/timeline";
+@use "blocks/secao-linha-produtos";
+@use "blocks/certificados";
+@use "blocks/ods";
 
 // 5. Páginas Específicas
 @use "pages/not-found";
 @use "pages/page-gutenberg";
 @use "pages/search";
 @use "pages/archive-materiais";
+@use "pages/not-title";

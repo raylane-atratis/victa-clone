@@ -1,6 +1,94 @@
 @use "../base/variables" as *;
 @use "../base/mixins" as *;
 
+.quem-somos-1 {
+  .subtitulo-tag {
+    font-size: 1.5rem !important;
+    color: $secondary-color !important;
+    font-weight: 400 !important;
+  }
+
+  .titulo-bloco {
+    color: $secondary-color !important;
+  }
+
+  .texto-editor {
+    p {
+      color: $secondary-color !important;
+    }
+  }
+}
+ 
+.esg-texto {
+  .subtitulo-tag {
+    font-size: 1.5rem !important;
+    color: $primary-color !important;
+    font-weight: 400 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .titulo-bloco {
+    color: $secondary-color !important;
+    margin-bottom: rem(12) !important;
+  }
+
+  .texto-editor {
+    p {
+      color: $secondary-color !important;
+    }
+  }
+}
+
+.quem-somos-2 {
+  .subtitulo-tag {
+    font-size: rem(18) !important;
+    color: $secondary-color !important;
+    font-weight: 400 !important;
+    margin-bottom: 0 !important;
+    letter-spacing: rem(4) !important;
+  }
+
+  .titulo-bloco {
+    color: $secondary-color !important;
+    margin-bottom: rem(6) !important;
+  }
+
+  .texto-editor {
+    p {
+      color: $secondary-color !important;
+      max-width: rem(488);
+      margin-bottom: rem(18) !important;
+    }
+  }
+
+  .btn-primary {
+    background-color: $primary-color !important;
+    color: $secondary-color !important;
+    padding: rem(10) rem(30) !important;
+    border-radius: rem(20) 0 !important;
+    width: fit-content !important;
+    text-transform: none !important;
+
+    // Alinhamento para o ícone aparecer ao lado do texto
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: rem(12) !important; // Espaço entre o texto e o SVG
+
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 28px;
+      height: 14px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+
+      // SVG convertido em Data URI (UTF-8 para manter legibilidade e cores)
+      background-image: url("data:image/svg+xml,%3Csvg width='28' height='14' viewBox='0 0 28 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M26.9763 4.66511L22.4608 0.328102C22.3523 0.224138 22.2233 0.141619 22.0811 0.0853057C21.9389 0.0289925 21.7864 0 21.6324 0C21.4784 0 21.3258 0.0289925 21.1837 0.0853057C21.0415 0.141619 20.9124 0.224138 20.804 0.328102C20.5866 0.535927 20.4647 0.817058 20.4647 1.1101C20.4647 1.40313 20.5866 1.68426 20.804 1.89209L24.9577 5.87415H1.1668C0.857342 5.87415 0.560563 5.99101 0.341746 6.19903C0.12293 6.40705 0 6.68918 0 6.98336C0 7.27754 0.12293 7.55967 0.341746 7.76769C0.560563 7.97571 0.857342 8.09257 1.1668 8.09257H25.0278L20.804 12.0968C20.6946 12.1999 20.6078 12.3226 20.5486 12.4578C20.4893 12.5929 20.4588 12.7379 20.4588 12.8844C20.4588 13.0308 20.4893 13.1758 20.5486 13.3109C20.6078 13.4461 20.6946 13.5688 20.804 13.6719C20.9124 13.7759 21.0415 13.8584 21.1837 13.9147C21.3258 13.971 21.4784 14 21.6324 14C21.7864 14 21.9389 13.971 22.0811 13.9147C22.2233 13.8584 22.3523 13.7759 22.4608 13.6719L26.9763 9.36816C27.6318 8.74423 28 7.89846 28 7.01664C28 6.13481 27.6318 5.28905 26.9763 4.66511Z' fill='%2300512A'/%3E%3C/svg%3E");
+    }
+  }
+}
+
 .secao-texto-imagem {
   padding: 80px 0;
   position: relative;

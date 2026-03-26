@@ -1,0 +1,132 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+// Função rem para manter a consistência
+@function rem($pixel) {
+    @return calc($pixel / 16) + rem;
+}
+
+.secao-conquistas {
+    @include section-padding;
+
+    &__wrapper {
+        background: #ffffff;
+        padding: rem(60) rem(40);
+        border-radius: rem(20);
+        box-shadow: 0 rem(10) rem(40) rgba(0, 0, 0, 0.08);
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    &__titulo-principal {
+        font-family: $font-heading;
+        font-size: rem(38);
+        font-weight: 400;
+        text-align: center;
+        color: $secondary-color; 
+        margin-bottom: rem(40);
+        
+        strong, b { color: #285E39; font-weight: 700; } 
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: rem(60);
+        row-gap: rem(40);
+
+        @media (max-width: 1100px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__item {
+        display: flex;
+        align-items: flex-start;
+        gap: rem(30);
+        padding: rem(10) 0;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+
+        // Apenas o deslize elegante para a direita
+        &:hover {
+            transform: translateX(rem(12));
+        }
+        
+        @include mobile {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            &:hover { transform: translateY(rem(-8)); }
+        }
+    }
+
+    &__imagem-box {
+        flex: 0 0 rem(165);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective: 1000px;
+
+        img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: all 0.5s ease;
+            filter: drop-shadow(0 0 0 rgba(0,0,0,0));
+        }
+    }
+
+    // Efeito na imagem quando o item recebe hover
+    &__item:hover &__imagem-box img {
+        transform: scale(1.08) rotateY(10deg);
+        filter: drop-shadow(0 rem(8) rem(12) rgba(0,0,0,0.12));
+    }
+
+    &__content {
+        max-width: rem(376);
+    }
+
+    &__titulo-item {
+        font-family: $font-heading;
+        font-size: rem(25);
+        font-weight: 700;
+        line-height: 1.3;
+        color: $secondary-color;
+        margin-bottom: rem(6);
+        display: inline-block; // Necessário para a linha acompanhar o texto
+        position: relative;
+
+        // A LINHA ABAIXO DO TÍTULO
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: rem(-2);
+            width: 0;
+            height: 2px;
+            background: #285E39; // Verde Victa
+            transition: width 0.4s ease;
+        }
+    }
+
+    // Ativa a linha quando o mouse passa no item
+    &__item:hover &__titulo-item::after {
+        width: 100%;
+    }
+
+    &__texto {
+        font-size: rem(16);
+        line-height: 1.6;
+        color: $secondary-color;
+        opacity: 0.85;
+        transition: opacity 0.3s ease, margin-top 0.3s ease;
+        
+        p { margin: 0; }
+    }
+
+    &__item:hover &__texto {
+        opacity: 1;
+        margin-top: rem(10);
+    }
+}   

@@ -22,6 +22,8 @@ import { initSearch } from "./search.js";
 import { initSecaoDepoimentoSwiper } from "./secao-depoimento-swiper.js";
 import { VideoModal } from "./video-modal.js";
 import { initEmpreendimentos } from "./empreendimentos.js";
+import { initTimelineSwiper } from "./timeline-swipper.js"; 
+import { initProdutosSwiper } from "./swiper-produtos.js";
 
 // Inicializa os componentes
 document.addEventListener("DOMContentLoaded", () => {
@@ -34,4 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
   VideoModal.init();
   initEmpreendimentos();
   initDestaquesSwiper();
+  initTimelineSwiper();
+  initProdutosSwiper();
 });
