@@ -1,0 +1,366 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+@use "../base/animations" as *;
+
+.secao-esg {
+  background-color: $secondary-color;
+  padding: rem(55) 0 rem(80);
+  color: #fff;
+
+  &__header {
+    text-align: center;
+    margin-bottom: rem(40);
+    span {
+      color: $primary-color;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: rem(18);
+      letter-spacing: rem(3.8);
+      display: block;
+      margin-bottom: rem(2);
+    }
+    h2 {
+      font-size: rem(38);
+      margin: 0;
+    }
+  }
+
+  &__slider-wrapper {
+    position: relative;
+    padding-bottom: rem(40);
+  }
+
+  // --- CARD ---
+  .esg-card {
+    background: #fff;
+    border-radius: 0 rem(38) rem(38) rem(38);
+    height: 640px;
+    width: 384px;
+    color: $secondary-color;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    @include mobile {
+      width: 100%; // Ocupa a largura disponível do slide
+      max-width: rem(350); // Evita que o card fique "gigante" em telas médias
+      height: auto; // Deixa a altura crescer conforme o texto no mobile
+      margin: 0 auto; // Garante a centralização visual
+      border-radius: 0 rem(30) rem(30) rem(30);
+
+      &__image {
+        height: rem(180); // Reduz um pouco a imagem no mobile
+      }
+
+      &__icon-box {
+        top: calc(
+          rem(180) - rem(27)
+        ); // Ajusta a posição do ícone para a nova altura da imagem
+      }
+
+      &__content {
+        padding: rem(40) rem(20) rem(30); // Ajusta os respiros no mobile
+
+        h3 {
+          font-size: rem(22);
+        }
+      }
+
+      .btn-esg-modal {
+        margin-bottom: rem(20);
+      }
+    }
+
+    &__image {
+      position: relative;
+      height: rem(200);
+      width: 100%;
+      overflow: hidden; // Prende o zoom aqui dentro
+      border-radius: 0 rem(38) 0 0;
+      z-index: 1; // Camada base
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s ease-in-out;
+        display: block;
+      }
+    }
+
+    &__icon-box {
+      position: absolute;
+      // Força o ícone a ficar exatamente no meio da divisão (200px da imagem - 27px que é metade do box)
+      top: calc(rem(190) - rem(27));
+      left: rem(25);
+      background: $primary-color;
+      width: rem(54);
+      height: rem(54);
+      border-radius: rem(10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100; // Valor bem alto para ignorar qualquer container
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+      svg {
+        width: rem(30);
+        height: rem(30);
+        fill: #fff;
+        display: block;
+      }
+    }
+
+    &__content {
+      position: relative;
+      padding: rem(45) rem(28) rem(35);
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      z-index: 2; // Acima da imagem, mas abaixo do ícone
+      background: transparent; // Importante para não sobrepor o ícone
+
+      h3 {
+        font-size: rem(25);
+        margin-bottom: rem(8);
+      }
+
+      .esg-card__text {
+        flex-grow: 1;
+        font-size: rem(16);
+        line-height: 1.6;
+        margin-bottom: rem(20);
+
+        ul {
+          margin-left: rem(15);
+          li {
+            list-style: square;
+            color: $secondary-color;
+            span {
+              color: $secondary-color;
+            }
+          }
+        }
+      }
+    }
+
+    // --- HOVER ---
+    &:hover {
+      .esg-card__image img {
+        transform: scale(1.15);
+      }
+
+      .esg-card__icon-box {
+        background-color: darken($primary-color, 10%);
+        transform: translateY(-8px);
+
+        svg {
+          animation: wiggle 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+            forwards;
+        }
+      }
+    }
+
+    .btn-esg-modal {
+      background: $primary-color;
+      color: #fff;
+      border: none;
+      padding: rem(10) rem(30);
+      border-radius: rem(28) 0;
+      font-weight: 700;
+      font-size: rem(18);
+      cursor: pointer;
+      align-self: center;
+      margin-bottom: rem(30);
+      margin-top: auto; // Empurra o botão para o final do card
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.6s ease-in-out;
+
+      svg {
+        width: 20px;
+        height: auto;              
+      }
+
+      &:hover {
+        background: $secondary-color;
+      }
+    }
+  }
+
+  // --- MODAL ---
+  .esg-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: rem(36) rem(43) rem(50) rem(69);
+
+    // Controle de visibilidade para não bugar o Swiper
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.4s ease-in-out;
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+
+      .esg-modal__container {
+        transform: translateY(0);
+      }
+    }
+
+    &__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(4px);
+      cursor: pointer;
+    }
+
+    &__container {
+      position: relative;
+      background: #fff;
+      width: 100%;
+      max-width: rem(1220);
+
+      overflow-y: auto;
+      border-radius: rem(30);
+      padding: rem(60) rem(50);
+      color: $secondary-color;
+      z-index: 10;
+      transform: translateY(30px);
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+      @include mobile {
+        padding: rem(40) rem(25);
+        border-radius: 0 rem(40) rem(40) rem(40);
+      }
+    }
+
+    &__header {
+      text-align: center;
+      margin-bottom: rem(30);
+      span {
+        color: $primary-color;
+        font-weight: 400;
+        font-size: rem(18);
+        letter-spacing: rem(3.8);
+        text-transform: uppercase;
+      }
+      h2 {
+        font-size: rem(38);
+      }
+    }
+
+    &__body {
+      display: flex;
+      gap: rem(23);
+      @include mobile {
+        flex-direction: column;
+        gap: rem(18);
+      }
+    }
+
+    &__gallery {
+      flex: 1.3;
+      min-width: 0; // CRÍTICO: Impede o Swiper de quebrar o Flexbox
+
+      .js-swiper-modal-esg {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 0 rem(80) 0 rem(80);
+
+        img {
+          width: 100%;
+          height: 333px;
+          object-fit: cover;
+          display: block;
+          @include mobile {
+            height: rem(250);
+          }
+        }
+      }
+    }
+
+    &__info {
+      flex: 1;
+      font-size: rem(16);
+      line-height: 1.8;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .esg-modal__text {
+        p {
+          margin-bottom: rem(20);
+        }
+        ul {
+          padding-left: 20px;
+          li {
+            margin-bottom: 10px;
+            list-style: disc;
+            color: $secondary-color;
+            span {
+              color: $secondary-color;
+            }
+          }
+        }
+      }
+    }
+
+    &__close {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background: $primary-color; // Fundo inicial (Laranja/Amarelo)
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 15;
+      color: $secondary-color; // Faz o SVG herdar o verde escuro inicialmente (currentColor)
+
+      svg {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        background: $secondary-color;
+        color: #fff;
+        transform: rotate(180deg);
+
+        svg {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+// --- PAGINAÇÕES (DENTRO E FORA DO MODAL) ---
+.esg-pagination,
+.modal-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: rem(25);
+  gap: rem(10);
+}
+
+// Trava do Swiper (Esconde dots se não houver slides suficientes)
+.swiper-pagination-lock {
+  display: none !important;
+}

@@ -80,6 +80,12 @@ endif;
         elseif (get_row_layout() == 'secao_ods' && get_sub_field('exibir')):
             get_template_part('template-parts-blocos/secao_ods');
 
+        elseif (get_row_layout() == 'secao_pilares_esg' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_pilares_esg');
+
+        elseif (get_row_layout() == 'secao-oferta' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao-oferta');
+
         endif;
 
 ?>

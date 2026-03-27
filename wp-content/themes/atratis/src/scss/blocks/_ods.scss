@@ -18,7 +18,7 @@
 
     p {
       font-size: rem(16);
-      color: #484D51;
+      color: #484d51;
     }
   }
 
@@ -44,8 +44,12 @@
       font-size: rem(16);
       line-height: 1.6;
 
-      strong { color: $primary-color; }
-      p { margin-bottom: rem(20); }
+      strong {
+        color: $primary-color;
+      }
+      p {
+        margin-bottom: rem(20);
+      }
     }
   }
 
@@ -54,17 +58,25 @@
     grid-template-columns: repeat(4, 1fr);
     gap: rem(15);
 
-    @include mobile {
+    @media (max-width: 514px) {
       grid-template-columns: repeat(2, 1fr);
+      gap: rem(30);
+      justify-content: center;
+      justify-items: center;
+      width: 100%;
     }
 
     &-item {
       width: 100%;
       max-width: rem(135);
-      aspect-ratio: 1 / 1; 
+      aspect-ratio: 1 / 1;
       overflow: hidden;
       border-radius: rem(8);
       cursor: pointer; // Adicionado para indicar interação
+
+      @include mobile {
+        max-width: rem(150);
+      }
 
       img {
         width: 100%;
@@ -87,20 +99,20 @@
 
   &__editor {
     p {
-        font-size: rem(16);
-        line-height: 1.6;
-        color: $secondary-color !important;
-        margin-bottom: rem(28) !important;
+      font-size: rem(16);
+      line-height: 1.6;
+      color: $secondary-color !important;
+      margin-bottom: rem(28) !important;
     }
     strong {
-        color: $secondary-color !important;
+      color: $secondary-color !important;
     }
   }
 
   &__box {
-    background-color: $secondary-color; 
+    background-color: $secondary-color;
     padding: rem(34) rem(40);
-    border-radius: 0 rem(50); 
+    border-radius: 0 rem(50);
     color: #fff;
 
     &-title {
@@ -129,8 +141,10 @@
         top: 0;
         width: 5px;
         height: 100%;
-        background-color: $primary-color; 
-        transition: background-color 0.3s ease, width 0.3s ease; // Transição da borda
+        background-color: $primary-color;
+        transition:
+          background-color 0.3s ease,
+          width 0.3s ease; // Transição da borda
       }
 
       // ANIMACAO HOVER ITEM DA LISTA
@@ -143,8 +157,14 @@
         }
       }
 
-      p { margin-bottom: 0; }
-      strong { display: block; margin-bottom: 5px; color: #fff; }
+      p {
+        margin-bottom: 0;
+      }
+      strong {
+        display: block;
+        margin-bottom: 5px;
+        color: #fff;
+      }
     }
   }
 }

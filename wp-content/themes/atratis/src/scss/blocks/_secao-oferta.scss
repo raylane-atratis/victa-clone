@@ -1,0 +1,138 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.secao-oferta {
+  padding: rem(80) 0;
+
+  &__grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: rem(40);
+
+    @include mobile {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__subtitle {
+    font-size: rem(18);
+    color: #43544a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: rem(15);
+  }
+
+  &__title {
+    font-size: rem(48);
+    color: $secondary-color; // Verde Escuro
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: rem(40);
+
+    @include mobile {
+      font-size: rem(32);
+    }
+  }
+
+  &__features {
+    display: flex;
+    gap: rem(40);
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: rem(15);
+    text-align: left;
+  }
+
+  &__text {
+    h4 {
+      font-size: rem(20);
+      color: $secondary-color;
+      font-weight: 700;
+      margin-bottom: rem(2);
+    }
+    p {
+      font-size: rem(16);
+      color: #666;
+    }
+  }
+
+  // CARD DA DIREITA
+  &__card-area {
+    flex: 0 0 rem(480);
+    @include mobile {
+      width: 100%;
+      flex: none;
+    }
+  }
+
+  .offer-card {
+    background: #f4f6f9;
+    padding: rem(40);
+    border-radius: rem(32);
+    border: 1px solid #e2e8f0;
+
+    &__group {
+      p {
+        font-size: rem(16);
+        color: #43544a;
+        margin-bottom: rem(8);
+      }
+      h3 {
+        font-size: rem(46);
+        color: $secondary-color;
+        font-weight: 800;
+        margin: 0;
+        @include mobile {
+          font-size: rem(36);
+        }
+      }
+    }
+
+    &__divider {
+      height: 1px;
+      background: #cbd5e0;
+      margin: rem(30) 0;
+    }
+
+    &__btn {
+      background: #42ce02;
+      color: $secondary-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: rem(15);
+      padding: rem(20);
+      border-radius: rem(16);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: rem(18);
+      margin-top: rem(20);
+      transition: 0.3s;
+
+      svg {
+        transition: transform 0.3s;
+      }
+
+      &:hover {
+        background: darken(#42ce02, 5%);
+        svg {
+          transform: translateX(8px);
+        }
+      }
+    }
+  }
+}

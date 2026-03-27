@@ -22,8 +22,9 @@ import { initSearch } from "./search.js";
 import { initSecaoDepoimentoSwiper } from "./secao-depoimento-swiper.js";
 import { VideoModal } from "./video-modal.js";
 import { initEmpreendimentos } from "./empreendimentos.js";
-import { initTimelineSwiper } from "./timeline-swipper.js"; 
+import { initTimelineSwiper } from "./timeline-swipper.js";
 import { initProdutosSwiper } from "./swiper-produtos.js";
+import { initEsgSwiper } from "./swiper-esg.js";
 
 // Inicializa os componentes
 document.addEventListener("DOMContentLoaded", () => {
@@ -38,4 +39,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initDestaquesSwiper();
   initTimelineSwiper();
   initProdutosSwiper();
+  initEsgSwiper();
 });
