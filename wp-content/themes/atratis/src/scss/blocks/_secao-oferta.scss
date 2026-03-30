@@ -1,13 +1,31 @@
 @use "../base/variables" as *;
 @use "../base/mixins" as *;
 
+// Definição da animação de balanço
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(8deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+  75% {
+    transform: rotate(4deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 .secao-oferta {
   padding: rem(80) 0;
 
   &__grid {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     gap: rem(40);
 
     @include mobile {
@@ -18,23 +36,32 @@
 
   &__content {
     flex: 1;
+    display: flex; // Adicionado para alinhar corretamente
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    @include mobile {
+      align-items: center;
+    }
   }
 
   &__subtitle {
     font-size: rem(18);
-    color: #43544a;
+    color: $secondary-color;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     display: block;
-    margin-bottom: rem(15);
+    margin-bottom: rem(3);
   }
 
   &__title {
-    font-size: rem(48);
-    color: $secondary-color; // Verde Escuro
-    font-weight: 800;
+    font-size: rem(38);
+    color: $secondary-color;
+    font-weight: 700;
     line-height: 1.1;
-    margin-bottom: rem(40);
+    margin-bottom: rem(30);
+    max-width: rem(360);
 
     @include mobile {
       font-size: rem(32);
@@ -43,10 +70,10 @@
 
   &__features {
     display: flex;
-    gap: rem(40);
+    gap: rem(65);
     @include mobile {
       flex-direction: column;
-      align-items: center;
+      gap: rem(30);
     }
   }
 
@@ -55,18 +82,57 @@
     align-items: center;
     gap: rem(15);
     text-align: left;
+    transition: 0.3s;
+
+    // Trigger da animação no HOVER do item
+    &:hover {
+      .secao-oferta__icon-box svg {
+        animation: wiggle 0.5s ease-in-out;
+      }
+    }
+  }
+
+  &__icon-box {
+    width: rem(52);
+    height: rem(52);
+    background-color: #F0F5CD;
+    border-radius: rem(4); // Pequeno arredondamento conforme imagem
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; // Não deixa a caixa esmagar
+    
+    svg {
+      width: rem(30); // Garante o tamanho do SVG dentro da caixa
+      height: auto;
+      transition: transform 0.8s ease;
+      transform-origin: center;
+      display: block;
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+
+    svg {
+      transition: 0.3s ease;
+      transform-origin: center; // Garante que o balanço seja centralizado
+      display: block;
+    }
   }
 
   &__text {
     h4 {
-      font-size: rem(20);
+      font-size: rem(25);
       color: $secondary-color;
       font-weight: 700;
-      margin-bottom: rem(2);
+      margin-bottom: rem(4);
     }
     p {
       font-size: rem(16);
-      color: #666;
+      color: #484d51;
     }
   }
 
@@ -80,24 +146,24 @@
   }
 
   .offer-card {
-    background: #f4f6f9;
-    padding: rem(40);
-    border-radius: rem(32);
-    border: 1px solid #e2e8f0;
+    background: #f3f5f9;
+    padding: rem(28) rem(50);
+    border-radius: rem(30);
+    border: 1px solid #c9c9c9;
 
     &__group {
       p {
         font-size: rem(16);
-        color: #43544a;
+        color: $secondary-color;
         margin-bottom: rem(8);
       }
       h3 {
-        font-size: rem(46);
+        font-size: rem(35);
         color: $secondary-color;
         font-weight: 800;
         margin: 0;
         @include mobile {
-          font-size: rem(36);
+          font-size: rem(28);
         }
       }
     }
@@ -105,18 +171,18 @@
     &__divider {
       height: 1px;
       background: #cbd5e0;
-      margin: rem(30) 0;
+      margin: rem(25) 0;
     }
 
     &__btn {
-      background: #42ce02;
+      background: $primary-color;
       color: $secondary-color;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: rem(15);
-      padding: rem(20);
-      border-radius: rem(16);
+      padding: rem(11) rem(36);
+      border-radius: rem(20) 0;
       text-decoration: none;
       font-weight: 700;
       font-size: rem(18);

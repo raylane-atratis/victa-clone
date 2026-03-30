@@ -1,0 +1,83 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.secao-video-inst {
+    padding: rem(70) 0;
+    background-color: #F7F8FB;
+
+    &__header {
+        text-align: center;
+        margin-bottom: rem(21);
+    }
+
+    &__subtitle {
+        font-size: rem(18);
+        color: $secondary-color;
+        text-transform: uppercase;
+        letter-spacing: rem(4);
+        font-weight: 400;
+        display: block;
+        margin-bottom: rem(2);
+    }
+
+    &__title {
+        font-size: rem(38);
+        color: $secondary-color;
+        font-weight: 700;
+        line-height: 1.2;
+        max-width: rem(800);
+        margin: 0 auto;
+    }
+
+    &__card {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background-image: var(--capa-desk);
+        background-size: cover;
+        background-position: center;
+        border-radius: rem(30); // Bordas arredondadas
+        overflow: hidden;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+
+        @include mobile {
+            background-image: var(--capa-mob);
+            aspect-ratio: 4 / 3;
+        }
+
+        &:hover {
+            .secao-video-inst__play-btn {
+                // Reaproveitando a animação de wiggle definida anteriormente
+                animation: wiggle 0.5s ease-in-out;
+                transform: scale(1.08);
+            }
+        }
+    }
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__play-btn {
+        background: none;
+        border: none;
+        transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        
+        svg {
+            width: rem(80);
+            height: rem(80);
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+            
+            @include mobile {
+                width: rem(60);
+                height: rem(60);
+            }
+        }
+    }
+}

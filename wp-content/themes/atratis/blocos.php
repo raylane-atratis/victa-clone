@@ -86,9 +86,18 @@ endif;
         elseif (get_row_layout() == 'secao-oferta' && get_sub_field('exibir')):
             get_template_part('template-parts-blocos/secao-oferta');
 
-        endif;
+        elseif (get_row_layout() == 'secao_diferenciais' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_diferenciais');
 
+        elseif (get_row_layout() == 'secao-video-medio' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao-video-medio');
+
+        elseif (get_row_layout() == 'secao-localizacao' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao-localizacao');
+
+        endif;
 ?>
+
     <?php
     endwhile; ?>
 <?php
