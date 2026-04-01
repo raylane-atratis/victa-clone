@@ -25,6 +25,8 @@ import { initEmpreendimentos } from "./empreendimentos.js";
 import { initTimelineSwiper } from "./timeline-swipper.js";
 import { initProdutosSwiper } from "./swiper-produtos.js";
 import { initEsgSwiper } from "./swiper-esg.js";
+import { initFullCarrossel } from "./full-carrossel.js";
+import { initFichaTecnica } from "./ficha-tecnica.js";
 
 // Inicializa os componentes
 document.addEventListener("DOMContentLoaded", () => {
@@ -40,4 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initTimelineSwiper();
   initProdutosSwiper();
   initEsgSwiper();
+  initFullCarrossel();
+  initFichaTecnica();
 });

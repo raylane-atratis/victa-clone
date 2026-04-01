@@ -95,6 +95,12 @@ endif;
         elseif (get_row_layout() == 'secao-localizacao' && get_sub_field('exibir')):
             get_template_part('template-parts-blocos/secao-localizacao');
 
+        elseif (get_row_layout() == 'secao_full_carrossel' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_full_carrossel');
+
+        elseif (get_row_layout() == 'secao_ficha_tecnica' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_ficha_tecnica');
+
         endif;
 ?>
 

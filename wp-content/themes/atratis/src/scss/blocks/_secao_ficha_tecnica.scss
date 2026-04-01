@@ -1,0 +1,155 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.ficha-tecnica {
+  padding: rem(60) 0;
+
+  &__container-box {
+    background: #f4f7f6; // O cinza agora fica aqui
+    border-radius: 20px;
+    padding: rem(30) rem(40); // Espaçamento interno total
+    transition: all 0.3s ease;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: rem(20);
+    cursor: pointer;
+    // Removi o margin-bottom para o título não ficar "longe" do resto ao abrir
+  }
+
+  &__inner-content {
+    min-height: 0;
+    padding-top: rem(20); // Espaço entre o título e o conteúdo interno
+  }
+
+  &__titles {
+    text-align: center;
+  }
+
+  &__sub {
+    display: block;
+    font-size: rem(14);
+    letter-spacing: 2px;
+    color: $text-color;
+    text-transform: uppercase;
+    margin-bottom: rem(5);
+  }
+
+  &__main-title {
+    font-size: rem(32);
+    font-weight: 700;
+    color: #00512a;
+  }
+
+  &__icon {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    svg path {
+      fill: #00512a;
+    }
+  }
+
+  // Estado Aberto do Ícone
+  &.is-active &__icon {
+    transform: rotate(180deg);
+  }
+
+  &__content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease-in-out;
+    overflow: hidden;
+  }
+
+  &.is-active &__content {
+    grid-template-rows: 1fr;
+  }
+
+  &__card {
+    min-height: 0;
+    background: #f4f7f6; // Cor do fundo do print
+    border-radius: 20px;
+    padding: rem(40);
+    margin-top: rem(20);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: 0.4s ease;
+  }
+
+  &.is-active &__card {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+  }
+
+  &__col {
+    min-width: 0; // Evita que o conteúdo force a largura da coluna para fora do container
+  }
+
+  &__card-title {
+    font-size: rem(20);
+    font-weight: 700;
+    color: #00512a;
+    margin-bottom: rem(20);
+  }
+
+  &__divider {
+    border: 0;
+    border-top: 1px solid #d1d5db;
+    margin-bottom: rem(30);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: rem(40);
+    min-height: 0; // Importante para o grid-template-rows: 0fr -> 1fr funcionar
+
+    @media (max-width: 991px) {
+      grid-template-columns: 1fr;
+      gap: rem(20);
+    }
+  }
+
+  &__col-title {
+    font-size: rem(18);
+    font-weight: 700;
+    color: #00512a;
+    margin-bottom: rem(15);
+  }
+
+  &__item {
+    margin-bottom: rem(15);
+  }
+
+  &__item-label {
+    font-size: rem(14);
+    font-weight: 700;
+    color: #00512a;
+    margin-bottom: rem(5);
+  }
+
+  &__list {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        font-size: rem(14);
+        color: $text-color;
+        line-height: 1.6;
+        position: relative;
+        padding-left: 12px;
+
+        &::before {
+          content: "•";
+          position: absolute;
+          left: 0;
+          color: #00512a;
+        }
+      }
+    }
+  }
+}

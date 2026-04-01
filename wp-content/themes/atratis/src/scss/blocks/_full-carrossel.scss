@@ -1,0 +1,156 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+section.carrossel-full {
+  padding: rem(75) 0;
+  display: block;
+  overflow: hidden;
+
+  .carrossel-full__content {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: rem(40);
+    gap: rem(30);
+
+    // Ajuste para Tablets e Celulares
+    @media (max-width: 991px) {
+      flex-direction: column; // Empilha os elementos
+      text-align: center;      // Centraliza todos os textos
+      flex-wrap: wrap;
+      gap: rem(20);
+    }
+  }
+
+  .carrossel-full__first-row {
+    flex: 0 1 auto;
+    max-width: rem(450);
+
+    @media (max-width: 991px) {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  .carrossel-full__second-row {
+    flex: 1 1 auto;
+    max-width: rem(380);
+
+    @media (max-width: 991px) {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  .carrossel-full__btn {
+    flex: 0 0 auto;
+
+    @media (max-width: 991px) {
+      width: 100%;
+      display: flex;
+      justify-content: center; // Garante que o botão (inline-flex) centralize na div 100%
+    }
+    
+    .btn-carrossel-full {
+      background-color: $primary-color;
+      border-radius: 20px 0;
+      padding: rem(12) rem(32);
+      display: inline-flex;
+      align-items: center;
+      gap: rem(14);
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      
+      span {
+        font-size: rem(18);
+        font-weight: 700;
+        color: $secondary-color;
+      }
+
+      .icon svg path {
+        fill: $secondary-color;
+      }
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+        .icon {
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+
+  .carrossel-full__titulo {
+    font-size: rem(38);
+    font-weight: 700;
+    color: $secondary-color !important;
+    line-height: 1.2;
+
+    @media (max-width: 768px) {
+      font-size: rem(28); // Diminui o título no celular para não quebrar feio
+    }
+  }
+
+  .carrossel-full__subtitulo {
+    font-size: rem(16);
+    font-weight: 400;
+    color: $secondary-color;
+    margin-bottom: 8px;
+    display: block;
+
+    span {
+      text-transform: uppercase;
+      letter-spacing: rem(3);
+    }
+  }
+
+  .carrossel-full__descricao {
+    font-size: rem(16);
+    line-height: 1.6;
+    color: $text-color;
+  }
+
+  // Estilos do Swiper (mantidos)
+  .swiper-full-carrossel {
+    overflow: visible;
+    width: 100%;
+
+    @media (max-width: 1200px) {
+      padding: 0 20px; // Padding lateral para os slides não colarem na borda no mobile
+    }
+
+    .carrossel-full__slide img {
+      width: 100%;
+      height: rem(400);
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+
+      @media (max-width: 768px) {
+        height: rem(300); // Imagem menor no celular
+      }
+    }
+  }
+
+  .swiper-full-carrossel-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: rem(30);
+
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 6px;
+      background: #e5e7eb;
+      opacity: 1;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      
+      &-active {
+        width: 35px;
+        background: $primary-color;
+      }
+    }
+  }
+}
