@@ -3,7 +3,7 @@
  * @package ACF
  * @author  WP Engine
  *
- * © 2026 Advanced Custom Fields (ACF®). All rights reserved.
+ * © 2025 Advanced Custom Fields (ACF®). All rights reserved.
  * "ACF" is a trademark of WP Engine.
  * Licensed under the GNU General Public License v2 or later.
  * https://www.gnu.org/licenses/gpl-2.0.html
@@ -114,7 +114,7 @@ if ( ! class_exists( 'acf_field_page_link' ) ) :
 
 			// paged
 			$args['posts_per_page'] = 20;
-			$args['paged']          = (int) $options['paged'];
+			$args['paged']          = $options['paged'];
 
 			// search
 			if ( $options['s'] !== '' ) {
@@ -140,8 +140,10 @@ if ( ! class_exists( 'acf_field_page_link' ) ) :
 				$args['post_type'] = acf_get_post_types();
 			}
 
-			// Post status - use field config only, don't accept from user input.
-			if ( ! empty( $field['post_status'] ) ) {
+			// post status
+			if ( ! empty( $options['post_status'] ) ) {
+				$args['post_status'] = acf_get_array( $options['post_status'] );
+			} elseif ( ! empty( $field['post_status'] ) ) {
 				$args['post_status'] = acf_get_array( $field['post_status'] );
 			}
 
@@ -165,7 +167,7 @@ if ( ! class_exists( 'acf_field_page_link' ) ) :
 			}
 
 			if ( ! empty( $options['include'] ) ) {
-				$args['include'] = (int) $options['include'];
+				$args['include'] = $options['include'];
 			}
 
 			// filters
