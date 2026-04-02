@@ -28,9 +28,10 @@
     justify-content: space-between;
     gap: rem(40);
 
-    @include mobile {
+    @media (max-width: 962px) {
       flex-direction: column;
       text-align: center;
+      align-items: center; // Centraliza os blocos no meio da tela
     }
   }
 
@@ -41,8 +42,9 @@
     justify-content: flex-start;
     align-items: flex-start;
 
-    @include mobile {
-      align-items: center;
+    @media (max-width: 962px) {
+      align-items: center; // Centraliza subtítulo e título no tablet/mobile
+      max-width: 100%;
     }
   }
 
@@ -63,6 +65,10 @@
     margin-bottom: rem(30);
     max-width: rem(360);
 
+    @media (max-width: 962px) {
+      max-width: 100%; // Deixa o título fluir melhor no centro
+    }
+
     @include mobile {
       font-size: rem(32);
     }
@@ -71,6 +77,11 @@
   &__features {
     display: flex;
     gap: rem(65);
+    @media (max-width: 962px) {
+      justify-content: center; // Garante que os itens fiquem centralizados
+      margin-bottom: rem(20);
+    }
+
     @include mobile {
       flex-direction: column;
       gap: rem(30);
@@ -95,13 +106,13 @@
   &__icon-box {
     width: rem(52);
     height: rem(52);
-    background-color: #F0F5CD;
+    background-color: #f0f5cd;
     border-radius: rem(4); // Pequeno arredondamento conforme imagem
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0; // Não deixa a caixa esmagar
-    
+
     svg {
       width: rem(30); // Garante o tamanho do SVG dentro da caixa
       height: auto;
@@ -139,9 +150,17 @@
   // CARD DA DIREITA
   &__card-area {
     flex: 0 0 rem(480);
-    @include mobile {
-      width: 100%;
+    @media (max-width: 962px) {
       flex: none;
+      width: 100%;
+      max-width: rem(
+        550
+      ); // Impede que o card fique "gigante" e esticado no tablet
+      margin: 0 auto; // Centraliza o card na seção
+    }
+
+    @include mobile {
+      max-width: 100%;
     }
   }
 
@@ -150,6 +169,10 @@
     padding: rem(28) rem(50);
     border-radius: rem(30);
     border: 1px solid #c9c9c9;
+
+    @media (max-width: 962px) {
+      padding: rem(30); // Diminui um pouco o padding interno no tablet
+    }
 
     &__group {
       p {

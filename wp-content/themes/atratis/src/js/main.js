@@ -27,6 +27,8 @@ import { initProdutosSwiper } from "./swiper-produtos.js";
 import { initEsgSwiper } from "./swiper-esg.js";
 import { initFullCarrossel } from "./full-carrossel.js";
 import { initFichaTecnica } from "./ficha-tecnica.js";
+import { initPlantasSwiper } from "./swiper-plantas.js";
+import { initFormMasks } from "./form-masks.js";
 
 // Inicializa os componentes
 document.addEventListener("DOMContentLoaded", () => {
@@ -44,4 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initEsgSwiper();
   initFullCarrossel();
   initFichaTecnica();
+  initPlantasSwiper();
+  initFormMasks();
 });

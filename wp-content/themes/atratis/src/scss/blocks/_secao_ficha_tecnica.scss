@@ -4,56 +4,54 @@
 .ficha-tecnica {
   padding: rem(60) 0;
 
-  &__container-box {
-    background: #f4f7f6; // O cinza agora fica aqui
-    border-radius: 20px;
-    padding: rem(30) rem(40); // Espaçamento interno total
-    transition: all 0.3s ease;
-  }
-
-  &__header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: rem(20);
-    cursor: pointer;
-    // Removi o margin-bottom para o título não ficar "longe" do resto ao abrir
-  }
-
-  &__inner-content {
-    min-height: 0;
-    padding-top: rem(20); // Espaço entre o título e o conteúdo interno
-  }
-
-  &__titles {
+  &__header-section {
     text-align: center;
+    margin-bottom: rem(40);
   }
 
   &__sub {
     display: block;
-    font-size: rem(14);
-    letter-spacing: 2px;
-    color: $text-color;
+    font-size: rem(18);
+    letter-spacing: 4px;
+    color: $secondary-color;
     text-transform: uppercase;
-    margin-bottom: rem(5);
+    font-weight: 400;
   }
 
-  &__main-title {
-    font-size: rem(32);
+  &__title {
+    font-size: rem(38);
+    color: $secondary-color; 
     font-weight: 700;
-    color: #00512a;
+  }
+
+  &__card {
+    background: #F3F5F9; 
+    border-radius: rem(30);
+    padding: rem(30) rem(40);
+    cursor: pointer;
+    border: 1px solid #C9C9C9;
+    transition: 0.3s;
+
+    &:hover { border-color: #E2E8F0; }
+
+    @include mobile { padding: rem(20); }
+  }
+
+  &__card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__card-title {
+    font-size: rem(28);
+    font-weight: 700;
+    color: $secondary-color;
   }
 
   &__icon {
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    svg path {
-      fill: #00512a;
-    }
-  }
-
-  // Estado Aberto do Ícone
-  &.is-active &__icon {
-    transform: rotate(180deg);
+    transition: transform 0.4s ease;
+    .is-active & { transform: rotate(180deg); }
   }
 
   &__content {
@@ -61,95 +59,82 @@
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.5s ease-in-out;
     overflow: hidden;
+
+    .is-active & { grid-template-rows: 1fr; }
   }
 
-  &.is-active &__content {
-    grid-template-rows: 1fr;
-  }
-
-  &__card {
+  &__inner {
     min-height: 0;
-    background: #f4f7f6; // Cor do fundo do print
-    border-radius: 20px;
-    padding: rem(40);
-    margin-top: rem(20);
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: 0.4s ease;
-  }
-
-  &.is-active &__card {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.2s;
-  }
-
-  &__col {
-    min-width: 0; // Evita que o conteúdo force a largura da coluna para fora do container
-  }
-
-  &__card-title {
-    font-size: rem(20);
-    font-weight: 700;
-    color: #00512a;
-    margin-bottom: rem(20);
   }
 
   &__divider {
     border: 0;
-    border-top: 1px solid #d1d5db;
-    margin-bottom: rem(30);
+    border-top: 1px solid #C3C3C3;
+    margin: rem(20) 0 rem(30);
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: rem(40);
-    min-height: 0; // Importante para o grid-template-rows: 0fr -> 1fr funcionar
+    grid-template-columns: repeat(2, 1fr); // Define 2 colunas principais
+    grid-auto-flow: column; // FAZ A MÁGICA: Preenche de cima para baixo antes de ir para o lado
+    grid-template-rows: repeat(3, auto); // Define que a primeira coluna terá no máximo 3 itens
+    gap: rem(20) rem(60); 
 
-    @media (max-width: 991px) {
+    @media (max-width: 768px) {
       grid-template-columns: 1fr;
-      gap: rem(20);
+      grid-auto-flow: row; // Volta ao normal no mobile
+      grid-template-rows: none;
     }
   }
 
-  &__col-title {
-    font-size: rem(18);
-    font-weight: 700;
-    color: #00512a;
-    margin-bottom: rem(15);
-  }
+  &__col {
+    &:nth-child(4) {
+      grid-column: 2;
+      grid-row: 1 / 4; 
+    }
 
-  &__item {
-    margin-bottom: rem(15);
-  }
-
-  &__item-label {
-    font-size: rem(14);
-    font-weight: 700;
-    color: #00512a;
-    margin-bottom: rem(5);
+    @media (max-width: 768px) {
+      &:nth-child(4) {
+        grid-column: auto;
+        grid-row: auto;
+      }
+    }
   }
 
   &__list {
     ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+      list-style: square;
+      margin-left: rem(8);
       li {
+        list-style-position: inside;
         font-size: rem(14);
         color: $text-color;
         line-height: 1.6;
         position: relative;
-        padding-left: 12px;
-
-        &::before {
-          content: "•";
-          position: absolute;
-          left: 0;
-          color: #00512a;
+        
+        &::marker {
+          color: $text-color;
+          font-size: rem(12);
         }
       }
     }
+  }
+
+  &__col-title {
+    font-size: rem(25);
+    font-weight: 700;
+    color: $secondary-color;
+    margin-bottom: rem(5);
+  }
+
+  &__item {
+    margin-bottom: rem(25);
+  }
+
+  &__item-label {
+    font-size: rem(18);
+    font-weight: 700;
+    color: $secondary-color;
+    margin-bottom: rem(2);
   }
 }

@@ -1,0 +1,127 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.secao-plantas {
+  padding: rem(60) 0;
+  overflow: hidden;
+
+  &__header {
+    text-align: center;
+    margin-bottom: rem(40);
+    @include mobile { margin-bottom: rem(30); }
+  }
+
+  &__subtitle {
+    font-size: rem(18);
+    color: $secondary-color;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 3.8px;
+    display: block;
+
+    @include mobile {
+      margin-bottom: rem(5);
+    }
+  }
+
+  &__title {
+    font-size: rem(38);
+    color: $secondary-color;
+    font-weight: 700;
+    max-width: rem(770);
+    margin: 0 auto;
+    line-height: 1.2;
+  }
+
+  &__slider-wrapper {
+    // Alinhamento com o container da esquerda
+    padding-left: calc((100vw - 1200px) / 2 + 15px);
+    @media (max-width: 1240px) { padding-left: rem(20); }
+  }
+
+  .swiper-plantas {
+    overflow: visible !important; 
+    width: 100%;
+  }
+
+  .planta-card {
+    background: #fff;
+    border: 1px solid #C1C1C1;
+    border-radius: rem(18);
+    padding: rem(20) rem(30);
+    height: rem(372); 
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    &__image {
+      background: #f9f9f9;
+      margin-bottom: rem(30);
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid #C1C1C1;
+      padding-top: rem(20);
+    }
+
+    &__title {
+      font-size: rem(20);
+      color: $secondary-color;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    &__info {
+      display: flex;
+      align-items: center;
+      gap: rem(10);
+      color: $text-color;
+      font-size: rem(16);
+      white-space: nowrap;
+      
+      svg { flex-shrink: 0; }
+    }
+  }
+
+  .swiper-pagination {
+    position: relative;
+    margin-top: rem(30);
+    bottom: 0 !important;
+
+    @include mobile {
+      margin-top: rem(60);
+    }
+
+    &-bullet {
+      width: rem(30);
+      height: rem(5);
+      border-radius: rem(5);
+      background: #ccc;
+      opacity: 1;
+      transition: 0.3s;
+
+      &-active {
+        background: $secondary-color;
+        width: rem(50);
+      }
+    }
+  }
+}

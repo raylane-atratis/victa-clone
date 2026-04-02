@@ -101,6 +101,12 @@ endif;
         elseif (get_row_layout() == 'secao_ficha_tecnica' && get_sub_field('exibir')):
             get_template_part('template-parts-blocos/secao_ficha_tecnica');
 
+        elseif (get_row_layout() == 'secao_carrossel_plantas' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao_carrossel_plantas'); 
+
+        elseif (get_row_layout() == 'secao__newsletter_de_empreendimentos' && get_sub_field('exibir')):
+            get_template_part('template-parts-blocos/secao__newsletter_de_empreendimentos');
+
         endif;
 ?>
 
